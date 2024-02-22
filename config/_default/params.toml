@@ -47,7 +47,7 @@ smartTOCHideUnfocusedChildren = false
 [article]
   showDate = true
   showViews = true
-  showLikes = false
+  showLikes = true
   showDateOnlyInArticle = true
   showDateUpdated = false
   showAuthor = false
@@ -121,7 +121,7 @@ smartTOCHideUnfocusedChildren = false
   measurementId = "G-YHNVZW1QFJ"
 
 [buymeacoffee]
-  identifier = "nunocoracao"
+  identifier = "nacisimsek"
   globalWidget = true
   globalWidgetMessage = ""
   globalWidgetColor = "#FFDD00"
