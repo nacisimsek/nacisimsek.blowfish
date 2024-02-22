@@ -47,7 +47,7 @@ smartTOCHideUnfocusedChildren = false
 [article]
   showDate = true
   showViews = true
-  showLikes = true
+  showLikes = false
   showDateOnlyInArticle = true
   showDateUpdated = false
   showAuthor = false
@@ -112,13 +112,13 @@ smartTOCHideUnfocusedChildren = false
   cardView = false
 
 [firebase]
-  apiKey: "AIzaSyD8zsmRWd3jwycHMmLBV_AtYVr8RT-JW94",
-  authDomain: "nacisimsekcom.firebaseapp.com",
-  projectId: "nacisimsekcom",
-  storageBucket: "nacisimsekcom.appspot.com",
-  messagingSenderId: "671766689667",
-  appId: "1:671766689667:web:9bc3b7aa8f8c5c5221a8b6",
-  measurementId: "G-YHNVZW1QFJ"
+  apiKey = "AIzaSyAN9vJzbGcqXi3fCiakI8rCVV7-S6T8n4s"
+  authDomain = "homepage-a0c38.firebaseapp.com"
+  projectId = "homepage-a0c38"
+  storageBucket = "homepage-a0c38.appspot.com"
+  messagingSenderId = "722874298820"
+  appId = "1:722874298820:web:b5c0e707586eba68c43491"
+  measurementId = "G-H8CSEYZFG4"
 
 [buymeacoffee]
   identifier = "nunocoracao"
