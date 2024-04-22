@@ -112,13 +112,13 @@ smartTOCHideUnfocusedChildren = false
   cardView = false
 
 [firebase]
-  apiKey = "AIzaSyD8zsmRWd3jwycHMmLBV_AtYVr8RT-JW94"
-  authDomain = "nacisimsekcom.firebaseapp.com"
-  projectId = "nacisimsekcom"
-  storageBucket = "nacisimsekcom.appspot.com"
-  messagingSenderId = "671766689667"
-  appId = "1:671766689667:web:9bc3b7aa8f8c5c5221a8b6"
-  measurementId = "G-YHNVZW1QFJ"
+  apiKey = "AIzaSyCgvym5e7Ebyyavr10n6Wz-jRz2wg0dsc0"
+  authDomain = "nacisimsek-com.firebaseapp.com"
+  projectId = "nacisimsek-com"
+  storageBucket = "nacisimsek-com.appspot.com"
+  messagingSenderId = "6161015700"
+  appId = "1:6161015700:web:b71f3a2020296df29d2581"
+  measurementId = "G-DYQ2GMDWWL"
 
 [buymeacoffee]
   identifier = "nacisimsek"
