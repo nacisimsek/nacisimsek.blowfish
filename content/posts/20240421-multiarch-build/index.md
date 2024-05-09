@@ -10,7 +10,6 @@ showauthor: false
 authors:
   - nunocoracao
 ---
-
 # Build Docker Images with Multiarch Support
 
 When working with the container images, you may come across an issue related to the mismatch of the platforms of the docker engine and the container image itself.
@@ -95,7 +94,7 @@ To do this, follow the below steps:
 
    > 📝 **Note:**
    > Replace the following "**your-username**" part with your Docker Hub username. The --push flag is used to push the image to Docker Hub once the build is complete.
-   > Also modify the **image-name** and **tag** as you wish.
+   > Also modify the **image-name** and **tag** as you wish. The image to be built need to be represented with a dockerfile in the same directory where below command is executed.
    > It is also a **must** to push the multi architecture images to a registry since the local repository does not support to store multi-architecture images
    >
 
