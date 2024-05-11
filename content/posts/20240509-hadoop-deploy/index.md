@@ -97,3 +97,88 @@ This will compose the following four containers:
 * cluster-slave-1
 * cluster-slave-2
 * postgresql
+
+List the containers and their status with the following command:
+
+```bash
+docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}'
+```
+
+```bash
+CONTAINER ID   NAMES                        STATUS
+362d93c0d28a   cluster-slave-1              Up About an hour
+5e69cc3072aa   cluster-slave-2              Up About an hour
+bd3276aa0e7f   cluster-master               Up About an hour
+63ea237d5907   postgresql                   Up About an hour
+```
+
+We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN ResourceManager Web UI (Port 8088)
+
+### Port 9870: Hadoop NameNode Web UI
+
+![1715444187605](image/index/1715444187605.png)
+
+* **Purpose** :
+  * The web interface on port 9870 is the Hadoop NameNode Web UI. It is used for monitoring the HDFS (Hadoop Distributed File System).
+* **Functions** :
+  * **View HDFS Health** : Provides an overview of the HDFS, including the health and status of the NameNode.
+  * **Browse File System** : Allows users to browse the HDFS directories and files.
+  * **Check DataNode Status** : Displays the status and details of all DataNodes in the cluster, including storage utilization and block distribution.
+  * **Monitor Replication** : Shows information about block replication and under-replicated blocks.
+  * **View Logs** : Access NameNode logs for troubleshooting and monitoring.
+* **Key Features** :
+  * **HDFS Overview** : Presents a summary of the total and available storage.
+  * **DataNodes Information** : Details on each DataNode’s storage capacity, usage, and health.
+  * **HDFS Metrics** : Metrics on file system operations, such as read and write requests.
+
+> 📝 **Note:**
+>
+> If you do not see all three nodes listed as Datanode in above list, its most likely the DataNode service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restart DataNode service as follows:
+>
+> `docker exec -it `
+>
+> `hdfs --daemon start datanode`
+
+> ❗️ **Important:**
+>
+> Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we assume the master node is also one of the DataNode.
+
+### Port 8088: YARN ResourceManager Web UI
+
+![1715444278531](image/index/1715444278531.png)
+
+* **Purpose** :
+  * The web interface on port 8088 is the YARN ResourceManager Web UI. It is used for managing and monitoring YARN (Yet Another Resource Negotiator), which handles resource allocation and job scheduling in the Hadoop cluster.
+* **Functions** :
+  * **Monitor Applications** : Displays the status of running and completed applications (jobs) within the cluster.
+  * **View Cluster Metrics** : Provides metrics on resource usage, including memory and CPU utilization across the cluster.
+  * **Track Application Logs** : Allows users to access logs for individual applications, aiding in troubleshooting and performance analysis.
+  * **Manage Nodes** : Lists all the nodes in the cluster with details about their resource usage and health.
+* **Key Features** :
+  * **Application Overview** : Summarizes the state, resource usage, and history of applications.
+  * **Cluster Utilization** : Shows real-time data on how resources are being utilized across the cluster.
+  * **Node Management** : Information on each NodeManager, including available and used resources.
+
+> 📝 **Note:**
+>
+> If you do not see all three nodes listed as Active Nodes in above page, its most likely the NodeManager service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restartNodeManager service as follows:
+>
+> ```
+>> docker exec -it cluster-slave-2 /bin/bash
+> root@cluster-slave-2:/# jps
+> 480 DataNode
+> 929 GetConf
+> 1416 Jps
+> 798 SecondaryNameNode
+>
+> /usr/local/hadoop/sbin/yarn-daemon.sh start nodemanager
+> ```
+
+
+## Cluster Operations
+
+We will be performing operations on HDFS and YARN to get familiar with them.
+
+### HDFS Operations
+
+### YARN Operations
