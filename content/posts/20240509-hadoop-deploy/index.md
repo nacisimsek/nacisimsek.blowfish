@@ -87,7 +87,7 @@ We will deploy the cluster by using the following docker file:
 
 Simply copy the docker compose file and execute below command to deploy the containers.
 
-```bash
+```powershell
 docker-compose up -d
 ```
 
@@ -100,11 +100,11 @@ This will compose the following four containers:
 
 List the containers and their status with the following command:
 
-```bash
+```powershell
 docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}'
 ```
 
-```bash
+```shell
 CONTAINER ID   NAMES                        STATUS
 362d93c0d28a   cluster-slave-1              Up About an hour
 5e69cc3072aa   cluster-slave-2              Up About an hour
@@ -135,13 +135,17 @@ We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN Re
 >
 > If you do not see all three nodes listed as Datanode in above list, its most likely the DataNode service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restart DataNode service as follows:
 >
-> `docker exec -it `
+> ```powershell
+> docker exec -it <container_name> /bin/bash 
+> ```
 >
-> `hdfs --daemon start datanode`
+> ```powershell
+> hdfs --daemon start datanode
+> ```
 
 > ❗️ **Important:**
 >
-> Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we assume the master node is also one of the DataNode.
+> Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we deployed the master node is also one of the DataNode.
 
 ### Port 8088: YARN ResourceManager Web UI
 
@@ -163,7 +167,7 @@ We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN Re
 >
 > If you do not see all three nodes listed as Active Nodes in above page, its most likely the NodeManager service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restartNodeManager service as follows:
 >
-> ```
+> ```powershell
 >> docker exec -it cluster-slave-2 /bin/bash
 > root@cluster-slave-2:/# jps
 > 480 DataNode
@@ -174,11 +178,90 @@ We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN Re
 > /usr/local/hadoop/sbin/yarn-daemon.sh start nodemanager
 > ```
 
-
 ## Cluster Operations
 
 We will be performing operations on HDFS and YARN to get familiar with them.
 
 ### HDFS Operations
+
+1. Download the CSV File to Local, which we will use to import to HDFS:
+
+```powershell
+wget https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets/Wine.csv
+```
+
+2. Put the Downloaded File in HDFS
+
+   a. Copy the File to `cluster-master` Container :
+
+   ```powershell
+   docker cp Wine.csv cluster-master:/
+   ```
+
+   b. Access the `cluster-master` Container Shell :
+
+   ```powershell
+   docker exec -it cluster-master bash
+   ```
+
+   c.Create the Directory in HDFS
+
+   ```powershell
+   hdfs dfs -mkdir -p /user/root/hdfs_odev
+   ```
+
+   d.Copy the File from Container to HDFS
+
+   ```powershell
+   hdfs dfs -put Wine.csv /user/root/hdfs_odev/
+   ```
+
+   e.Verify the File in HDFS :
+
+   ```powershell
+   hdfs dfs -ls /user/root/hdfs_odev
+   ```
+3. Copy the HDFS File to Another Directory
+
+   a.Create the Target Directory in HDFS
+
+   ```powershell
+   hdfs dfs -mkdir -p /tmp/hdfs_odev
+   ```
+
+   b.Copy the File within HDFS :
+
+   ```powershell
+   hdfs dfs -cp /user/root/hdfs_odev/Wine.csv /tmp/hdfs_odev/
+   ```
+
+   c.Verify the Copy in the Target Directory :
+
+   ```powershell
+   hdfs dfs -ls /tmp/hdfs_odev
+   ```
+4. Delete the Directory with Skipping the Trash
+
+   a.Delete the Directory `/tmp/hdfs_odev` :
+
+   ```powershell
+   hdfs dfs -rm -r -skipTrash /tmp/hdfs_odev
+   ```
+
+   b.Verify Deletion
+
+   ```powershell
+   hdfs dfs -ls /tmp
+   ```
+5. Explore the File in Namenode Web UI
+
+   * **Navigate to Namenode Web UI** :
+     * Open your browser and go to `http://localhost:9870`.
+     * Go to "Utilities ->> Browse the file system".
+     * Navigate to `/user/root/hdfs_odev/Wine.csv`.
+   * **Check File Details** :
+     * **Size** : Size of the file.
+     * **Replication Factor** : Number of replicas.
+     * **Block Size** : Size of each block in HDFS.
 
 ### YARN Operations
