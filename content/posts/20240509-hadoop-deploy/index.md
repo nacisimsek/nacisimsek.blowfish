@@ -116,6 +116,8 @@ We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN Re
 
 ### Port 9870: Hadoop NameNode Web UI
 
+You can access the namenode web UI from your browser: [http://localhost:9870/](http://localhost:9870/ "http://localhost:9870/")
+
 ![1715444187605](image/index/1715444187605.png)
 
 * **Purpose** :
@@ -148,6 +150,8 @@ We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN Re
 > Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we deployed the master node is also one of the DataNode.
 
 ### Port 8088: YARN ResourceManager Web UI
+
+You can access the YARN resource manager web UI from your browser: [http://localhost:8088/](http://localhost:8088/ "http://localhost:8088/")
 
 ![1715444278531](image/index/1715444278531.png)
 
@@ -265,3 +269,67 @@ wget https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets
      * **Block Size** : Size of each block in HDFS.
 
 ### YARN Operations
+
+Since the resource manager is running on cluster-master container, we first connect to its shell and initiate spark-shell in yarn mode to observe it as an application submitted.
+
+To do this, first connect to the container shell:
+
+```
+docker exec -it cluster-master bash
+```
+
+Then initiate pyspark session on yarn:
+
+```
+pyspark --master yarn
+```
+
+The submitted PySparkShell application can now be observed from the YARN web UI:
+
+![1716763274050](image/index/1716763274050.png)
+
+This can also be queried from the container shell itself via below command:
+
+```
+yarn application -list
+2024-05-26 22:33:24,560 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
+Total number of applications (application-types: [], states: [SUBMITTED, ACCEPTED, RUNNING] and tags: []):1
+                Application-Id	    Application-Name	    Application-Type	      User	     Queue	             State	       Final-State	       Progress	                       Tracking-URL
+application_1716762500232_0001	        PySparkShell	               SPARK	      root	   default	           RUNNING	         UNDEFINED	            10%	         http://cluster-master:4040
+```
+
+You can query the status of this application 
+
+```
+yarn application -status application_1716762500232_0001
+2024-05-26 22:34:05,252 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
+2024-05-26 22:34:10,228 INFO conf.Configuration: resource-types.xml not found
+2024-05-26 22:34:10,238 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+Application Report :
+	Application-Id : application_1716762500232_0001
+	Application-Name : PySparkShell
+	Application-Type : SPARK
+	User : root
+	Queue : default
+	Application Priority : 0
+	Start-Time : 1716762642037
+	Finish-Time : 0
+	Progress : 10%
+	State : RUNNING
+	Final-State : UNDEFINED
+	Tracking-URL : http://cluster-master:4040
+	RPC Port : -1
+	AM Host : 172.18.0.4
+	Aggregate Resource Allocation : 756961 MB-seconds, 469 vcore-seconds
+	Aggregate Resource Preempted : 0 MB-seconds, 0 vcore-seconds
+	Log Aggregation Status : DISABLED
+	Diagnostics :
+	Unmanaged Application : false
+	Application Node Label Expression : <Not set>
+	AM container Node Label Expression : <DEFAULT_PARTITION>
+	TimeoutType : LIFETIME	ExpiryTime : UNLIMITED	RemainingTime : -1seconds
+```
+
+That's all for this article. As a summary, we have setup a 3 node Hadoop Cluster on Docker environment and perform sample operations on HDFS and YARN. 
+
+Hope you find the article useful. For the next article, we will be performing operations on Hive and MapReduce. Stay tuned.
