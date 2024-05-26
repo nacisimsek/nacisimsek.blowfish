@@ -194,6 +194,8 @@ sup {
 */
 
 table {
+  width: 100% !important;
+
   text-indent: 0;
   /* 1 */
   border-color: inherit;
@@ -755,35 +757,71 @@ select {
 
 .container {
   width: 100%;
+  max-width: 100%;
+  text-align: left !important;
 }
+
+/* Ensure tables utilize the full width of their container */
+.container table {
+  width: 100% !important;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  text-align: left !important;
+}
+
+/* Adjust the width of table headers and cells */
+.container table th {
+  padding: 0.5rem 6rem 0.75rem 0 !important; /* Increase padding only for headers */
+  text-align: left !important;
+  border-bottom: 1px  !important; /* Restore border */
+}
+
+.container table td {
+  padding: 0.5rem 6rem 0.75rem 0 !important; /* Maintain original padding for cells */
+  text-align: left !important;
+  border-bottom: 1px  !important; /* Restore border */
+}
+
+/* Make table headers bold */
+.container table th {
+  font-weight: bold !important;
+}
+
+/* Adjust the images within the table */
+.container table .customEntitityLogo {
+  max-width: 100px !important;
+  height: auto !important;
+}
+
+
 
 @media (min-width: 640px) {
   .container {
-    max-width: 800px; /* Increased from 640px */
+    max-width: 100%; /* Increased from 640px */
   }
 }
 
 @media (min-width: 853px) {
   .container {
-    max-width: 1060px; /* Increased from 853px */
+    max-width: 100%; /* Increased from 853px */
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    max-width: 1280px; /* Increased from 1024px */
+    max-width: 100%; /* Increased from 1024px */
   }
 }
 
 @media (min-width: 1280px) {
   .container {
-    max-width: 1440px; /* Increased from 1280px */
+    max-width: 100%; /* Increased from 1280px */
   }
 }
 
 @media (min-width: 1536px) {
   .container {
-    max-width: 1600px; /* Increased from 1536px */
+    max-width: 100%; /* Increased from 1536px */
   }
 }
 
