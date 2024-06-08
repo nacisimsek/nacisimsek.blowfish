@@ -1,16 +1,15 @@
 ---
-title: "Hive Setup and Operations"
-summary: "This article is about how to deploy Hive services on Hadoop Cluster, which components it has, how the data is stored and managed in Hive, how the calculation is done via MapReduce, and how Yarn manage the resources"
-description: "This article is about how to deploy Hive services on Hadoop Cluster, which components it has, how the data is stored and managed in Hive, how the calculation is done via MapReduce, and how Yarn manage the resources"
-categories: ["Docker","Hadoop","Data Engineering"]
-tags: ["tutorial", "hdfs", "hive", "mapreduce", "postgres", "catalog"]
-date: 2024-06-01
+title: "Kafka Topics and Operations"
+summary: "This article is about how to operate on Kafka topics, their management, and configure important parameters"
+description: "This article is about how to operate on Kafka topics, their management, and configure important parameters"
+categories: ["Kafka","Data Engineering","Deployment"]
+tags: ["tutorial", "kafka", "topics", "configuration", "kubernetes", "docker"]
+date: 2024-06-03
 draft: false
 showauthor: false
 authors:
   - nunocoracao
 ---
-# Hive Deployment and Operations
+# Kafka Topics and Operations
 
-In this article, we will be deploying Hive services on Hadoop cluster
-
+This article is about how to operate on Kafka topics, their management, and configure important parameters
