@@ -37,36 +37,52 @@ Traditional data processing systems were often limited by their ability to scale
 
 With Hadoop, data storage and the computation both handled on the nodes which consist the Hadoop cluster.
 
-![image title](https://dz2cdn1.dzone.com/storage/temp/10071134-hdfsarchitecture.png)
-
 ### How does Hadoop Work?
 
 Hadoop's architecture is built around three main components: HDFS, MapReduce, and YARN.
 
-1. **HDFS (Hadoop Distributed File System)** :
+#### **HDFS (Hadoop Distributed File System)** :
 
 * **Purpose** : HDFS is designed to store large files by distributing them across multiple machines in a cluster.
 * **How It Works** : HDFS breaks down a large file into smaller blocks and stores them across different nodes in the cluster. This distribution allows for parallel processing and ensures data availability, even if some nodes fail.
 * **Logic** : By spreading the data, HDFS provides high throughput and reliability, addressing the limitations of single-node storage systems.
+* **Modules**:
 
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/4Gfl0WuONMY?si=XMSprT5rtXUxBqpk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  * **NameNode**: Manages HDFS metadata and namespace. These nodes does not store data, but they actually keep the metadata of the data that is kept in data nodes, such as which data nodes the data is splitted, what is its replication, etc...
+  * **DataNode**: Stores actual HDFS data blocks. These are the nodes where the actual data blocks are kept. When user would like to read/write data from/to HDFS, after getting the metadata information from NameNode, client is communicating these nodes for data operations.
+  * **Secondary/Standby NameNode**: Periodically saves the merged namespace image to reduce NameNode load and also grant High Availability (HA) for the cluster.
 
-2. **MapReduce** :
+    ![image title](image/index/hdfsarchitecture.png)
+
+    Below is a video by Jesse Anderson where he is explaining how the data is kept as blocks in HDFS.
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/4Gfl0WuONMY?si=XMSprT5rtXUxBqpk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+#### **MapReduce** :
 
 * **Purpose** : MapReduce is the core processing engine of Hadoop, designed to process large datasets in parallel.
 * **How It Works** : It breaks down a task into two main functions: Map and Reduce.
-
-  * **Map Function** : Processes input data and converts it into a set of intermediate key-value pairs.
-  * **Reduce Function** : Merges these intermediate values to produce the final output.
+* **Map Function** : Processes input data and converts it into a set of intermediate key-value pairs.
+* **Reduce Function** : Merges these intermediate values to produce the final output.
 * **Logic** : This parallel processing model allows Hadoop to handle large-scale data analysis efficiently, overcoming the bottlenecks of traditional sequential processing.
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/bcjSe0xCHbE?si=jVlJSxDC7HZPRaDf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-3. **YARN (Yet Another Resource Negotiator)** :
+#### **YARN (Yet Another Resource Negotiator)** :
 
 * **Purpose** : YARN manages and allocates resources to various applications running in a Hadoop cluster.
 * **How It Works** : It consists of a ResourceManager and NodeManagers. The ResourceManager allocates resources based on the needs of the applications, while NodeManagers monitor resources on individual nodes.
 * **Logic** : YARN enhances Hadoop’s scalability and resource utilization, enabling multiple data processing engines to run simultaneously on a single cluster.
+* **Modules**:
+  * **ResourceManager**: Manages resource allocation in the YARN ecosystem.
+  * **NodeManager**: Manages containers and resources on individual nodes in YARN.
+  * **ApplicationMaster**: Manages the execution (scheduling and coordination) of a single application in YARN during the application lifecycle and got removed as soon as the application terminates.
+
+    ![1717971977784](image/index/1717971977784.png)
+
+    Below is the representation of the job submission and its management on YARN
+
+    ![1717972037780](image/index/1717972037780.png)
 
 ### What are the Disadvantages of Hadoop Comparing to Modern Data Systems?
 
@@ -112,11 +128,74 @@ bd3276aa0e7f   cluster-master               Up About an hour
 63ea237d5907   postgresql                   Up About an hour
 ```
 
+After the containers are started, make sure each container has started the above mentioned HDFS and YARN specific modules successfully.
+
+To check this, need to connect the shell of each container:
+
+```powershell
+docker exec -it cluster-master bash
+```
+
+Then perform below command to see the started modules (services):
+
+```powershell
+root@cluster-master:/# jps
+455 NameNode
+637 Jps
+110 GetConf
+```
+
+Since this is our master node of YARN and HDFS, and also will be used as one of our data nodes in HDFS and a worker node for YARN, we need to make sure all below modules (services) to be running on it:
+
+* ResourceManager (YARN)
+* NodeManager (YARN)
+* DataNode (HDFS)
+
+Execute below commands to start these services if they have not been started:
+
+To start NodeManager and ResourceManager:
+
+```powershell
+/usr/local/hadoop/sbin/start-yarn.sh
+```
+
+To start DataNode:
+
+```powershell
+/usr/local/hadoop/sbin/hadoop-daemon.sh start datanode
+```
+
+Finally, check if all modules have been started successfully:
+
+```powershell
+root@cluster-master:/# jps
+903 ResourceManager
+455 NameNode
+1815 Jps
+1560 DataNode
+1163 NodeManager
+110 GetConf
+```
+
+And this is how the slave nodes should look like:
+
+```powershell
+root@cluster-slave-1:/# jps
+496 DataNode
+2017 Jps
+1618 NodeManager
+837 SecondaryNameNode
+```
+
+
+
 We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN ResourceManager Web UI (Port 8088)
 
 ### Port 9870: Hadoop NameNode Web UI
 
 You can access the namenode web UI from your browser: [http://localhost:9870/](http://localhost:9870/ "http://localhost:9870/")
+
+
 
 ![1715444187605](image/index/1715444187605.png)
 
@@ -298,7 +377,7 @@ Total number of applications (application-types: [], states: [SUBMITTED, ACCEPTE
 application_1716762500232_0001	        PySparkShell	               SPARK	      root	   default	           RUNNING	         UNDEFINED	            10%	         http://cluster-master:4040
 ```
 
-You can query the status of this application 
+You can query the status of this application
 
 ```
 yarn application -status application_1716762500232_0001
@@ -330,6 +409,6 @@ Application Report :
 	TimeoutType : LIFETIME	ExpiryTime : UNLIMITED	RemainingTime : -1seconds
 ```
 
-That's all for this article. As a summary, we have setup a 3 node Hadoop Cluster on Docker environment and perform sample operations on HDFS and YARN. 
+That's all for this article. As a summary, we have setup a 3 node Hadoop Cluster on Docker environment and perform sample operations on HDFS and YARN.
 
 Hope you find the article useful. For the next article, we will be performing operations on Hive and MapReduce. Stay tuned.
