@@ -8,7 +8,7 @@ date: 2024-06-06
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Use PySpark for Data Clean up
 

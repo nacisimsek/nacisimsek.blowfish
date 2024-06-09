@@ -8,7 +8,7 @@ date: 2024-06-01
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Hive Deployment and Operations
 

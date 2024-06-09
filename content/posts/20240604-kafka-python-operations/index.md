@@ -8,7 +8,7 @@ date: 2024-06-04
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Kafka Python Operations
 

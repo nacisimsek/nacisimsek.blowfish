@@ -8,7 +8,7 @@ date: 2024-06-02
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Deploy Kafka Cluster
 

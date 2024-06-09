@@ -8,7 +8,7 @@ date: 2024-05-09
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Hadoop Cluster Deployment and Operations
 

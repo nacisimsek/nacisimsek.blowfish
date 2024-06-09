@@ -8,7 +8,7 @@ date: 2024-06-08
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Submitting Spark Application
 

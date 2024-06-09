@@ -8,7 +8,7 @@ date: 2024-06-07
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Spark DataFrame Operations
 

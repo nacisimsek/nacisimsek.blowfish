@@ -8,7 +8,7 @@ date: 2024-06-09
 draft: false
 showauthor: false
 authors:
-  - nunocoracao
+  - nacisimsek
 ---
 # Change Data Capture (CDC) Pipeline Implementation
 
