@@ -37,6 +37,26 @@
   pageRef = "about"
   weight = 50
 
+# New parent menu item for the dropdown
+[[main]]
+  name = "Explore"
+  url = "#"
+  weight = 60
+
+# Child menu items for the dropdown
+[[main]]
+  name = "Tags"
+  pageRef = "tags"
+  parent = "Explore"
+  weight = 61
+
+[[main]]
+  name = "Categories"
+  pageRef = "categories"
+  parent = "Explore"
+  weight = 62
+
+
 #[[main]]
 #  name = "Recs"
 #  pageRef = "recs"
