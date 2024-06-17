@@ -31,7 +31,7 @@ Currently I am working as Technical Account Manager at Ververica, specialized in
 
 I have an academic degree of Computer Engineering from Ege University and MBA from Bahcesehir University. Beyond these, I hold PMP® and German B1 certifications.
 
-Outside the world of bits and bytes, I do travel with my wife and take photos. Doing regular exercise, yoga and meditation also help me find balance.
+Outside the world of bits and bytes, I do travel with my wife and our lovely british shorthair "Bamboo" and take photos. Doing regular exercise, yoga and meditation also help me find balance.
 
 ## Contact me
 
