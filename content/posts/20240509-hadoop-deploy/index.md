@@ -99,7 +99,7 @@ Hadoop was a groundbreaking solution for big data, but modern data systems have 
 
 We will deploy the cluster by using the following docker file:
 
-[https://github.com/nacisimsek/Data_Engineering/blob/main/Hadoop/docker-compose.yaml](https://github.com/nacisimsek/Data_Engineering/blob/main/Hadoop/docker-compose.yaml "docker-compose.yaml")
+[https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml](https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml "[docker-compose.yaml](https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml)")
 
 Simply copy the docker compose file and execute below command to deploy the containers.
 
@@ -187,15 +187,11 @@ root@cluster-slave-1:/# jps
 837 SecondaryNameNode
 ```
 
-
-
 We should be now accessing to the Hadoop NameNode Web UI (Port 9870) and YARN ResourceManager Web UI (Port 8088)
 
 ### Port 9870: Hadoop NameNode Web UI
 
 You can access the namenode web UI from your browser: [http://localhost:9870/](http://localhost:9870/ "http://localhost:9870/")
-
-
 
 ![1715444187605](image/index/1715444187605.png)
 
