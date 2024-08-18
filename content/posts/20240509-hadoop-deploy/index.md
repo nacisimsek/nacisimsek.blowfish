@@ -101,6 +101,10 @@ We will deploy the cluster by using the following docker file:
 
 [https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml](https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml "[docker-compose.yaml](https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml)")
 
+> 📝 **Note:**
+>
+> The image which is being used in this docker-compose file is my [multiarch built version](https://nacisimsek.com/posts/20240421-multiarch-build/ "Build Docker Images with Multiarch Support") of the image which was originally prepared by [Veribilimiokulu](https://hub.docker.com/r/veribilimiokulu/ubuntu_hadoop_hive_sqoop "ubuntu_hadoop_hive_sqoop"). I had attended their [data engineering bootcamp](https://bootcamp.veribilimiokulu.com/bootcamp-programlari/data-engineering-bootcamp/ "VBO-DE-Bootcamp") program and had a chance to learn many new skills around data engineering while also refreshing my existing knowledge. Many of the next blog posts in my website will be related to the hands-on experience I gained during this bootcamp, therefore, special thanks to them for helping us improve ourselves and also encouraging us to share our knowledge to others.
+
 Simply copy the docker compose file and execute below command to deploy the containers.
 
 ```powershell
@@ -213,7 +217,7 @@ You can access the namenode web UI from your browser: [http://localhost:9870/](h
 > If you do not see all three nodes listed as Datanode in above list, its most likely the DataNode service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restart DataNode service as follows:
 >
 > ```powershell
-> docker exec -it <container_name> /bin/bash 
+> docker exec -it <container_name> /bin/bash
 > ```
 >
 > ```powershell
