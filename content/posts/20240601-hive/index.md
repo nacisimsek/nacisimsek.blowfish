@@ -35,7 +35,6 @@ Hive is like a friendly translator that helps you talk to your big data. Imagine
 * It uses engines like: MapReduce, Tez or Spark.
 * It supports many different file formats: Parquet, Sequence, ORC, Text, etc.
 
-
 > ❗️ **Important:**
 >
 > * Hive is not a database.
@@ -43,7 +42,6 @@ Hive is like a friendly translator that helps you talk to your big data. Imagine
 > * Its not suitable for row based insert, update and delete, or interactive queries.
 > * The query takes a reasonable amount of time. Converts query to MapReduce/Tez code, get resources from YARN and then starts the operation.
 > * HiveQL is not standard SQL. Should not expect everything as in SQL.
-
 
 ### Why was Hive Built?
 
@@ -92,7 +90,7 @@ fa725f0c0bd9   cluster-master        Up 12 days
 02571464b056   postgresql            Up 12 days
 ```
 
-Logging into the shell of the container `cluster-master` 
+Logging into the shell of the container `cluster-master`
 
 ```powershell
 docker exec -it cluster-master bash
@@ -142,12 +140,9 @@ Services starting up. Waiting for 60 seconds...
 Hive Metastore and HiveServer2 services have been started successfully.
 ```
 
-
-
 #### Connect Beeline HiveQL CLI
 
 After the Hive service is started, we will connect to it using the Beeline CLI (Command Line Interface).
-
 
 This command will connect us to a Hive server running on "cluster-master" using the default port 10000, allowing us to interact with Hive and run HiveQL queries.
 
@@ -163,7 +158,6 @@ Transaction isolation: TRANSACTION_REPEATABLE_READ
 Beeline version 2.3.9 by Apache Hive
 ```
 
-
 > 📝 **Note**:
 >
 > If you face below issue when trying to connect beeline CLI, its most probably related with your postgres container's volume access.
@@ -176,12 +170,11 @@ Beeline version 2.3.9 by Apache Hive
 >
 > To fix it, either update the volume settings of the docker compose file and mount the container volumes to a local volume, or make sure to start containers with `docker-compose up -d` command executed by a `root` user or another user which has access to the local volume folders created by docker.
 
-
-
-
 ### Creating a Hive Database and a Table
 
 We are now ready to perform our HiveQL database and table operations on Beeline.
+
+#### List Databases and Tables
 
 Below command is used to list the available databases:
 
@@ -207,8 +200,7 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 1 row selected (0.119 seconds)
 ```
 
-
-> 📝 **Note**: 
+> 📝 **Note**:
 >
 > As seen above, with the command output, also many other logs get pinted. Simply use the below command to turn the logging function off for this session:
 >
@@ -220,11 +212,118 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 >
 > `./usr/local/hive/conf/hive-site.xml`
 
+To show the tables, simply use as below:
+
+```
+show tables;
+```
+
+```
++-----------+
+| tab_name  |
++-----------+
++-----------+
+No rows selected (0.03 seconds)
+```
 
 ### Loading Data into a Hive Table from CSV File and Perform Query
 
+We now have the environment ready to work with Hive databases and tables to create our own table and perform queries on it.
+
+To perform our tests, we will be using CSV files to initiate data into our internal and external tables and see how Hive make use of data when the table is generated as internal table or external table.
+
+For more information about the file formats Hive can read and write, you can check [here](https://cwiki.apache.org/confluence/display/Hive/FileFormats "Hive File Formats").
 
 #### Internal Hive Table Creation
+
+Before proceding to create database and the respective table, first we download our dataset that we use to insert data into our Hive table. Because, before creating the table, we need to check our dataset, and collect some details about it as explained below, which the Hive table will use all these details to suit the table with that dataset.
+
+##### Download Dataset to Container Local
+
+Login to the container bash:
+
+```powershell
+docker exec -it cluster-master bash
+```
+
+Download the dataset. Make sure you download it to the folder where you map the docker volume, if you would like to access the dataset even the container gets restarted.
+
+```powershell
+wget -O employee.txt https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets/employee.txt
+```
+
+Here is how our data looks like:
+
+```plaintext
+cat employee.txt
+name|work_place|gender_age|skills_score
+Michael|Montreal,Toronto|Male,30|DB:80,Network:88
+Will|Montreal|Male,35|Perl:85,Scala:82
+Shelley|New York|Female,27|Python:80,Spark:95
+Lucy|Vancouver|Female,57|Sales:89,HR:94
+```
+
+
+Based on the content of the data here are the informations that we need to collect to be used when creating its Hive table:
+
+* Has the dataset a header?
+
+  ```
+  Yes, 1 line
+  ```
+* What are each field names and their data types?
+
+  ```
+  name STRING
+  work_place ARRAY<STRING>
+  gender_age STRUCT<gender:STRING,age:INT>
+  skills_score MAP<STRING,INT>
+  ```
+* How (with which character) each field is separated?
+
+  ```
+  With Pipe character '|'
+  ```
+* How each row (line) is separated?
+
+  ```
+  With a newline character '\n'
+  ```
+* Does any column consists collection data type representing key:value pairs?
+
+  ```
+  Yes, collections in one column is separated by comma ','
+  Map keys are terminated by colon ':'
+  ```
+
+
+##### Put the file into HDFS
+
+##### Create Hive Database and the Table
+
+
+From Beeline (you can also use tools like DBeaver to connect Hive and execute HiveSQL queries), we will create a database called `hive_db` and a table called `wine`:
+
+```sql
+create database if not exists hive_db;
+```
+
+Select the created database:
+
+```powershell
+use hive_db;
+```
+
+
+##### Load Data into Table
+
+###### Load from Local
+
+###### Load from HDFS
+
+##### Perform Select Query from Hive Table
+
+##### Drop Database and its Table
 
 #### External Hive Table Creation
 
