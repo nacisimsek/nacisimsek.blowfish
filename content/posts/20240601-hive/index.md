@@ -110,7 +110,7 @@ schematool -initSchema -dbType postgres
 
 Below should be how the output looks like.
 
-```apache
+```
 Metastore connection URL:	 jdbc:postgresql://postgresql:5432/metastore
 Metastore Connection Driver :	 org.postgresql.Driver
 Metastore connection User:	 postgres
@@ -178,9 +178,13 @@ We are now ready to perform our HiveQL database and table operations on Beeline.
 
 Below command is used to list the available databases:
 
-```bash
+```sql
 show databases;
+```
 
+The output will be shown as follows:
+
+```
 INFO  : Compiling command(queryId=root_20240818123321_a5886e81-31b2-493d-93e1-88e05b7431f7): show databases
 INFO  : Concurrency mode is disabled, not creating a lock manager
 INFO  : Semantic Analysis Completed (retrial = false)
@@ -204,7 +208,7 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 >
 > As seen above, with the command output, also many other logs get pinted. Simply use the below command to turn the logging function off for this session:
 >
-> ```
+> ```bash
 > set hive.server2.logging.operation.level=NONE;
 > ```
 >
@@ -214,7 +218,7 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 
 To show the tables, simply use as below:
 
-```
+```sql
 show tables;
 ```
 
@@ -254,15 +258,17 @@ wget -O employee.txt https://raw.githubusercontent.com/nacisimsek/Data_Engineeri
 
 Here is how our data looks like:
 
-```plaintext
+```powershell
 cat employee.txt
+```
+
+```
 name|work_place|gender_age|skills_score
 Michael|Montreal,Toronto|Male,30|DB:80,Network:88
 Will|Montreal|Male,35|Perl:85,Scala:82
 Shelley|New York|Female,27|Python:80,Spark:95
 Lucy|Vancouver|Female,57|Sales:89,HR:94
 ```
-
 
 Based on the content of the data here are the informations that we need to collect to be used when creating its Hive table:
 
@@ -296,11 +302,9 @@ Based on the content of the data here are the informations that we need to colle
   Map keys are terminated by colon ':'
   ```
 
-
 ##### Put the file into HDFS
 
 ##### Create Hive Database and the Table
-
 
 From Beeline (you can also use tools like DBeaver to connect Hive and execute HiveSQL queries), we will create a database called `hive_db` and a table called `wine`:
 
@@ -310,10 +314,9 @@ create database if not exists hive_db;
 
 Select the created database:
 
-```powershell
+```sql
 use hive_db;
 ```
-
 
 ##### Load Data into Table
 
