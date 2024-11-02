@@ -1021,6 +1021,34 @@ select {
   color:inherit
 }
 
+.prose :where(h5):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color:var(--tw-prose-headings);
+  font-weight:600;
+  margin-top:1.5em;
+  margin-bottom:0.5em;
+  line-height:1.5
+}
+
+.prose :where(h5 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight:700;
+  color:inherit
+}
+
+
+.prose :where(h6):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color:var(--tw-prose-headings);
+  font-weight:600;
+  margin-top:1.5em;
+  margin-bottom:0.5em;
+  line-height:1.5
+}
+
+.prose :where(h6 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight:700;
+  color:inherit
+}
+
+
 .prose :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
   margin-top:2em;
   margin-bottom:2em
