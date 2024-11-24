@@ -170,6 +170,12 @@ Beeline version 2.3.9 by Apache Hive
 >
 > To fix it, either update the volume settings of the docker compose file and mount the container volumes to a local volume, or make sure to start containers with `docker-compose up -d` command executed by a `root` user or another user which has access to the local volume folders created by docker.
 
+#### Connect Hive2 JDBC Through SQL Editor
+
+If you like to work on a SQL client rather than performing SQL queries on CLI, there is also an option to connect Hive via a SQL editor through JDBC. Here are the details to be used when connecting to Hive through a SQL Editor (ex: DBeaver):
+
+![1731153662229](image/index/1731153662229.png)
+
 ### Creating a Hive Database and a Table
 
 We are now ready to perform our HiveQL database and table operations on Beeline.
@@ -250,7 +256,7 @@ Login to the container bash:
 docker exec -it cluster-master bash
 ```
 
-Download the dataset. Make sure you download it to the folder where you map the docker volume, if you would like to access the dataset even the container gets restarted.
+Download the dataset. Make sure you download it to the folder where you map the docker volume (`usr/local/hadoop/namenode/`), if you would like to access the dataset even the container gets restarted.
 
 ```powershell
 wget -O employee.txt https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets/employee.txt
@@ -304,12 +310,64 @@ Based on the content of the data here are the informations that we need to colle
 
 ##### Put the file into HDFS
 
+We wiil place the dataset `employee.txt` into HDFS manually, then based on its HDFS directory, we will create its Hive table in the next step . In the directory of the container where we downloaded the dataset, execute below commands:
+
+Create the HDFS directory for our dataset:
+
+```powershell
+hdfs dfs -mkdir -p /user/datasets
+```
+
+Put the file into this created HDFS directory:
+
+```powershell
+hdfs dfs -put employee.txt /user/datasets
+```
+
+See the HDFS directory to verify that the dataset has successfully been placed there:
+
+```powershell
+hdfs dfs -ls /user/datasets
+```
+
+```
+Found 1 items
+-rw-r--r--   1 root supergroup        215 2024-11-23 17:02 /user/datasets/employee.txt
+```
+
+
+
 ##### Create Hive Database and the Table
 
 From Beeline (you can also use tools like DBeaver to connect Hive and execute HiveSQL queries), we will create a database called `hive_db` and a table called `wine`:
 
 ```sql
 create database if not exists hive_db;
+```
+
+Show the existing databases:
+
+```sql
+show databases;
+```
+
+```
+|database_name|
+|-------------|
+|default      |
+|hive_db      |
+```
+
+Describe particular database to see its details:
+
+```sql
+describe database hive_db;
+```
+
+```
+|db_name|comment|location                                                 |owner_name|owner_type|parameters|
+|-------|-------|---------------------------------------------------------|----------|----------|----------|
+|hive_db|       |hdfs://cluster-master:9000/user/hive/warehouse/hive_db.db|root      |USER      |          |
 ```
 
 Select the created database:

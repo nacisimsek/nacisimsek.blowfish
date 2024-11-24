@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Multiarchitecture on Naci Simsek</title>
+    <link>http://localhost:1313/tags/multiarchitecture/</link>
+    <description>Recent content in Multiarchitecture on Naci Simsek</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 Naci Simsek</copyright>
+    <lastBuildDate>Sun, 21 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/multiarchitecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build Docker Images with Multiarch Support</title>
+      <link>http://localhost:1313/posts/20240421-multiarch-build/</link>
+      <pubDate>Sun, 21 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/20240421-multiarch-build/</guid>
+      <description>This article is showing how to build any docker image for any architecture type, so that you can build your own architecture specific images and be able to run them on your docker engine.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/20240421-multiarch-build/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

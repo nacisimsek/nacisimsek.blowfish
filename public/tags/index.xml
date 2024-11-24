@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Naci Simsek</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Naci Simsek</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 Naci Simsek</copyright>
+    <lastBuildDate>Sun, 09 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Catalog</title>
+      <link>http://localhost:1313/tags/catalog/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/catalog/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Hdfs</title>
+      <link>http://localhost:1313/tags/hdfs/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/hdfs/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Hive</title>
+      <link>http://localhost:1313/tags/hive/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/hive/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Mapreduce</title>
+      <link>http://localhost:1313/tags/mapreduce/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/mapreduce/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Postgres</title>
+      <link>http://localhost:1313/tags/postgres/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/postgres/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Tutorial</title>
+      <link>http://localhost:1313/tags/tutorial/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/tutorial/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Spark</title>
+      <link>http://localhost:1313/tags/spark/</link>
+      <pubDate>Wed, 05 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/spark/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>http://localhost:1313/tags/configuration/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/configuration/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://localhost:1313/tags/docker/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/docker/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Kafka</title>
+      <link>http://localhost:1313/tags/kafka/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/kafka/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>http://localhost:1313/tags/kubernetes/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/kubernetes/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Topics</title>
+      <link>http://localhost:1313/tags/topics/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/topics/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Brew</title>
+      <link>http://localhost:1313/tags/brew/</link>
+      <pubDate>Sun, 02 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/brew/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Helm</title>
+      <link>http://localhost:1313/tags/helm/</link>
+      <pubDate>Sun, 02 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/helm/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Datanode</title>
+      <link>http://localhost:1313/tags/datanode/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/datanode/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Namenode</title>
+      <link>http://localhost:1313/tags/namenode/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/namenode/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Yarn</title>
+      <link>http://localhost:1313/tags/yarn/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/yarn/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Colima</title>
+      <link>http://localhost:1313/tags/colima/</link>
+      <pubDate>Sun, 21 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/colima/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Containers</title>
+      <link>http://localhost:1313/tags/containers/</link>
+      <pubDate>Sun, 21 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/containers/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Microservices</title>
+      <link>http://localhost:1313/tags/microservices/</link>
+      <pubDate>Sun, 21 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/microservices/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Multiarchitecture</title>
+      <link>http://localhost:1313/tags/multiarchitecture/</link>
+      <pubDate>Sun, 21 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/multiarchitecture/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

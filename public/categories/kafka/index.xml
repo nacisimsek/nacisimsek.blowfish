@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kafka on Naci Simsek</title>
+    <link>http://localhost:1313/categories/kafka/</link>
+    <description>Recent content in Kafka on Naci Simsek</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 Naci Simsek</copyright>
+    <lastBuildDate>Mon, 03 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/kafka/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kafka Topics and Operations</title>
+      <link>http://localhost:1313/posts/20240603-kafka-topics/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/20240603-kafka-topics/</guid>
+      <description>This article is about how to operate on Kafka topics, their management, and configure important parameters</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/20240603-kafka-topics/featured.png" />
+    </item>
+    
+    <item>
+      <title>Deploy Kafka Cluster</title>
+      <link>http://localhost:1313/posts/20240602-kafka-deploy/</link>
+      <pubDate>Sun, 02 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/20240602-kafka-deploy/</guid>
+      <description>This article is about how to deploy Kafka Cluster on local (MacOS), docker and kubernetes</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/20240602-kafka-deploy/featured.png" />
+    </item>
+    
+  </channel>
+</rss>
