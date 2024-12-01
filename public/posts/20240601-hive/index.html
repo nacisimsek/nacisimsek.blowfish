@@ -113,7 +113,7 @@
     "keywords": ["tutorial","hdfs","hive","mapreduce","postgres","catalog"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "2281"
+    "wordCount": "3211"
   }]
   </script>
 
@@ -726,7 +726,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-01 00:00:00 &#43;0000 UTC">2024-06-01</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">11 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-01 00:00:00 &#43;0000 UTC">2024-06-01</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
     
     <span id="views_posts/20240601-hive/index.md" 
     
@@ -956,20 +956,16 @@
                 <li><a href="#list-databases-and-tables">List Databases and Tables</a></li>
               </ul>
             </li>
-            <li><a href="#loading-data-into-a-hive-table-from-csv-file-and-perform-query">Loading Data into a Hive Table from CSV File and Perform Query</a>
+            <li><a href="#loading-data-into-a-hive-table">Loading Data into a Hive Table</a></li>
+            <li><a href="#internal-vs-external-tables-data-movement">Internal vs. External Tables: Data Movement</a>
               <ul>
                 <li><a href="#internal-hive-table-creation">Internal Hive Table Creation</a>
                   <ul>
                     <li><a href="#download-dataset-to-container-local">Download Dataset to Container Local</a></li>
                     <li><a href="#put-the-file-into-hdfs">Put the file into HDFS</a></li>
                     <li><a href="#create-hive-database-and-the-table">Create Hive Database and the Table</a></li>
-                    <li><a href="#load-data-into-table">Load Data into Table</a>
-                      <ul>
-                        <li><a href="#load-from-local">Load from Local</a></li>
-                        <li><a href="#load-from-hdfs">Load from HDFS</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#perform-select-query-from-hive-table">Perform Select Query from Hive Table</a></li>
+                    <li><a href="#load-data-into-table">Load Data into Table</a></li>
+                    <li><a href="#verify-that-the-data-is-loaded-correctly"><strong>Verify That the Data Is Loaded Correctly</strong></a></li>
                     <li><a href="#drop-database-and-its-table">Drop Database and its Table</a></li>
                   </ul>
                 </li>
@@ -1020,20 +1016,16 @@
                 <li><a href="#list-databases-and-tables">List Databases and Tables</a></li>
               </ul>
             </li>
-            <li><a href="#loading-data-into-a-hive-table-from-csv-file-and-perform-query">Loading Data into a Hive Table from CSV File and Perform Query</a>
+            <li><a href="#loading-data-into-a-hive-table">Loading Data into a Hive Table</a></li>
+            <li><a href="#internal-vs-external-tables-data-movement">Internal vs. External Tables: Data Movement</a>
               <ul>
                 <li><a href="#internal-hive-table-creation">Internal Hive Table Creation</a>
                   <ul>
                     <li><a href="#download-dataset-to-container-local">Download Dataset to Container Local</a></li>
                     <li><a href="#put-the-file-into-hdfs">Put the file into HDFS</a></li>
                     <li><a href="#create-hive-database-and-the-table">Create Hive Database and the Table</a></li>
-                    <li><a href="#load-data-into-table">Load Data into Table</a>
-                      <ul>
-                        <li><a href="#load-from-local">Load from Local</a></li>
-                        <li><a href="#load-from-hdfs">Load from HDFS</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#perform-select-query-from-hive-table">Perform Select Query from Hive Table</a></li>
+                    <li><a href="#load-data-into-table">Load Data into Table</a></li>
+                    <li><a href="#verify-that-the-data-is-loaded-correctly"><strong>Verify That the Data Is Loaded Correctly</strong></a></li>
                     <li><a href="#drop-database-and-its-table">Drop Database and its Table</a></li>
                   </ul>
                 </li>
@@ -1110,13 +1102,13 @@
     </span>        
     
 </h1>
-<p>In <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/"  title="Deploy Hadoop Cluster"  target="_blank">
-    previous article</a>, we had deployed our Hadoop cluster on docker, accessed to both HDFS and YARN UIs, and performed some simple file operations on HDFS.</p>
-<p>In this article, we will be deploying Hive services on the same Hadoop cluster and perform various operations on it to learn its basics, usage, and advantages it brings for our data operations. If you directly opened this article without setting up your docker environment, I suggest you first visit that <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster"  title="Deployment of the Cluster"  target="_blank">
+<p>In the <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/"  title="Deploy Hadoop Cluster"  target="_blank">
+    previous article</a>, we deployed our Hadoop cluster on docker, accessed both HDFS and YARN UIs, and performed some simple file operations on HDFS.</p>
+<p>In this article, we will deploy Hive services on the same Hadoop cluster and perform various operations on it to learn its basics, usage, and advantages for our data operations. If you directly opened this article without setting up your Docker environment, I suggest you visit that <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster"  title="Deployment of the Cluster"  target="_blank">
     article</a> to deploy your cluster first.</p>
 <blockquote>
 <p>❗️ <strong>Important:</strong></p>
-<p>Since the image that is being used in this experiment is built with the needed Hive services included, we are able to run Hive services in this cluster. If you are working on your own cluster built on top of different image, the operations/commands used in this article may not be compatible for your environment.</p>
+<p>Since the image used in this experiment is built with the needed Hive services included, we can run Hive services in this cluster. However, if you are working on your own cluster built on top of a different image, the operations/commands used in this article may not be compatible with your environment.</p>
 </blockquote>
 <h2 class="relative group">Introduction to Hive 
     <div id="introduction-to-hive" class="anchor"></div>
@@ -1128,7 +1120,7 @@
     </span>        
     
 </h2>
-<p>Welcome to the world of Hive! If you&rsquo;re new to this tool, don&rsquo;t worry—by the end of this post, you&rsquo;ll have a clear understanding of what Hive is, why it was created, and how it works. Let&rsquo;s get started!</p>
+<p>Welcome to the world of Hive! If you&rsquo;re new to this tool, don&rsquo;t worry—by the end of this post, you&rsquo;ll clearly understand what Hive is, why it was created, and how it works. Let&rsquo;s get started!</p>
 <h3 class="relative group">What is Hive? 
     <div id="what-is-hive" class="anchor"></div>
     
@@ -1139,22 +1131,22 @@
     </span>        
     
 </h3>
-<p>Hive is like a friendly translator that helps you talk to your big data. Imagine you have a massive library filled with books (data), but they&rsquo;re all written in different languages. You want to ask questions about the books, but you don&rsquo;t speak those languages. Hive steps in to help! It allows you to use SQL (Structured Query Language), which is a common language for databases, to interact with your data stored in Hadoop, a framework for storing and processing large data sets.</p>
+<p>Hive is like a friendly translator that helps you talk to your big data. Imagine you have a massive library filled with books (data), but they&rsquo;re all written in different languages. You want to ask questions about the books but don&rsquo;t speak those languages. Hive steps in to help! It allows you to use SQL (Structured Query Language), which is a common language for databases, to interact with your data stored in Hadoop, a framework for storing and processing large data sets.</p>
 <ul>
 <li>It allows querying the data stored on HDFS with a SQL-like language.</li>
 <li>Created by Facebook. Handed over Apache community.</li>
 <li>It processes structured data that can be stored in a table.</li>
-<li>The mode it works is batch processing, not real-time (streaming data).</li>
-<li>It uses engines like: MapReduce, Tez or Spark.</li>
+<li>The mode in which it works is batch processing, not real-time (streaming data).</li>
+<li>It uses engines like MapReduce, Tez, or Spark.</li>
 <li>It supports many different file formats: Parquet, Sequence, ORC, Text, etc.</li>
 </ul>
 <blockquote>
 <p>❗️ <strong>Important:</strong></p>
 <ul>
 <li>Hive is not a database.</li>
-<li>Not suitable to be used for operational database needs (OLTP), since it focuses on heavy analytics queries.</li>
-<li>Its not suitable for row based insert, update and delete, or interactive queries.</li>
-<li>The query takes a reasonable amount of time. Converts query to MapReduce/Tez code, get resources from YARN and then starts the operation.</li>
+<li>It is unsuitable for operational database needs (OLTP) since it focuses on heavy analytics queries.</li>
+<li>It is unsuitable for operational database needs (OLTP) for row-based insert, update, and delete or interactive queries.</li>
+<li>The query takes a reasonable amount of time. Converts query to MapReduce/Tez code gets resources from YARN and starts the operation.</li>
 <li>HiveQL is not standard SQL. Should not expect everything as in SQL.</li>
 </ul>
 </blockquote>
@@ -1168,7 +1160,7 @@
     </span>        
     
 </h3>
-<p>In the early days of Hadoop, data analysts and scientists had to write complex and lengthy MapReduce Java programs to analyze data. This was time-consuming, error-prone, and required a deep understanding of programming languages like Java or Python.Hive was built to simplify this process. It provides a familiar SQL-like interface that allows users to query and analyze data without needing to write complex code. This makes it easier for data analysts, scientists, and even business users to work with Big Data, without requiring extensive programming knowledge.</p>
+<p>In the early days of Hadoop, data analysts and scientists had to write complex and lengthy MapReduce Java programs to analyze data. This was time-consuming, error-prone, and required a deep understanding of programming languages like Java or Python. Hive was built to simplify this process. It provides a familiar SQL-like interface that allows users to query and analyze data without writing complex code. This makes it easier for data analysts, scientists, and even business users to work with Big Data without requiring extensive programming knowledge.</p>
 <h3 class="relative group">How does Hive Work? 
     <div id="how-does-hive-work" class="anchor"></div>
     
@@ -1179,9 +1171,9 @@
     </span>        
     
 </h3>
-<p>Hive works by converting your SQL queries into a series of MapReduce jobs that run on Hadoop. Let’s break this down with a simple example:Imagine you run a bookstore and have a massive spreadsheet (your data) that lists all your books, their authors, prices, and sales numbers. You want to find out which books by a specific author sold the most copies last year. With Hive, you can write a simple SQL query like:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">books</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;J.K. Rowling&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p>When you run this query, Hive translates it into a series of steps that Hadoop understands (MapReduce jobs), processes the data, and then gives you the results. This way, you don’t need to worry about the complex underlying processes; you just get the information you need quickly and efficiently.In summary, Hive acts as a bridge between you and your data, making it easier to ask questions and get answers without needing to dive into the complexities of Hadoop. It’s like having a knowledgeable assistant who can not only find the information you need but also present it in a way that’s easy to understand.</p>
+<p>Hive works by converting your SQL queries into a series of MapReduce jobs that run on Hadoop. Let’s break this down with a simple example: Imagine you run a bookstore and have a massive spreadsheet (your data) that lists all your books, their authors, prices, and sales numbers. You want to discover which books by a specific author sold the most copies last year. With Hive, you can write a simple SQL query like:</p>
+<pre tabindex="0"><code>SELECT title, SUM(sales) FROM books WHERE author = &#39;J.K. Rowling&#39; AND year = 2022 GROUP BY title ORDER BY SUM(sales) DESC;
+</code></pre><p>When you run this query, Hive translates it into a series of steps that Hadoop understands (MapReduce jobs), processes the data, and then gives you the results. This way, you don’t need to worry about the complex underlying processes; you get the information you need quickly and efficiently. In summary, Hive acts as a bridge between you and your data, making it easier to ask questions and get answers without needing to dive into the complexities of Hadoop. It’s like having a knowledgeable assistant who can find the information you need and present it in a way that’s easy to understand.</p>
 <h3 class="relative group">Hive Architecture 
     <div id="hive-architecture" class="anchor"></div>
     
@@ -1211,18 +1203,18 @@
         alt="1723908984129"
       />
       
-      <figcaption>Hive Architecture</figcaption>
+      
     </figure>
   
 
 </p>
 <ul>
-<li><strong>Metastore (RDBMS)</strong>: Think of the Metastore as a library catalog. It stores information about the data, like where it&rsquo;s located, what it looks like, and how it&rsquo;s organized. This helps Hive keep track of the data and make sense of it. In our cluster, its PostgreSQL DB.</li>
+<li><strong>Metastore (RDBMS)</strong>: Think of the Metastore as a library catalog. It stores information about the data, like where it&rsquo;s located, what it looks like, and how it&rsquo;s organized. This helps Hive keep track of the data and make sense of it. In our cluster, it is PostgreSQL DB.</li>
 <li><strong>Driver</strong>: The Driver is like a manager. It creates a session, receives instructions from the user, and monitors the execution process. It also keeps track of the metadata (information about the data) while running queries.</li>
 <li><strong>Compiler</strong>: The Compiler is like a translator. It takes the HiveQL query (a question written in Hive&rsquo;s language) and converts it into a plan that Hadoop MapReduce can understand. It breaks down the query into smaller steps and creates a roadmap for execution.</li>
-<li><strong>Optimizer</strong>: The Optimizer is like a performance coach. It looks at the plan created by the Compiler and finds ways to make it more efficient. It might combine multiple steps into one or rearrange them to get the best results.</li>
+<li><strong>Optimizer</strong>: The Optimizer is like a performance coach. It examines the plan created by the Compiler and finds ways to make it more efficient. For example, it might combine multiple steps into one or rearrange them to get the best results.</li>
 <li><strong>Executor</strong>: The Executor is like a team leader. It takes the optimized plan and works with Hadoop to execute it. It ensures that all the necessary tasks are completed and in the right order.</li>
-<li><strong>Thrift Server and CLI/UI</strong>: The Thrift Server is like a receptionist. It allows external clients to interact with Hive using standard protocols like JDBC or ODBC. The CLI (Command-Line Interface) and UI (User Interface) provide a way for users to run HiveQL queries and interact with Hive directly.</li>
+<li><strong>Thrift Server and CLI/UI</strong>: The Thrift Server is like a receptionist. External clients can interact with Hive using standard protocols like JDBC or ODBC. The CLI (Command-Line Interface) and UI (User Interface) allow users to run HiveQL queries and interact with Hive directly.</li>
 </ul>
 <h2 class="relative group">Hive Operations 
     <div id="hive-operations" class="anchor"></div>
@@ -1234,7 +1226,7 @@
     </span>        
     
 </h2>
-<p>Without further theory, lets dive into our hands-on exercises where we start hive services, deploy the metadata database and tables in the underlying RDBMS (its PostgreSQL in our cluster), create Hive databases and tables, insert data into our tables, see how the data in these tables reflect in the underlying storage layer HDFS, learn the difference between internal and external table terms, play with partitioning and bucketing, and finally cover the performance optimization tips.</p>
+<p>Without further theory, let’s dive into our hands-on exercises where we start hive services, deploy the metadata database and tables in the underlying RDBMS (it is PostgreSQL in our cluster), create Hive databases and tables, insert data into our tables, see how the data in these tables reflect in the underlying storage layer HDFS, learn the difference between internal and external table terms, play with partitioning and bucketing, and finally cover the performance optimization tips.</p>
 <h3 class="relative group">Starting Hive Services 
     <div id="starting-hive-services" class="anchor"></div>
     
@@ -1245,17 +1237,17 @@
     </span>        
     
 </h3>
-<p>Check if the containers of our Hadoop cluster are up and running. See <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster"  title="Cluster Deployment"  target="_blank">
-    this</a> chapter on how to deploy this cluster.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="nb">ps </span><span class="p">-</span><span class="n">-format</span> <span class="s1">&#39;table {{.ID}}\t{{.Names}}\t{{.Status}}&#39;</span>
-</span></span></code></pre></div><pre tabindex="0"><code>CONTAINER ID   NAMES                 STATUS
+<p>Check if the containers of our Hadoop cluster are up and running. See <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster"   target="_blank">
+    this</a> chapter for instructions on deploying this cluster.</p>
+<pre tabindex="0"><code>docker ps --format &#39;table {{.ID}}\t{{.Names}}\t{{.Status}}&#39;
+</code></pre><pre tabindex="0"><code>CONTAINER ID   NAMES                 STATUS
 6ad193be83c3   cluster-slave-1       Up 12 days
 d04cd3f43266   cluster-slave-2       Up 12 days
 fa725f0c0bd9   cluster-master        Up 12 days
 02571464b056   postgresql            Up 12 days
 </code></pre><p>Logging into the shell of the container <code>cluster-master</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="nb">cluster-master</span> <span class="n">bash</span>
-</span></span></code></pre></div><h4 class="relative group">Hive Schema Initialization 
+<pre tabindex="0"><code>docker exec -it cluster-master bash
+</code></pre><h4 class="relative group">Hive Schema Initialization 
     <div id="hive-schema-initialization" class="anchor"></div>
     
     <span
@@ -1267,11 +1259,11 @@ fa725f0c0bd9   cluster-master        Up 12 days
 </h4>
 <p>Initialize the Hive metastore schema in a PostgreSQL database</p>
 <blockquote>
-<p>❗️ <strong>Important:</strong></p>
-<p>Schema initialization is only needed to be performed for the first run of the Hive services. Once all the metadata tables are ready on Postgres, you no need to initialize them again.</p>
+<p><strong>❗️ Important:</strong></p>
+<p>Schema initialization only needs to be performed for the first run of the Hive services. Once all the metadata tables are ready on Postgres, you need not initialize them again.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">schematool</span> <span class="n">-initSchema</span> <span class="n">-dbType</span> <span class="n">postgres</span>
-</span></span></code></pre></div><p>Below should be how the output looks like.</p>
+<pre tabindex="0"><code>schematool -initSchema -dbType postgres
+</code></pre><p>The output should look like this below.</p>
 <pre tabindex="0"><code>Metastore connection URL:	 jdbc:postgresql://postgresql:5432/metastore
 Metastore Connection Driver :	 org.postgresql.Driver
 Metastore connection User:	 postgres
@@ -1313,13 +1305,13 @@ schemaTool completed
     </span>        
     
 </h4>
-<p>We will then start the Hive services, that includes:</p>
+<p>We will then start the Hive services, which include:</p>
 <ul>
 <li><strong>Hive Metastore</strong>: A central repository that stores metadata about Hive tables, partitions, and schemas.</li>
 <li><strong>HiveServer2</strong>: A service that allows clients to execute queries against Hive and retrieve results.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">$HADOOP_HOME</span>/start-hive.sh
-</span></span></code></pre></div><pre tabindex="0"><code>Services starting up. Waiting for 60 seconds...
+<pre tabindex="0"><code>$HADOOP_HOME/start-hive.sh
+</code></pre><pre tabindex="0"><code>Services starting up. Waiting for 60 seconds...
 Hive Metastore and HiveServer2 services have been started successfully.
 </code></pre><h4 class="relative group">Connect Beeline HiveQL CLI 
     <div id="connect-beeline-hiveql-cli" class="anchor"></div>
@@ -1333,18 +1325,16 @@ Hive Metastore and HiveServer2 services have been started successfully.
 </h4>
 <p>After the Hive service is started, we will connect to it using the Beeline CLI (Command Line Interface).</p>
 <p>This command will connect us to a Hive server running on &ldquo;cluster-master&rdquo; using the default port 10000, allowing us to interact with Hive and run HiveQL queries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">beeline -u jdbc:hive2://cluster-master:10000
-</span></span></code></pre></div><pre tabindex="0"><code>Connecting to jdbc:hive2://cluster-master:10000
+<pre tabindex="0"><code>beeline -u jdbc:hive2://cluster-master:10000
+</code></pre><pre tabindex="0"><code>Connecting to jdbc:hive2://cluster-master:10000
 Connected to: Apache Hive (version 3.1.3)
 Driver: Hive JDBC (version 2.3.9)
 Transaction isolation: TRANSACTION_REPEATABLE_READ
 Beeline version 2.3.9 by Apache Hive
 </code></pre><blockquote>
 <p>📝 <strong>Note</strong>:</p>
-<p>If you face below issue when trying to connect beeline CLI, its most probably related with your postgres container&rsquo;s volume access.</p>
-<pre tabindex="0"><code>Connecting to jdbc:hive2://cluster-master:10000
-Could not open connection to the HS2 server. Please check the server URI and if the URI is correct, then ask the administrator to check the server status.
-Error: Could not open client transport with JDBC Uri: jdbc:hive2://cluster-master:10000: java.net.ConnectException: Connection refused (Connection refused) (state=08S01,code=0)
+<p>If you encounter the issue below when trying to connect to Beeline CLI, it’s most probably related to your Postgres container&rsquo;s volume access.</p>
+<pre tabindex="0"><code>Connecting to jdbc:hive2://cluster-master:10000 Could not open connection to the HS2 server. Please check the server URI and if the URI is correct, then ask the administrator to check the server status. Error: Could not open client transport with JDBC Uri: jdbc:hive2://cluster-master:10000: java.net.ConnectException: Connection refused (Connection refused) (state=08S01,code=0)
 </code></pre><p>To fix it, either update the volume settings of the docker compose file and mount the container volumes to a local volume, or make sure to start containers with <code>docker-compose up -d</code> command executed by a <code>root</code> user or another user which has access to the local volume folders created by docker.</p>
 </blockquote>
 <h4 class="relative group">Connect Hive2 JDBC Through SQL Editor 
@@ -1403,8 +1393,8 @@ Error: Could not open client transport with JDBC Uri: jdbc:hive2://cluster-maste
     
 </h4>
 <p>Below command is used to list the available databases:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p>The output will be shown as follows:</p>
+<pre tabindex="0"><code>show databases;
+</code></pre><p>The output will be shown as follows:</p>
 <pre tabindex="0"><code>INFO  : Compiling command(queryId=root_20240818123321_a5886e81-31b2-493d-93e1-88e05b7431f7): show databases
 INFO  : Concurrency mode is disabled, not creating a lock manager
 INFO  : Semantic Analysis Completed (retrial = false)
@@ -1430,26 +1420,65 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 <p><code>./usr/local/hive/conf/hive-site.xml</code></p>
 </blockquote>
 <p>To show the tables, simply use as below:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><pre tabindex="0"><code>+-----------+
+<pre tabindex="0"><code>show tables;
+</code></pre><pre tabindex="0"><code>+-----------+
 | tab_name  |
 +-----------+
 +-----------+
 No rows selected (0.03 seconds)
-</code></pre><h3 class="relative group">Loading Data into a Hive Table from CSV File and Perform Query 
-    <div id="loading-data-into-a-hive-table-from-csv-file-and-perform-query" class="anchor"></div>
+</code></pre><h3 class="relative group">Loading Data into a Hive Table 
+    <div id="loading-data-into-a-hive-table" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#loading-data-into-a-hive-table-from-csv-file-and-perform-query" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#loading-data-into-a-hive-table" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
 <p>We now have the environment ready to work with Hive databases and tables to create our own table and perform queries on it.</p>
-<p>To perform our tests, we will be using CSV files to initiate data into our internal and external tables and see how Hive make use of data when the table is generated as internal table or external table.</p>
+<p>To perform our tests, we will be using CSV files to initiate data into our <strong>internal</strong> and <strong>external</strong> tables and see how Hive make use of data when the table is generated as internal table or external table.</p>
+<p>In addition to creating internal and external tables based on a CSV dataset—which we’ll focus on in this chapter—there are several other methods to create and populate Hive tables:</p>
+<ul>
+<li>Manually Creating a Table and Inserting Data with <code>INSERT INTO</code></li>
+<li>Inserting Data from Another Table with <code>CREATE TABLE AS SELECT</code></li>
+<li>Creating a Table Using <code>SHOW CREATE TABLE</code></li>
+<li>Creating an Empty Table Based on Another Table with <code>CREATE TABLE LIKE</code></li>
+<li>Creating Tables with Apache Spark</li>
+</ul>
 <p>For more information about the file formats Hive can read and write, you can check <a href="https://cwiki.apache.org/confluence/display/Hive/FileFormats"  title="Hive File Formats"  target="_blank">
     here</a>.</p>
+<p>For internal Hive tables, data itself and its metadata are both managed by Hive. If the internal table is dropped, the metadata and the table data that is kept in HDFS is deleted. However, for external tables, only the metadata of the table is managed by Hive, the data itself resides in its predefined HDFS location, even if the table is dropped.</p>
+<h3 class="relative group">Internal vs. External Tables: Data Movement 
+    <div id="internal-vs-external-tables-data-movement" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#internal-vs-external-tables-data-movement" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p><strong>Internal (Managed) Tables</strong></p>
+<p><strong>LOAD DATA INPATH:</strong>
+<strong>Action</strong>: Moves the data file from its current HDFS location to the table’s directory in the Hive warehouse.
+<strong>Result</strong>: The original data file is removed from its initial location after the move.</p>
+<p><strong>LOAD DATA LOCAL INPATH:</strong>
+<strong>Action</strong>: Copies the data file from the local file system to the table’s directory in the Hive warehouse.
+<strong>Result</strong>: The original local data file remains intact.</p>
+<p><strong>Dropping the Table</strong>: Both metadata and data files are deleted from Hive’s warehouse directory.</p>
+</blockquote>
+<blockquote>
+<p><strong>External Tables</strong></p>
+<p><strong>LOAD DATA INPATH:</strong>
+<strong>Action</strong>: Moves the data file from its current HDFS location to the external table’s specified directory.
+<strong>Result</strong>: The original data file is removed from its initial location after the move.</p>
+<p><strong>LOAD DATA LOCAL INPATH:</strong>
+<strong>Action</strong>: Copies the data file from the local file system to the external table’s specified directory.
+<strong>Result</strong>: The original local data file remains intact.</p>
+<p><strong>Dropping the Table</strong>: Only the metadata is deleted. The data files remain at the external location in HDFS.</p>
+</blockquote>
 <h4 class="relative group">Internal Hive Table Creation 
     <div id="internal-hive-table-creation" class="anchor"></div>
     
@@ -1472,44 +1501,42 @@ No rows selected (0.03 seconds)
     
 </h5>
 <p>Login to the container bash:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="nb">cluster-master</span> <span class="n">bash</span>
-</span></span></code></pre></div><p>Download the dataset. Make sure you download it to the folder where you map the docker volume (<code>usr/local/hadoop/namenode/</code>), if you would like to access the dataset even the container gets restarted.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">wget </span><span class="n">-O</span> <span class="n">employee</span><span class="p">.</span><span class="py">txt</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">raw</span><span class="p">.</span><span class="py">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">nacisimsek</span><span class="p">/</span><span class="n">Data_Engineering</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">Datasets</span><span class="p">/</span><span class="n">employee</span><span class="p">.</span><span class="py">txt</span>
-</span></span></code></pre></div><p>Here is how our data looks like:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cat </span><span class="n">employee</span><span class="p">.</span><span class="py">txt</span>
-</span></span></code></pre></div><pre tabindex="0"><code>name|work_place|gender_age|skills_score
+<pre tabindex="0"><code>docker exec -it cluster-master bash
+</code></pre><p>Download the dataset. Make sure you download it to the folder where you map the docker volume (<code>usr/local/hadoop/namenode/</code>), if you would like to access the dataset even the container gets restarted.</p>
+<pre tabindex="0"><code>wget -O employee.txt https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets/employee.txt
+</code></pre><p>Here is how our data looks like:</p>
+<pre tabindex="0"><code>cat employee.txt
+</code></pre><pre tabindex="0"><code>name|work_place|gender_age|skills_score
 Michael|Montreal,Toronto|Male,30|DB:80,Network:88
 Will|Montreal|Male,35|Perl:85,Scala:82
 Shelley|New York|Female,27|Python:80,Spark:95
 Lucy|Vancouver|Female,57|Sales:89,HR:94
 </code></pre><p>Based on the content of the data here are the informations that we need to collect to be used when creating its Hive table:</p>
 <ul>
-<li>
-<p>Has the dataset a header?</p>
+<li>Has the dataset a header?</li>
+</ul>
 <pre tabindex="0"><code>Yes, 1 line
-</code></pre></li>
-<li>
-<p>What are each field names and their data types?</p>
+</code></pre><ul>
+<li>What are each field names and their data types?</li>
+</ul>
 <pre tabindex="0"><code>name STRING
 work_place ARRAY&lt;STRING&gt;
 gender_age STRUCT&lt;gender:STRING,age:INT&gt;
 skills_score MAP&lt;STRING,INT&gt;
-</code></pre></li>
-<li>
-<p>How (with which character) each field is separated?</p>
+</code></pre><ul>
+<li>How (with which character) each field is separated?</li>
+</ul>
 <pre tabindex="0"><code>With Pipe character &#39;|&#39;
-</code></pre></li>
-<li>
-<p>How each row (line) is separated?</p>
+</code></pre><ul>
+<li>How each row (line) is separated?</li>
+</ul>
 <pre tabindex="0"><code>With a newline character &#39;\n&#39;
-</code></pre></li>
-<li>
-<p>Does any column consists collection data type representing key:value pairs?</p>
+</code></pre><ul>
+<li>Does any column consists collection data type representing key:value pairs?</li>
+</ul>
 <pre tabindex="0"><code>Yes, collections in one column is separated by comma &#39;,&#39;
 Map keys are terminated by colon &#39;:&#39;
-</code></pre></li>
-</ul>
-<h5 class="relative group">Put the file into HDFS 
+</code></pre><h5 class="relative group">Put the file into HDFS 
     <div id="put-the-file-into-hdfs" class="anchor"></div>
     
     <span
@@ -1520,6 +1547,12 @@ Map keys are terminated by colon &#39;:&#39;
     
 </h5>
 <p>We wiil place the dataset <code>employee.txt</code> into HDFS manually, then based on its HDFS directory, we will create its Hive table in the next step . In the directory of the container where we downloaded the dataset, execute below commands:</p>
+<p>As we clarified earlier different options of loading data into the HDFS table, there are 2 different options:</p>
+<ul>
+<li>Loading data from HDFS: <code>LOAD DATA INPATH</code></li>
+<li>Loading data from Local: <code>LOAD DATA LOCAL INPATH</code></li>
+</ul>
+<p>We will be using the first option LOAD DATA INPATH since our dataset will be loaded to HDFS already manually, as follows:</p>
 <p>Create the HDFS directory for our dataset:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hdfs</span> <span class="n">dfs</span> <span class="n">-mkdir</span> <span class="n">-p</span> <span class="p">/</span><span class="n">user</span><span class="p">/</span><span class="n">datasets</span>
 </span></span></code></pre></div><p>Put the file into this created HDFS directory:</p>
@@ -1553,7 +1586,41 @@ Map keys are terminated by colon &#39;:&#39;
 |hive_db|       |hdfs://cluster-master:9000/user/hive/warehouse/hive_db.db|root      |USER      |          |
 </code></pre><p>Select the created database:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">use</span><span class="w"> </span><span class="n">hive_db</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h5 class="relative group">Load Data into Table 
+</span></span></span></code></pre></div><p>Create the Hive table:</p>
+<p>We will need to create a table that matches the structure of our dataset. Given the data and the data types we have identified earlier, the <strong>CREATE TABLE</strong> statement will look like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employee</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">work_place</span><span class="w"> </span><span class="nb">ARRAY</span><span class="o">&lt;</span><span class="n">STRING</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">gender_age</span><span class="w"> </span><span class="n">STRUCT</span><span class="o">&lt;</span><span class="n">gender</span><span class="p">:</span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">:</span><span class="nb">INT</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">skills_score</span><span class="w"> </span><span class="k">MAP</span><span class="o">&lt;</span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="nb">INT</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ROW</span><span class="w"> </span><span class="n">FORMAT</span><span class="w"> </span><span class="n">DELIMITED</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">COLLECTION</span><span class="w"> </span><span class="n">ITEMS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">MAP</span><span class="w"> </span><span class="n">KEYS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;:&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">STORED</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TEXTFILE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">TBLPROPERTIES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;skip.header.line.count&#39;</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li>name STRING: The name of the employee.</li>
+<li>work_place ARRAY <code>&lt;STRING&gt;</code>: A list of workplaces, since some entries have multiple locations separated by commas (e.g., Montreal,Toronto).</li>
+<li>gender_age STRUCT&lt;gender:STRING, age:INT&gt;: A structure containing the gender and age, separated by a comma (e.g., Male,30).</li>
+<li>skills_score MAP&lt;STRING, INT&gt;: A map of skills to scores, with skills and scores separated by colons and multiple entries separated by commas (e.g., DB:80,Network:88).</li>
+</ul>
+<p><strong>Delimiters and Formatting:</strong></p>
+<ul>
+<li>FIELDS TERMINATED BY &lsquo;|&rsquo;: Fields are separated by a pipe (|).</li>
+<li>COLLECTION ITEMS TERMINATED BY &lsquo;,&rsquo;: Items in arrays, structs, and maps are separated by commas.</li>
+<li>MAP KEYS TERMINATED BY &lsquo;:&rsquo;: In maps, keys and values are separated by colons.</li>
+<li>LINES TERMINATED BY &lsquo;\n&rsquo;: Each record is on a new line.</li>
+<li>STORED AS TEXTFILE: Specifies that the data is stored in a text file format.</li>
+<li>TBLPROPERTIES (&lsquo;skip.header.line.count&rsquo;=&lsquo;1&rsquo;): Skips the header line in your data file.</li>
+</ul>
+<p><strong>Note</strong>: The TBLPROPERTIES (&lsquo;skip.header.line.count&rsquo;=&lsquo;1&rsquo;) property is essential here because your dataset includes a header row that you don’t want to import as data.</p>
+</blockquote>
+<h5 class="relative group">Load Data into Table 
     <div id="load-data-into-table" class="anchor"></div>
     
     <span
@@ -1563,37 +1630,79 @@ Map keys are terminated by colon &#39;:&#39;
     </span>        
     
 </h5>
-<h6 class="relative group">Load from Local 
-    <div id="load-from-local" class="anchor"></div>
+<p>Since our data file <strong>employee.txt</strong> is already in HDFS at <strong>/user/datasets/employee.txt</strong>, we can load it into our internal table using the <strong>LOAD DATA INPATH</strong> command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">LOAD</span> <span class="n">DATA</span> <span class="n">INPATH</span> <span class="s1">&#39;/user/datasets/employee.txt&#39;</span> <span class="n">INTO</span> <span class="n">TABLE</span> <span class="n">employee</span><span class="p">;</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>❗️ Important:</strong></p>
+<p><strong>Data Movement</strong> : This command will <strong>move</strong> the <strong>employee.txt</strong> file from its current HDFS location into the Hive table’s directory within the Hive warehouse. After this operation, the original file at <strong>/user/datasets/employee.txt</strong> will no longer exist.</p>
+<p><strong>Internal Table</strong> : Since we are creating an internal (managed) table, Hive assumes responsibility for the data files. Dropping the table later will delete both the table metadata and the data files.</p>
+</blockquote>
+<h5 class="relative group"><strong>Verify That the Data Is Loaded Correctly</strong> 
+    <div id="verify-that-the-data-is-loaded-correctly" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#load-from-local" aria-label="Anchor">#</a>
-    </span>        
-    
-</h6>
-<h6 class="relative group">Load from HDFS 
-    <div id="load-from-hdfs" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#load-from-hdfs" aria-label="Anchor">#</a>
-    </span>        
-    
-</h6>
-<h5 class="relative group">Perform Select Query from Hive Table 
-    <div id="perform-select-query-from-hive-table" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#perform-select-query-from-hive-table" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#verify-that-the-data-is-loaded-correctly" aria-label="Anchor">#</a>
     </span>        
     
 </h5>
-<h5 class="relative group">Drop Database and its Table 
+<p>We can run a simple <strong>SELECT</strong> query to check that your data has been loaded properly:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+----------------+-------------------------+-------------------------------+---------------------------+
+| employee.name  |   employee.work_place   |      employee.gender_age      |   employee.skills_score   |
++----------------+-------------------------+-------------------------------+---------------------------+
+| Michael        | [&#34;Montreal&#34;,&#34;Toronto&#34;]  | {&#34;gender&#34;:&#34;Male&#34;,&#34;age&#34;:30}    | {&#34;DB&#34;:80,&#34;Network&#34;:88}    |
+| Will           | [&#34;Montreal&#34;]            | {&#34;gender&#34;:&#34;Male&#34;,&#34;age&#34;:35}    | {&#34;Perl&#34;:85,&#34;Scala&#34;:82}    |
+| Shelley        | [&#34;New York&#34;]            | {&#34;gender&#34;:&#34;Female&#34;,&#34;age&#34;:27}  | {&#34;Python&#34;:80,&#34;Spark&#34;:95}  |
+| Lucy           | [&#34;Vancouver&#34;]           | {&#34;gender&#34;:&#34;Female&#34;,&#34;age&#34;:57}  | {&#34;Sales&#34;:89,&#34;HR&#34;:94}      |
++----------------+-------------------------+-------------------------------+---------------------------+
+</code></pre><p>We can perform queries that access nested fields within our complex data types.</p>
+<p>To select individual fields from the <strong>gender_age</strong> struct:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">name</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">gender_age</span><span class="p">.</span><span class="n">gender</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">gender_age</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">age</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+----------+---------+------+
+|   name   | gender  | age  |
++----------+---------+------+
+| Michael  | Male    | 30   |
+| Will     | Male    | 35   |
+| Shelley  | Female  | 27   |
+| Lucy     | Female  | 57   |
++----------+---------+------+
+</code></pre><p>To get all workplaces or a specific workplace:</p>
+<p>All workspaces:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">work_place</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+----------+-------------------------+
+|   name   |       work_place        |
++----------+-------------------------+
+| Michael  | [&#34;Montreal&#34;,&#34;Toronto&#34;]  |
+| Will     | [&#34;Montreal&#34;]            |
+| Shelley  | [&#34;New York&#34;]            |
+| Lucy     | [&#34;Vancouver&#34;]           |
++----------+-------------------------+
+</code></pre><p>First workplace:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">work_place</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">primary_work_place</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+----------+---------------------+
+|   name   | primary_work_place  |
++----------+---------------------+
+| Michael  | Montreal            |
+| Will     | Montreal            |
+| Shelley  | New York            |
+| Lucy     | Vancouver           |
++----------+---------------------+
+</code></pre><p>Find the employees that Python skill is greter than 70.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">skills_score</span><span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Python</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">skills_score</span><span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">70</span><span class="p">;</span><span class="w"> 
+</span></span></span></code></pre></div><pre tabindex="0"><code>+----------+---------+
+|   name   | python  |
++----------+---------+
+| Shelley  | 80      |
++----------+---------+
+</code></pre><h5 class="relative group">Drop Database and its Table 
     <div id="drop-database-and-its-table" class="anchor"></div>
     
     <span
