@@ -10,6 +10,7 @@ enableRobotsTXT = true
 [pagination]
 pagerSize = 24
 
+paginate = 24
 
 summaryLength = 30
 
