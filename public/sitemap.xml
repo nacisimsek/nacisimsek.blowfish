@@ -297,8 +297,38 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/suggestions/no-rules-rules-copy-2/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/suggestions/no-rules-rules-copy-3/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/suggestions/no-rules-rules-copy/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/suggestions/no-rules-rules/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/suggestions/</loc>
     <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/mentor/</loc>
+    <lastmod>2022-06-19T13:08:25+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

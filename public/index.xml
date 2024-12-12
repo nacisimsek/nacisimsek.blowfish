@@ -169,109 +169,62 @@
     </item>
     
     <item>
+      <title>No Rules Rules</title>
+      <link>http://localhost:1313/suggestions/no-rules-rules-copy-2/</link>
+      <pubDate>Thu, 16 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/suggestions/no-rules-rules-copy-2/</guid>
+      <description>tbd</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/suggestions/no-rules-rules-copy-2/feature.png" />
+    </item>
+    
+    <item>
+      <title>No Rules Rules</title>
+      <link>http://localhost:1313/suggestions/no-rules-rules-copy-3/</link>
+      <pubDate>Thu, 16 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/suggestions/no-rules-rules-copy-3/</guid>
+      <description>tbd</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/suggestions/no-rules-rules-copy-3/feature.png" />
+    </item>
+    
+    <item>
+      <title>No Rules Rules</title>
+      <link>http://localhost:1313/suggestions/no-rules-rules-copy/</link>
+      <pubDate>Thu, 16 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/suggestions/no-rules-rules-copy/</guid>
+      <description>tbd</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/suggestions/no-rules-rules-copy/feature.png" />
+    </item>
+    
+    <item>
+      <title>No Rules Rules</title>
+      <link>http://localhost:1313/suggestions/no-rules-rules/</link>
+      <pubDate>Thu, 16 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/suggestions/no-rules-rules/</guid>
+      <description>tbd</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/suggestions/no-rules-rules/feature.png" />
+    </item>
+    
+    <item>
+      <title>Mentor</title>
+      <link>http://localhost:1313/mentor/</link>
+      <pubDate>Sun, 19 Jun 2022 13:08:25 +0100</pubDate>
+      
+      <guid>http://localhost:1313/mentor/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Resume</title>
       <link>http://localhost:1313/resume/</link>
       <pubDate>Mon, 13 Jun 2022 21:28:51 +0100</pubDate>
       
       <guid>http://localhost:1313/resume/</guid>
-      <description>&lt;h2 class=&#34;relative group&#34;&gt;Experience 
-    &lt;div id=&#34;experience&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
-    
-&lt;/h2&gt;
-&lt;div class=&#34;container&#34;&gt;
-    &lt;table&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th&gt;Company&lt;/th&gt;
-                &lt;th&gt;Link&lt;/th&gt;
-                &lt;th&gt;Role&lt;/th&gt;
-                &lt;th&gt;Dates&lt;/th&gt;
-                &lt;th&gt;Location&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;img class=&#34;customEntitityLogo&#34; src=&#34;ververica.jpg&#34;/&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;a href=&#34;https://www.ververica.com/&#34; target=&#34;_blank&#34;&gt;Ververica&lt;/a&gt;&lt;/td&gt;
-                &lt;td&gt;Technical Account Manager&lt;/td&gt;
-                &lt;td&gt; Present&lt;/br&gt; Oct 2023&lt;/td&gt;
-                &lt;td&gt; Düsseldorf, DE&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;img class=&#34;customEntitityLogo&#34; src=&#34;huawei.jpg&#34;/&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;a href=&#34;https://www.huawei.com/en/&#34; target=&#34;_blank&#34;&gt;Huawei&lt;/a&gt;&lt;/td&gt;
-                &lt;td&gt;Senior Solutions Architect&lt;/td&gt;
-                &lt;td&gt;Aug 2023 &lt;/br&gt; Nov 2022&lt;/td&gt;
-                &lt;td&gt; Düsseldorf, DE&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;img class=&#34;customEntitityLogo&#34; src=&#34;telefonica.png&#34;/&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;a href=&#34;https://www.telefonica.de/home-corporate-en.html&#34; target=&#34;_blank&#34;&gt;Telefonica o2&lt;/a&gt;&lt;/td&gt;
-                &lt;td&gt;Solution Delivery and Support&lt;/td&gt;
-                &lt;td&gt; Oct 2022 &lt;/br&gt;Dec 2016&lt;/td&gt;
-                &lt;td&gt;Düsseldorf, DE&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td rowspan=4&gt;&lt;img class=&#34;customEntitityLogo&#34; src=&#34;huawei.jpg&#34;/&gt;&lt;/td&gt;
-                &lt;td rowspan=4&gt;&lt;a href=&#34;https://www.huawei.com/en/&#34; target=&#34;_blank&#34;&gt;Huawei&lt;/a&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Project Manager &lt;/td&gt;
-                &lt;td&gt; Nov 2016&lt;/br&gt; Dec 2013&lt;/td&gt;
-                &lt;td rowspan=3&gt; Istanbul, TR &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Engineering Team Lead&lt;/td&gt;
-                &lt;td&gt; Nov 2013&lt;/br&gt; Oct 2010&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Software Engineer&lt;/td&gt;
-                &lt;td&gt; Sep 2010&lt;/br&gt; Jan 2010&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;&lt;img class=&#34;customEntitityLogo&#34; src=&#34;nortel-networks.png&#34;/&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;a href=&#34;https://www.linkedin.com/company/nortel-networks/about/&#34; target=&#34;_blank&#34;&gt;Nortel Networks&lt;/a&gt;&lt;/td&gt;
-                &lt;td&gt;Technical Support Engineer&lt;/td&gt;
-                &lt;td&gt; Dec 2009&lt;/br&gt; Jul 2008 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
-                &lt;td&gt;Istanbul, TR&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;
-&lt;h2 class=&#34;relative group&#34;&gt;Education 
-    &lt;div id=&#34;education&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
-    
-&lt;/h2&gt;
-&lt;div class=&#34;container&#34;&gt;
-    &lt;table&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th&gt;School&lt;/th&gt;
-                &lt;th&gt;Link&lt;/th&gt;
-                &lt;th&gt;Degree&lt;/th&gt;
-                &lt;th&gt;Date&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            &lt;tr&gt;
-                &lt;td rowspan=2&gt;&lt;img class=&#34;customEntitityLogo&#34; src=&#34;bau.jpg&#34;/&gt;&lt;/td&gt;
-                &lt;td rowspan=2&gt;&lt;a href=&#34;https://bau.edu.tr/&#34; target=&#34;_blank&#34;&gt;Bahcesehir University&lt;/a&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Master of Business (MBA)&lt;/td&gt;
-                &lt;td&gt;2009-2012&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td rowspan=2&gt;&lt;img class=&#34;customEntitityLogo&#34; src=&#34;ege.png&#34;/&gt;&lt;/td&gt;
-                &lt;td rowspan=2&gt;&lt;a href=&#34;https://ege.edu.tr/eng-0/Homepage.html&#34; target=&#34;_blank&#34;&gt;Ege University&lt;/a&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;BSc, Computer Engineering&lt;/td&gt;
-                &lt;td&gt;2004-2008&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;</description>
+      <description></description>
       
     </item>
     
@@ -281,8 +234,7 @@
       <pubDate>Mon, 13 Jun 2022 20:55:37 +0100</pubDate>
       
       <guid>http://localhost:1313/about/</guid>
-      <description>&lt;p&gt;For over 15 years, I&amp;rsquo;ve been a part of the IT and Telecom world. My journey began as a Customer Support Engineer in Nortel Networks and has evolved through roles like Software Engineer, Engineering Team Lead, Project Manager, and Solutions Architect at Huawei. During this time, I&amp;rsquo;ve had the chance to work on impactful projects with companies such as Turkcell, Telefonica o2 and Deutsche Telekom.&lt;/p&gt;
-&lt;p&gt;At Huawei, I not only contributed to sales but also played a pivotal role in designing robust systems and ensuring efficient network solutions. I&amp;rsquo;ve been deeply involved with Huawei&amp;rsquo;s SmartCare® Solution, a leading Customer Experience Management product. This experience gave me hands-on expertise in onsite solution delivery, data integrations and management, from solutions like Hadoop and Spark to visualization platforms such as Tableau.&lt;/p&gt;</description>
+      <description></description>
       
     </item>
     
@@ -292,37 +244,7 @@
       <pubDate>Mon, 13 Jun 2022 20:55:37 +0100</pubDate>
       
       <guid>http://localhost:1313/projects/</guid>
-      <description>&lt;p&gt;I always try to find time to work and learn something new. Usually, most of these &lt;em&gt;pet-projects&lt;/em&gt; don&amp;rsquo;t see the light of day. They are, however, great opportunities to try something in the real world and learn from it.&lt;/p&gt;
-&lt;table&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;Logo&lt;/th&gt;
-            &lt;th&gt;Title&lt;/th&gt;
-            &lt;th&gt;Description&lt;/th&gt;
-            &lt;th&gt;Link&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-         &lt;tr&gt;
-            &lt;td&gt;&lt;img class=&#34;customEntitityAlbum&#34; style=&#34;background-color:transparent&#34; src=&#34;blowfish_logo.png&#34;/&gt;&lt;/td&gt;
-            &lt;td&gt;Blowfish&lt;/td&gt;
-            &lt;td&gt;A powerful, lightweight theme for Hugo built with Tailwind CSS.&lt;/td&gt;
-            &lt;td&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://blowfish.page&#34;&gt;site&lt;/a&gt;&lt;/br&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://github.com/nunocoracao/blowfish&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-         &lt;tr&gt;
-            &lt;td&gt;&lt;img class=&#34;customEntitityAlbum&#34; style=&#34;background-color:transparent&#34; src=&#34;blowfish-tools.png&#34;/&gt;&lt;/td&gt;
-            &lt;td&gt;Blowfish-Tools&lt;/td&gt;
-            &lt;td&gt;CLI to initialize a Blowfish project&lt;/td&gt;
-            &lt;td&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://blowfish.page&#34;&gt;site&lt;/a&gt;&lt;/br&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://github.com/nunocoracao/blowfish-tools&#34;&gt;github&lt;/a&gt;&lt;/br&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://www.npmjs.com/package/blowfish-tools&#34;&gt;NPM&lt;/a&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;&lt;img class=&#34;customEntitityAlbum&#34; style=&#34;background-color:transparent&#34; src=&#34;wormhole-logo-square.png&#34;/&gt;&lt;/td&gt;
-            &lt;td&gt;Wormhole&lt;/td&gt;
-            &lt;td&gt;A wormhole into the universe - web feed for deep space photography&lt;/td&gt;
-            &lt;td&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://wormhole.photos&#34;&gt;site&lt;/a&gt;&lt;/br&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://github.com/wormhole-photos&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;</description>
+      <description></description>
       
     </item>
     
