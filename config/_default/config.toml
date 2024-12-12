@@ -8,7 +8,7 @@ defaultContentLanguage = "en"
 enableRobotsTXT = true
 
 [pagination]
-  pagerSize = 24
+pagerSize = 24
 
 
 summaryLength = 30
