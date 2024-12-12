@@ -13,7 +13,7 @@ title = "Naci Simsek"
   description = "Naci Simsek"
   #scopyright = "Copy, _right?_ :thinking_face:"
 
-[author]
+[params.author]
   name = "Naci Simsek"
   image = "img/avatar.jpg"
   headline = "{{< typeit breakLines=false\nloop=true\nlifeLike=true >}}Technical Account Manager @ Ververica\nPioneering Real-Time Data Solutions\nOptimizing Streaming Architectures\nEmpowering Businesses with Data{{< /typeit >}}"

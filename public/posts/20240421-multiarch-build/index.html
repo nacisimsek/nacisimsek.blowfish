@@ -46,11 +46,14 @@
   
   
   
-  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.d555446ef56d8022bc549703e51f6f9482d1bc5d7ff6a267566657af6753bbed025a5461960a46020d70da24e2b2b98f1d2603faedfc491d1fe4a0dd384fa882.js"
-    integrity="sha512-1VVEbvVtgCK8VJcD5R9vlILRvF1/9qJnVmZXr2dTu&#43;0CWlRhlgpGAg1w2iTisrmPHSYD&#43;u38SR0f5KDdOE&#43;ogg==" data-copy="" data-copied=""></script>
   
   
-  <script src="/js/zoom.min.js"></script>
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.a2d78d78672e549fbfc972ece871725b5478ba0b65708dda20cb97ab80a865eae6d247e1b05a4aec6ebbf78647ec3233bad8b2609ed98eee53cd58aa17128bc7.js"
+    integrity="sha512-oteNeGcuVJ&#43;/yXLs6HFyW1R4ugtlcI3aIMuXq4CoZerm0kfhsFpK7G6794ZH7DIzutiyYJ7Zju5TzViqFxKLxw==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.37d2094687372da3f7343a221a470f6b8806f7891aa46a5a03966af7f0ebd38b9fe536cb154e6ad28f006d184b294525a7c4054b6bbb4be62d8b453b42db99bd.js" integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S&#43;Yti0U7QtuZvQ=="></script>
   
   
   
@@ -58,6 +61,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
+  
   
   
   
@@ -139,7 +143,11 @@
   
   
 
-<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
 
 
 
@@ -160,6 +168,8 @@
 
   
   
+
+
 
   
   
@@ -221,8 +231,10 @@
         <a href="/" class="flex">
             <span class="sr-only">Naci Simsek</span>
 
+            
             <img src="/img/NSLogoFinalBig_light.png" width="323" height="243"
                 class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="Naci Simsek" />
+            
 
         </a>
     </div>
@@ -246,6 +258,7 @@
 </a>
 
 
+
             
             
   <a href="/resume/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -256,6 +269,7 @@
 </a>
 
 
+
             
             
   <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -264,6 +278,7 @@
         About
     </p>
 </a>
+
 
 
             
@@ -423,8 +438,7 @@
     </div>
     <div class="-my-2 -mr-2 md:hidden">
 
-        <label id="menu-button" for="menu-controller" class="block">
-            <input type="checkbox" id="menu-controller" class="hidden" />
+        <label id="menu-button" class="block">
             
             <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
                 
@@ -441,7 +455,7 @@
                 <ul
                     class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
 
-                    <li>
+                    <li id="menu-close-button">
                         <span
                             class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
 
@@ -467,6 +481,7 @@
 
 
 
+
                     
 
                     
@@ -478,6 +493,7 @@
         </p>
     </a>
 </li>
+
 
 
 
@@ -495,11 +511,12 @@
 
 
 
+
                     
 
                      
   <li class="mt-1">
-    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="#" class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
             Explore
@@ -547,6 +564,7 @@
 </li>
 
 <li class="mb-2"></li>
+
 
 
 
@@ -601,6 +619,7 @@
 
 
 <div id="hero" class="h-[150px] md:h-[200px]"></div>
+
 
 
     
@@ -717,12 +736,21 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-04-21 00:00:00 &#43;0000 UTC">2024-04-21</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-04-21T00:00:00&#43;00:00">2024-04-21</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="views_posts/20240421-multiarch-build/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="views_posts/20240421-multiarch-build/index.md" class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -731,11 +759,22 @@
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="likes_posts/20240421-multiarch-build/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="likes_posts/20240421-multiarch-build/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -778,7 +817,7 @@
   
   
   
-     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self')">Naci Simsek</div>
+     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self');return false;">Naci Simsek</div>
   
   
   
@@ -801,7 +840,7 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -809,7 +848,7 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/colima/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/colima/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Colima
@@ -817,7 +856,7 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/microservices/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/microservices/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Microservices
@@ -833,7 +872,7 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Tutorial
@@ -841,7 +880,7 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -849,7 +888,7 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/colima/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/colima/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Colima
@@ -857,7 +896,7 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/microservices/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/microservices/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Microservices
@@ -865,7 +904,7 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/multiarchitecture/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/multiarchitecture/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Multiarchitecture
@@ -873,7 +912,7 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/containers/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/containers/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Containers
@@ -888,6 +927,7 @@
 
 
 
+
     </div>
 
     
@@ -899,12 +939,16 @@
     
 
     
+      
+      
+
+      
+        
+
+      
 
     
-    
 
-    
-  
   </header>
   
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
@@ -913,13 +957,14 @@
       class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
       <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
 
-         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+         <details open id="TOCView"
+  class="toc-right mt-0 overflow-y-scroll overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
   <summary
     class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
     Table of Contents
   </summary>
   <div
-    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
     <li><a href="#build-docker-images-with-multiarch-support">Build Docker Images with Multiarch Support</a></li>
@@ -942,8 +987,33 @@
   </div>
 </details>
 
- 
 <script>
+
+  var margin = 200;
+  var marginError = 50;
+
+  (function () {
+    var $window = $(window);
+    var $toc = $('#TOCView');
+    var tocHeight = $toc.height();
+
+    function onResize() {
+      var windowAndMarginHeight = $window.height() - margin;
+      if(tocHeight >= windowAndMarginHeight) {
+        $toc.css("overflow-y", "scroll")
+        $toc.css("max-height", (windowAndMarginHeight + marginError) + "px")
+      } else {
+        $toc.css("overflow-y", "hidden")
+        $toc.css("max-height", "9999999px")
+      }
+    }
+
+    $window.on('resize', onResize);
+    $(document).ready(onResize);
+  })();
+
+
+
   (function () {
     var $toc = $('#TableOfContents');
     if ($toc.length > 0) {
@@ -956,7 +1026,7 @@
         h.each(function (i, e) {
           e = $(e);
           if (e.offset().top - $(window).height()/3 <= currentScroll) {
-            id = e.attr('id');
+            id = decodeURIComponent(e.attr('id'));
           }
         });
         var active = $toc.find('a.active');      
@@ -980,6 +1050,8 @@
       });
     }
   })();
+
+
 </script>
    </div>
       </div>
@@ -1075,10 +1147,14 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </li>
 </ol>
 
+          
+          
+          
         </div>
-                
+        
         
 
+        
         
   
   <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
@@ -1125,8 +1201,8 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
       href="https://api.whatsapp.com/send?text=http://localhost:1313/posts/20240421-multiarch-build/&amp;resubmit=true&amp;title=Build%20Docker%20Images%20with%20Multiarch%20Support"
-      title=""
-      aria-label=""
+      title="Share via WhatsApp"
+      aria-label="Share via WhatsApp"
       >
       
 
@@ -1144,8 +1220,8 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
       href="https://t.me/share/url?url=http://localhost:1313/posts/20240421-multiarch-build/&amp;resubmit=true&amp;title=Build%20Docker%20Images%20with%20Multiarch%20Support"
-      title=""
-      aria-label=""
+      title="Share via Telegram"
+      aria-label="Share via Telegram"
       >
       
 
@@ -1302,12 +1378,21 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-02 00:00:00 &#43;0000 UTC">2024-06-02</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-02T00:00:00&#43;00:00">2024-06-02</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="views_posts/20240602-kafka-deploy/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="views_posts/20240602-kafka-deploy/index.md" class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -1316,11 +1401,22 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="likes_posts/20240602-kafka-deploy/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="likes_posts/20240602-kafka-deploy/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -1341,7 +1437,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self')">Naci Simsek</div>
+     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self');return false;">Naci Simsek</div>
   
   
   
@@ -1364,7 +1460,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -1372,7 +1468,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/kafka/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/kafka/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Kafka
@@ -1380,7 +1476,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Data Engineering
@@ -1396,7 +1492,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Tutorial
@@ -1404,7 +1500,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/kafka/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/kafka/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Kafka
@@ -1412,7 +1508,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/kubernetes/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/kubernetes/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Kubernetes
@@ -1420,7 +1516,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -1428,7 +1524,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/helm/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/helm/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Helm
@@ -1436,7 +1532,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/brew/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/brew/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Brew
@@ -1451,6 +1547,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 
 
+
         </div>
 
         
@@ -1460,6 +1557,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       </div>
     </div>
   </a>
+
   
   
 
@@ -1520,12 +1618,21 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-09 00:00:00 &#43;0000 UTC">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-09T00:00:00&#43;00:00">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="views_posts/20240609-airflow-nginx-minio/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="views_posts/20240609-airflow-nginx-minio/index.md" class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -1534,11 +1641,22 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="likes_posts/20240609-airflow-nginx-minio/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="likes_posts/20240609-airflow-nginx-minio/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -1559,7 +1677,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self')">Naci Simsek</div>
+     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self');return false;">Naci Simsek</div>
   
   
   
@@ -1582,7 +1700,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -1590,7 +1708,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hadoop
@@ -1598,7 +1716,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Data Engineering
@@ -1614,7 +1732,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Tutorial
@@ -1622,7 +1740,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hdfs
@@ -1630,7 +1748,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hive
@@ -1638,7 +1756,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Mapreduce
@@ -1646,7 +1764,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Postgres
@@ -1654,7 +1772,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Catalog
@@ -1669,6 +1787,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 
 
+
         </div>
 
         
@@ -1678,6 +1797,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       </div>
     </div>
   </a>
+
   
   
 
@@ -1738,12 +1858,21 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-09 00:00:00 &#43;0000 UTC">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-09T00:00:00&#43;00:00">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="views_posts/20240609-debezium-cdc-flink/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="views_posts/20240609-debezium-cdc-flink/index.md" class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -1752,11 +1881,22 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="likes_posts/20240609-debezium-cdc-flink/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="likes_posts/20240609-debezium-cdc-flink/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -1777,7 +1917,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self')">Naci Simsek</div>
+     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self');return false;">Naci Simsek</div>
   
   
   
@@ -1800,7 +1940,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -1808,7 +1948,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hadoop
@@ -1816,7 +1956,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Data Engineering
@@ -1832,7 +1972,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Tutorial
@@ -1840,7 +1980,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hdfs
@@ -1848,7 +1988,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hive
@@ -1856,7 +1996,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Mapreduce
@@ -1864,7 +2004,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Postgres
@@ -1872,7 +2012,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Catalog
@@ -1887,6 +2027,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 
 
+
         </div>
 
         
@@ -1896,6 +2037,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       </div>
     </div>
   </a>
+
   
   
 
@@ -1956,12 +2098,21 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-09 00:00:00 &#43;0000 UTC">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-09T00:00:00&#43;00:00">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="views_posts/20240609-elasticsearch-kibana/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="views_posts/20240609-elasticsearch-kibana/index.md" class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -1970,11 +2121,22 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="likes_posts/20240609-elasticsearch-kibana/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="likes_posts/20240609-elasticsearch-kibana/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -1995,7 +2157,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self')">Naci Simsek</div>
+     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self');return false;">Naci Simsek</div>
   
   
   
@@ -2018,7 +2180,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -2026,7 +2188,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hadoop
@@ -2034,7 +2196,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Data Engineering
@@ -2050,7 +2212,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Tutorial
@@ -2058,7 +2220,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hdfs
@@ -2066,7 +2228,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hive
@@ -2074,7 +2236,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Mapreduce
@@ -2082,7 +2244,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Postgres
@@ -2090,7 +2252,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Catalog
@@ -2105,6 +2267,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 
 
+
         </div>
 
         
@@ -2114,6 +2277,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       </div>
     </div>
   </a>
+
   
   
 
@@ -2174,12 +2338,21 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-09 00:00:00 &#43;0000 UTC">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-09T00:00:00&#43;00:00">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="views_posts/20240609-spark-optimization/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="views_posts/20240609-spark-optimization/index.md" class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -2188,11 +2361,22 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="likes_posts/20240609-spark-optimization/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="likes_posts/20240609-spark-optimization/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -2213,7 +2397,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self')">Naci Simsek</div>
+     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self');return false;">Naci Simsek</div>
   
   
   
@@ -2236,7 +2420,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -2244,7 +2428,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hadoop
@@ -2252,7 +2436,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Data Engineering
@@ -2268,7 +2452,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Tutorial
@@ -2276,7 +2460,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hdfs
@@ -2284,7 +2468,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hive
@@ -2292,7 +2476,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Mapreduce
@@ -2300,7 +2484,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Postgres
@@ -2308,7 +2492,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Catalog
@@ -2323,6 +2507,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 
 
+
         </div>
 
         
@@ -2332,6 +2517,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       </div>
     </div>
   </a>
+
   
   
 
@@ -2392,12 +2578,21 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-09 00:00:00 &#43;0000 UTC">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-09T00:00:00&#43;00:00">2024-06-09</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="views_posts/20240609-spark-json-process/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="views_posts/20240609-spark-json-process/index.md" class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -2406,11 +2601,22 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
     
-    <span id="likes_posts/20240609-spark-json-process/index.md" 
     
-        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
-    <span class="inline-block align-text-bottom">
+      
+      
+        
+        
+      
+      
+    
+  
+  <span id="likes_posts/20240609-spark-json-process/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes">loading</span>
+  <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -2431,7 +2637,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self')">Naci Simsek</div>
+     <div style="cursor: pointer;" onclick="window.open(&#34;/authors/nacisimsek/&#34;,'_self');return false;">Naci Simsek</div>
   
   
   
@@ -2454,7 +2660,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/docker/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Docker
@@ -2462,7 +2668,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/hadoop/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hadoop
@@ -2470,7 +2676,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/data-engineering/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Data Engineering
@@ -2486,7 +2692,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/tutorial/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Tutorial
@@ -2494,7 +2700,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hdfs/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hdfs
@@ -2502,7 +2708,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/hive/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Hive
@@ -2510,7 +2716,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/mapreduce/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Mapreduce
@@ -2518,7 +2724,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/postgres/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Postgres
@@ -2526,7 +2732,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/catalog/&#34;,'_self');return false;">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Catalog
@@ -2541,6 +2747,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
 
 
+
         </div>
 
         
@@ -2550,21 +2757,28 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
       </div>
     </div>
   </a>
+
   
 </section>
 
   
       </div>
      
-    
-     <script>
+      
+      
+        
+        
+          
+          
+        
+      <script>
         var oid = "views_posts\/20240421-multiarch-build\/index.md"
         var oid_likes = "likes_posts\/20240421-multiarch-build\/index.md"
       </script>
       
       
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
       
-      <script type="text/javascript" src="/js/page.min.f94e5beb747249fb2315a14fc6417e483411d48b59dc1376bbafa8c37fce65d397d5401be15c7461670ec7bb90ac2bf148d7d48eaf02f317cd9dc04d4851fd31.js" integrity="sha512-&#43;U5b63RySfsjFaFPxkF&#43;SDQR1ItZ3BN2u6&#43;ow3/OZdOX1UAb4Vx0YWcOx7uQrCvxSNfUjq8C8xfNncBNSFH9MQ=="></script>
   
     </section>
   <footer class="pt-8 max-w-prose print:hidden">
@@ -2590,7 +2804,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-05-09 00:00:00 &#43;0000 UTC">2024-05-09</time>
+                    <time datetime="2024-05-09T00:00:00&#43;00:00">2024-05-09</time>
                   
                 </span>
               </span>
@@ -2612,7 +2826,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
 
     
     
-     <div class="pt-3">
+    <div class="pt-3">
       <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
       <div class="pt-3">
             <div id="cusdis_thread" data-host="https://cusdis.com"
@@ -2625,8 +2839,6 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
       </div>
     </div>
-      
-
     
     
   </footer>
@@ -2690,7 +2902,9 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
     <p class="text-xs text-neutral-500 dark:text-neutral-400">
       
       
-      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
     </p>
     
 
@@ -2711,7 +2925,8 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
   <a rel="me" href="https://masto.ai/@nunocoracao"></a>
   
-</footer><div
+</footer>
+<div
   id="search-wrapper"
   class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
   data-url="http://localhost:1313/"
