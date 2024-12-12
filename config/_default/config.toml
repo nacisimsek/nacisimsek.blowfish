@@ -6,7 +6,11 @@ baseURL = "https://nacisimsek.com/"
 defaultContentLanguage = "en"
 
 enableRobotsTXT = true
-paginate = 18
+
+[pagination]
+  pagerSize = 18
+
+
 summaryLength = 30
 
 buildDrafts = false
