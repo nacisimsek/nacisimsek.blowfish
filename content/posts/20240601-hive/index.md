@@ -78,7 +78,7 @@ Without further theory, let’s dive into our hands-on exercises where we start 
 
 Check if the containers of our Hadoop cluster are up and running. See [this](https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster) chapter for instructions on deploying this cluster.
 
-```
+```powershell
 docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}'
 ```
 
@@ -92,7 +92,7 @@ fa725f0c0bd9   cluster-master        Up 12 days
 
 Logging into the shell of the container `cluster-master`
 
-```
+```powershell
 docker exec -it cluster-master bash
 ```
 
@@ -104,7 +104,7 @@ Initialize the Hive metastore schema in a PostgreSQL database
 >
 > Schema initialization only needs to be performed for the first run of the Hive services. Once all the metadata tables are ready on Postgres, you need not initialize them again.
 
-```
+```powershell
 schematool -initSchema -dbType postgres
 ```
 

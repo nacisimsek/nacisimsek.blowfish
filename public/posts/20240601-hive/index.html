@@ -1302,15 +1302,15 @@
 </h3>
 <p>Check if the containers of our Hadoop cluster are up and running. See <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster"   target="_blank">
     this</a> chapter for instructions on deploying this cluster.</p>
-<pre tabindex="0"><code>docker ps --format &#39;table {{.ID}}\t{{.Names}}\t{{.Status}}&#39;
-</code></pre><pre tabindex="0"><code>CONTAINER ID   NAMES                 STATUS
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="nb">ps </span><span class="p">-</span><span class="n">-format</span> <span class="s1">&#39;table {{.ID}}\t{{.Names}}\t{{.Status}}&#39;</span>
+</span></span></code></pre></div><pre tabindex="0"><code>CONTAINER ID   NAMES                 STATUS
 6ad193be83c3   cluster-slave-1       Up 12 days
 d04cd3f43266   cluster-slave-2       Up 12 days
 fa725f0c0bd9   cluster-master        Up 12 days
 02571464b056   postgresql            Up 12 days
 </code></pre><p>Logging into the shell of the container <code>cluster-master</code></p>
-<pre tabindex="0"><code>docker exec -it cluster-master bash
-</code></pre><h4 class="relative group">Hive Schema Initialization 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="nb">cluster-master</span> <span class="n">bash</span>
+</span></span></code></pre></div><h4 class="relative group">Hive Schema Initialization 
     <div id="hive-schema-initialization" class="anchor"></div>
     
     <span
@@ -1325,8 +1325,8 @@ fa725f0c0bd9   cluster-master        Up 12 days
 <p><strong>❗️ Important:</strong></p>
 <p>Schema initialization only needs to be performed for the first run of the Hive services. Once all the metadata tables are ready on Postgres, you need not initialize them again.</p>
 </blockquote>
-<pre tabindex="0"><code>schematool -initSchema -dbType postgres
-</code></pre><p>The output should look like this below.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">schematool</span> <span class="n">-initSchema</span> <span class="n">-dbType</span> <span class="n">postgres</span>
+</span></span></code></pre></div><p>The output should look like this below.</p>
 <pre tabindex="0"><code>Metastore connection URL:	 jdbc:postgresql://postgresql:5432/metastore
 Metastore Connection Driver :	 org.postgresql.Driver
 Metastore connection User:	 postgres
@@ -1373,8 +1373,8 @@ schemaTool completed
 <li><strong>Hive Metastore</strong>: A central repository that stores metadata about Hive tables, partitions, and schemas.</li>
 <li><strong>HiveServer2</strong>: A service that allows clients to execute queries against Hive and retrieve results.</li>
 </ul>
-<pre tabindex="0"><code>$HADOOP_HOME/start-hive.sh
-</code></pre><pre tabindex="0"><code>Services starting up. Waiting for 60 seconds...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$HADOOP_HOME</span><span class="p">/</span><span class="nb">start-hive</span><span class="p">.</span><span class="py">sh</span>
+</span></span></code></pre></div><pre tabindex="0"><code>Services starting up. Waiting for 60 seconds...
 Hive Metastore and HiveServer2 services have been started successfully.
 </code></pre><h4 class="relative group">Connect Beeline HiveQL CLI 
     <div id="connect-beeline-hiveql-cli" class="anchor"></div>
@@ -1388,8 +1388,8 @@ Hive Metastore and HiveServer2 services have been started successfully.
 </h4>
 <p>After the Hive service is started, we will connect to it using the Beeline CLI (Command Line Interface).</p>
 <p>This command will connect us to a Hive server running on &ldquo;cluster-master&rdquo; using the default port 10000, allowing us to interact with Hive and run HiveQL queries.</p>
-<pre tabindex="0"><code>beeline -u jdbc:hive2://cluster-master:10000
-</code></pre><pre tabindex="0"><code>Connecting to jdbc:hive2://cluster-master:10000
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">beeline -u jdbc:hive2://cluster-master:10000
+</span></span></code></pre></div><pre tabindex="0"><code>Connecting to jdbc:hive2://cluster-master:10000
 Connected to: Apache Hive (version 3.1.3)
 Driver: Hive JDBC (version 2.3.9)
 Transaction isolation: TRANSACTION_REPEATABLE_READ
@@ -1456,8 +1456,8 @@ Beeline version 2.3.9 by Apache Hive
     
 </h4>
 <p>Below command is used to list the available databases:</p>
-<pre tabindex="0"><code>show databases;
-</code></pre><p>The output will be shown as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>The output will be shown as follows:</p>
 <pre tabindex="0"><code>INFO  : Compiling command(queryId=root_20240818123321_a5886e81-31b2-493d-93e1-88e05b7431f7): show databases
 INFO  : Concurrency mode is disabled, not creating a lock manager
 INFO  : Semantic Analysis Completed (retrial = false)
@@ -1483,8 +1483,8 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 <p><code>./usr/local/hive/conf/hive-site.xml</code></p>
 </blockquote>
 <p>To show the tables, simply use as below:</p>
-<pre tabindex="0"><code>show tables;
-</code></pre><pre tabindex="0"><code>+-----------+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+-----------+
 | tab_name  |
 +-----------+
 +-----------+
@@ -1564,12 +1564,12 @@ No rows selected (0.03 seconds)
     
 </h5>
 <p>Login to the container bash:</p>
-<pre tabindex="0"><code>docker exec -it cluster-master bash
-</code></pre><p>Download the dataset. Make sure you download it to the folder where you map the docker volume (<code>usr/local/hadoop/namenode/</code>), if you would like to access the dataset even the container gets restarted.</p>
-<pre tabindex="0"><code>wget -O employee.txt https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets/employee.txt
-</code></pre><p>Here is how our data looks like:</p>
-<pre tabindex="0"><code>cat employee.txt
-</code></pre><pre tabindex="0"><code>name|work_place|gender_age|skills_score
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="nb">cluster-master</span> <span class="n">bash</span>
+</span></span></code></pre></div><p>Download the dataset. Make sure you download it to the folder where you map the docker volume (<code>usr/local/hadoop/namenode/</code>), if you would like to access the dataset even the container gets restarted.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget -O employee.txt https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets/employee.txt
+</span></span></code></pre></div><p>Here is how our data looks like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat employee.txt
+</span></span></code></pre></div><pre tabindex="0"><code>name|work_place|gender_age|skills_score
 Michael|Montreal,Toronto|Male,30|DB:80,Network:88
 Will|Montreal|Male,35|Perl:85,Scala:82
 Shelley|New York|Female,27|Python:80,Spark:95
