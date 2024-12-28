@@ -131,7 +131,7 @@ We will then start the Hive services, which include:
 - **Hive Metastore**: A central repository that stores metadata about Hive tables, partitions, and schemas.
 - **HiveServer2**: A service that allows clients to execute queries against Hive and retrieve results.
 
-```
+```powershell
 $HADOOP_HOME/start-hive.sh
 ```
 
@@ -146,7 +146,7 @@ After the Hive service is started, we will connect to it using the Beeline CLI (
 
 This command will connect us to a Hive server running on "cluster-master" using the default port 10000, allowing us to interact with Hive and run HiveQL queries.
 
-```
+```shell
 beeline -u jdbc:hive2://cluster-master:10000
 ```
 
@@ -182,7 +182,7 @@ We are now ready to perform our HiveQL database and table operations on Beeline.
 
 Below command is used to list the available databases:
 
-```
+```sql
 show databases;
 ```
 
@@ -222,7 +222,7 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 
 To show the tables, simply use as below:
 
-```
+```sql
 show tables;
 ```
 
@@ -286,19 +286,19 @@ Before proceding to create database and the respective table, first we download 
 
 Login to the container bash:
 
-```
+```powershell
 docker exec -it cluster-master bash
 ```
 
 Download the dataset. Make sure you download it to the folder where you map the docker volume (`usr/local/hadoop/namenode/`), if you would like to access the dataset even the container gets restarted.
 
-```
+```shell
 wget -O employee.txt https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Datasets/employee.txt
 ```
 
 Here is how our data looks like:
 
-```
+```shell
 cat employee.txt
 ```
 
