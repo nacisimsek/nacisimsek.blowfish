@@ -28,8 +28,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.1ca8247f7fd83d2daf489d61924ea7a370422f0de2f834e4e84235972a5006b1cb47eb07330bccefe0a91bb3539b17658ed3e40ca06709a44d111c3af9f24d23.css"
-    integrity="sha512-HKgkf3/YPS2vSJ1hkk6no3BCLw3i&#43;DTk6EI1lypQBrHLR&#43;sHMwvM7&#43;CpG7NTmxdljtPkDKBnCaRNERw6&#43;fJNIw==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.37286c6bc22080e2bedf32baea5c22c83d8cdd6bbea1b606602b065ba2e3f4e0cb51c900106ede2ff0c5b9f8f00f62983f3068dcb819d4947feec9791d8117d6.css"
+    integrity="sha512-Nyhsa8IggOK&#43;3zK66lwiyD2M3Wu&#43;obYGYCsGW6Lj9ODLUckAEG7eL/DFufjwD2KYPzBo3LgZ1JR/7sl5HYEX1g==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.1e238aaf34a3633df3329d613c7876a2e9c012d2904057827763b78041347e37678d0433b9bb56865d54d63136da4458e4a8cbfd7bcbe6c1ad3cce49f794c52f.js"
@@ -1312,6 +1312,67 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
     
   </section>
 
+
+
+        
+        
+        <div class="pt-3">
+          <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+          <div class="pt-3">
+            <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="464a0f20-8b72-4599-a904-9aefcb20a3a9"
+    data-page-id="730ea4307c8a618774ee8da898186ed4"
+    data-page-url="http://localhost:1313/posts/20240421-multiarch-build/"
+    data-page-title="Build Docker Images with Multiarch Support"
+    data-theme="auto">  
+</div>
+
+<script>
+    
+    (function() {
+        const setTheme = () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const frame = document.querySelector('#cusdis_thread iframe');
+            if (frame) {
+                frame.contentWindow.postMessage({ 
+                    type: 'cusdis.setTheme',
+                    data: { 
+                        theme: isDark ? 'dark' : 'light',
+                        darkMode: {
+                            background: '#1a1a1a',
+                            color: '#ffffff'
+                        }
+                    }
+                }, '*');
+            }
+        };
+
+        
+        window.addEventListener('load', setTheme);
+
+        
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    setTheme();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    })();
+</script>
+
+<script defer src="https://cusdis.com/js/widget/lang/en.js"></script>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+          </div>
+        </div>
+        
+        
 
         
 
@@ -2824,23 +2885,7 @@ It is also a <strong>must</strong> to push the multi architecture images to a re
   
 
 
-    
-    
-    <div class="pt-3">
-      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
-      <div class="pt-3">
-            <div id="cusdis_thread" data-host="https://cusdis.com"
-      data-app-id="464a0f20-8b72-4599-a904-9aefcb20a3a9"
-      data-page-id="730ea4307c8a618774ee8da898186ed4"
-      data-page-url="http://localhost:1313/posts/20240421-multiarch-build/"
-      data-page-title="Build Docker Images with Multiarch Support">
-    </div>
-    <script defer src="https://cusdis.com/js/widget/lang/en.js"></script>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-      </div>
-    </div>
-    
-    
+
   </footer>
 </article>
 

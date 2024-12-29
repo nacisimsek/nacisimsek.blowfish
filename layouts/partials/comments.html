@@ -1,8 +1,50 @@
-    <div id="cusdis_thread" data-host="https://cusdis.com"
-      data-app-id="464a0f20-8b72-4599-a904-9aefcb20a3a9"
-      data-page-id="{{ .Page.File.UniqueID }}"
-      data-page-url="{{ .Page.Permalink }}"
-      data-page-title="{{ .Page.Title }}">
-    </div>
-    <script defer src="https://cusdis.com/js/widget/lang/en.js"></script>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="464a0f20-8b72-4599-a904-9aefcb20a3a9"
+    data-page-id="{{ .Page.File.UniqueID }}"
+    data-page-url="{{ .Page.Permalink }}"
+    data-page-title="{{ .Page.Title }}"
+    data-theme="auto">  <!-- Add this data-theme attribute -->
+</div>
+
+<script>
+    // Add this script to handle theme changes
+    (function() {
+        const setTheme = () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const frame = document.querySelector('#cusdis_thread iframe');
+            if (frame) {
+                frame.contentWindow.postMessage({ 
+                    type: 'cusdis.setTheme',
+                    data: { 
+                        theme: isDark ? 'dark' : 'light',
+                        darkMode: {
+                            background: '#1a1a1a',
+                            color: '#ffffff'
+                        }
+                    }
+                }, '*');
+            }
+        };
+
+        // Set theme initially
+        window.addEventListener('load', setTheme);
+
+        // Watch for theme changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    setTheme();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    })();
+</script>
+
+<script defer src="https://cusdis.com/js/widget/lang/en.js"></script>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>

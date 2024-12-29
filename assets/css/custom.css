@@ -207,13 +207,56 @@ td {
   }
 
 
-  #cusdis_thread {
+/* Light mode */
+#cusdis_thread {
     width: 100%;
-    min-height: 600px;  /* Adjust this value based on your needs */
+    min-height: 600px;
 }
 
 #cusdis_thread iframe {
     width: 100% !important;
-    min-height: 600px !important;  /* Same as above */
+    min-height: 600px !important;
     border: none !important;
+}
+
+/* Dark mode styles */
+.dark #cusdis_thread input,
+.dark #cusdis_thread textarea {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+.dark #cusdis_thread input::placeholder,
+.dark #cusdis_thread textarea::placeholder {
+    color: #888888 !important;
+}
+
+.dark #cusdis_thread label,
+.dark #cusdis_thread span {
+    color: #ffffff !important;
+}
+
+/* Dark mode override with complete inversion */
+/* Dark mode override with adjusted filter values */
+.dark #cusdis_thread iframe {
+    filter: invert(0.85) hue-rotate(180deg) brightness(1.4) contrast(0.95) saturate(1.2) !important;
+}
+
+/* Target input borders specifically */
+.dark #cusdis_thread iframe input,
+. textarea {
+    border-color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Optional: Add hover and focus states for better interaction */
+.dark #cusdis_thread iframe input:hover,
+.dark #cusdis_thread iframe textarea:hover {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.dark #cusdis_thread iframe input:focus,
+.dark #cusdis_thread iframe textarea:focus {
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    outline-color: rgba(255, 255, 255, 0.8) !important;
 }
