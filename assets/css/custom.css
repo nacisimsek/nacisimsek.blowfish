@@ -239,7 +239,7 @@ td {
 /* Dark mode override with complete inversion */
 /* Dark mode override with adjusted filter values */
 .dark #cusdis_thread iframe {
-    filter: invert(0.85) hue-rotate(180deg) brightness(1.4) contrast(0.95) saturate(1.2) !important;
+    filter: invert(0.85) hue-rotate(180deg) brightness(2) contrast(0.95) saturate(1.2) !important;
 }
 
 /* Target input borders specifically */
