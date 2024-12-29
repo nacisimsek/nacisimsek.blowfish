@@ -1,0 +1,39 @@
+{{ if .IsNamedParams }}
+  {{ $.Scratch.Set "icon" (default "triangle-exclamation" (.Get "icon") ) }}
+  {{ $.Scratch.Set "cardColor" (.Get "cardColor") }}
+  {{ $.Scratch.Set "iconColor" (.Get "iconColor") }}
+  {{ $.Scratch.Set "textColor" (.Get "textColor") }}
+{{ else }}
+  {{ $.Scratch.Set "icon" (default "triangle-exclamation" (.Get 0) ) }}
+{{ end }}
+
+<div
+  {{ if not ($.Scratch.Get "cardColor") }}
+    class="alert-box"
+  {{ else }}
+    class="alert-box"
+    style="background-color: {{ $.Scratch.Get "cardColor" }}"
+  {{ end }}>
+
+  <!-- ICON CONTAINER -->
+  <div
+    {{ if not ($.Scratch.Get "iconColor") }}
+      class="alert-icon"
+    {{ else }}
+      class="alert-icon"
+      style="color: {{ $.Scratch.Get "iconColor" }}"
+    {{ end }}>
+    {{ partial "icon.html" ($.Scratch.Get "icon") }}
+  </div>
+
+  <!-- TEXT CONTAINER -->
+  <div
+    {{ if not ($.Scratch.Get "textColor") }}
+      class="alert-content"
+    {{ else }}
+      class="alert-content"
+      style="color: {{ $.Scratch.Get "textColor" }}"
+    {{ end }}>
+    {{ .Inner | markdownify }}
+  </div>
+</div>

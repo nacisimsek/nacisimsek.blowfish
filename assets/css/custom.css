@@ -127,3 +127,81 @@
 td {
     vertical-align: middle !important;
 }
+
+.alert-box {
+    display: flex;           /* Use Flexbox layout */
+    align-items: flex-start; /* Align items at the top */
+    padding: 0.5rem 1rem;    /* Add padding around the box */
+    border-radius: 0.375rem; /* Add rounded corners */
+    margin-bottom: 1rem;     /* Add spacing below the alert box */
+    box-sizing: border-box;  /* Ensure padding is included in dimensions */
+}
+
+
+/* Inline code styling inside alert boxes */
+.alert-box code {
+    display: inline;         /* Keep inline code snippets inline */
+    background-color: #f0f0f0; /* Light background for inline code */
+    padding: 0.2rem 0.4rem;  /* Small padding for readability */
+    border-radius: 0.25rem;  /* Rounded corners */
+    font-family: monospace;  /* Monospace font for inline code */
+    font-size: 0.9em;        /* Slightly smaller font size for inline code */
+}
+
+/* Code blocks inside alert boxes */
+.alert-box pre {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+    padding: 0;  /* Remove padding here */
+    background-color: transparent;  /* Make background transparent */
+    border-radius: 0.375rem;
+    font-family: monospace;
+    font-size: 0.875rem;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure code inside <pre> matches regular code blocks */
+  .alert-box pre code {
+    display: block;
+    padding: 1rem;  /* Add padding here instead */
+    background-color: var(--code-background);  /* Use theme's code background color */
+    color: var(--code-color);  /* Use theme's code text color */
+    overflow-x: auto;
+    white-space: pre;
+    width: 100%;
+    border-radius: 0.375rem;
+  }
+  
+  /* Reset inline code styling when inside pre blocks */
+  .alert-box pre code.language-* {
+    background-color: var(--code-background);
+    color: var(--code-color);
+    padding: 1rem;
+  }
+
+  /* Icon Styling */
+  .alert-icon {
+    flex-shrink: 0;          /* Prevent the icon from shrinking */
+    margin-right: 1rem;   /* Add spacing between icon and text */
+    display: flex;           /* Ensure proper alignment of the icon */
+    align-items: center;     /* Align icon with the center of the text */
+  }
+  
+  /* Alert Content Styling */
+  .alert-content {
+    flex-grow: 1;            /* Allow text to grow and take up remaining space */
+    line-height: 1.5;        /* Adjust line height for readability */
+    margin: 0;               /* Reset margin */
+    min-width: 0;
+    width: 100%;
+  }
+  
+  /* Icon SVG Styling (Optional, Adjust as Needed) */
+  .alert-icon svg {
+    width: 24px;             /* Set a consistent width for icons */
+    height: 55px;            /* Set a consistent height for icons */
+  }

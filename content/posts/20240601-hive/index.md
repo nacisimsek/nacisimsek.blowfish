@@ -16,9 +16,13 @@ In the [previous article](https://nacisimsek.com/posts/20240509-hadoop-deploy/ "
 
 In this article, we will deploy Hive services on the same Hadoop cluster and perform various operations on it to learn its basics, usage, and advantages for our data operations. If you directly opened this article without setting up your Docker environment, I suggest you visit that [article](https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster "Deployment of the Cluster") to deploy your cluster first.
 
-> ❗️ **Important:**
->
-> Since the image used in this experiment is built with the needed Hive services included, we can run Hive services in this cluster. However, if you are working on your own cluster built on top of a different image, the operations/commands used in this article may not be compatible with your environment.
+{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Important**: 
+
+Since the image used in this experiment is built with the needed Hive services included, we can run Hive services in this cluster. However, if you are working on your own cluster built on top of a different image, the operations/commands used in this article may not be compatible with your environment.
+
+{{< /alert >}}
 
 ## Introduction to Hive
 
@@ -35,13 +39,17 @@ Hive is like a friendly translator that helps you talk to your big data. Imagine
 - It uses engines like MapReduce, Tez, or Spark.
 - It supports many different file formats: Parquet, Sequence, ORC, Text, etc.
 
-> ❗️ **Important:**
->
-> * Hive is not a database.
-> * It is unsuitable for operational database needs (OLTP) since it focuses on heavy analytics queries.
-> * It is unsuitable for operational database needs (OLTP) for row-based insert, update, and delete or interactive queries.
-> * The query takes a reasonable amount of time. Converts query to MapReduce/Tez code gets resources from YARN and starts the operation.
-> * HiveQL is not standard SQL. Should not expect everything as in SQL.
+{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Important**:
+
+* Hive is not a database.
+* It is unsuitable for operational database needs (OLTP) since it focuses on heavy analytics queries.
+* It is unsuitable for operational database needs (OLTP) for row-based insert, update, and delete or interactive queries.
+* The query takes a reasonable amount of time. Converts query to MapReduce/Tez code gets resources from YARN and starts the operation.
+* HiveQL is not standard SQL. Should not expect everything as in SQL.
+
+{{< /alert >}}
 
 ### Why was Hive Built?
 
@@ -100,9 +108,13 @@ docker exec -it cluster-master bash
 
 Initialize the Hive metastore schema in a PostgreSQL database
 
-> **❗️ Important:**
->
-> Schema initialization only needs to be performed for the first run of the Hive services. Once all the metadata tables are ready on Postgres, you need not initialize them again.
+{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Important**:
+
+Schema initialization only needs to be performed for the first run of the Hive services. Once all the metadata tables are ready on Postgres, you need not initialize them again.
+
+{{< /alert >}}
 
 ```powershell
 schematool -initSchema -dbType postgres
@@ -146,7 +158,7 @@ After the Hive service is started, we will connect to it using the Beeline CLI (
 
 This command will connect us to a Hive server running on "cluster-master" using the default port 10000, allowing us to interact with Hive and run HiveQL queries.
 
-```shell
+```powershell
 beeline -u jdbc:hive2://cluster-master:10000
 ```
 
@@ -158,15 +170,19 @@ Transaction isolation: TRANSACTION_REPEATABLE_READ
 Beeline version 2.3.9 by Apache Hive
 ```
 
-> 📝 **Note**:
->
-> If you encounter the issue below when trying to connect to Beeline CLI, it’s most probably related to your Postgres container's volume access.
->
-> ```
-> Connecting to jdbc:hive2://cluster-master:10000 Could not open connection to the HS2 server. Please check the server URI and if the URI is correct, then ask the administrator to check the server status. Error: Could not open client transport with JDBC Uri: jdbc:hive2://cluster-master:10000: java.net.ConnectException: Connection refused (Connection refused) (state=08S01,code=0)
-> ```
->
-> To fix it, either update the volume settings of the docker compose file and mount the container volumes to a local volume, or make sure to start containers with `docker-compose up -d` command executed by a `root` user or another user which has access to the local volume folders created by docker.
+{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Note**:
+
+If you encounter the issue below when trying to connect to Beeline CLI, it’s most probably related to your Postgres container's volume access.
+
+```
+Connecting to jdbc:hive2://cluster-master:10000 Could not open connection to the HS2 server. Please check the server URI and if the URI is correct, then ask the administrator to check the server status. Error: Could not open client transport with JDBC Uri: jdbc:hive2://cluster-master:10000: java.net.ConnectException: Connection refused (Connection refused) (state=08S01,code=0)
+```
+
+To fix it, either update the volume settings of the docker compose file and mount the container volumes to a local volume, or make sure to start containers with `docker-compose up -d` command executed by a `root` user or another user which has access to the local volume folders created by docker.
+
+{{< /alert >}}
 
 #### Connect Hive2 JDBC Through SQL Editor
 
@@ -208,17 +224,22 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 1 row selected (0.119 seconds)
 ```
 
-> 📝 **Note**:
->
-> As seen above, with the command output, also many other logs get pinted. Simply use the below command to turn the logging function off for this session:
->
-> ```bash
-> set hive.server2.logging.operation.level=NONE;
-> ```
->
-> If we would like to turn logging of system-wide, this needs to be set on the below config file of hive:
->
-> `./usr/local/hive/conf/hive-site.xml`
+
+{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Note**:
+
+As seen above, with the command output, also many other logs get pinted. Simply use the below command to turn the logging function off for this session:
+
+```bash
+set hive.server2.logging.operation.level=NONE;
+```
+
+If we would like to turn logging of system-wide, this needs to be set on the below config file of hive:
+
+`./usr/local/hive/conf/hive-site.xml`
+
+{{< /alert >}}
 
 To show the tables, simply use as below:
 
@@ -254,29 +275,33 @@ For internal Hive tables, data itself and its metadata are both managed by Hive.
 
 ### Internal vs. External Tables: Data Movement
 
-> **Internal (Managed) Tables**
->
-> **LOAD DATA INPATH:**
-> **Action**: Moves the data file from its current HDFS location to the table’s directory in the Hive warehouse.
-> **Result**: The original data file is removed from its initial location after the move.
->
-> **LOAD DATA LOCAL INPATH:**
-> **Action**: Copies the data file from the local file system to the table’s directory in the Hive warehouse.
-> **Result**: The original local data file remains intact.
->
-> **Dropping the Table**: Both metadata and data files are deleted from Hive’s warehouse directory.
+#### **Internal (Managed) Tables**
 
-> **External Tables**
->
-> **LOAD DATA INPATH:**
-> **Action**: Moves the data file from its current HDFS location to the external table’s specified directory.
-> **Result**: The original data file is removed from its initial location after the move.
->
-> **LOAD DATA LOCAL INPATH:**
-> **Action**: Copies the data file from the local file system to the external table’s specified directory.
-> **Result**: The original local data file remains intact.
->
-> **Dropping the Table**: Only the metadata is deleted. The data files remain at the external location in HDFS.
+| LOAD DATA INPATH:                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------- |
+| **Action**: Moves the data file from its current HDFS location to the table’s directory in the Hive warehouse. |
+| **Result**: The original data file is removed from its initial location after the move.                         |
+
+| LOAD DATA LOCAL INPATH:                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------ |
+| **Action**: Copies the data file from the local file system to the table’s directory in the Hive warehouse. |
+| **Result**: The original local data file remains intact.                                                     |
+
+**Dropping the Table**: Both metadata and data files are deleted from Hive’s warehouse directory.
+
+#### **External Tables**
+
+| LOAD DATA INPATH:                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------ |
+| **Action**: Moves the data file from its current HDFS location to the external table’s specified directory. |
+| **Result**: The original data file is removed from its initial location after the move.                      |
+
+| LOAD DATA LOCAL INPATH:                                                                                         |
+| --------------------------------------------------------------------------------------------------------------- |
+| **Action**: Copies the data file from the local file system to the external table’s specified directory. |
+| **Result**: The original local data file remains intact.                                                  |
+
+**Dropping the Table**: Only the metadata is deleted. The data files remain at the external location in HDFS.
 
 #### Internal Hive Table Creation
 
@@ -454,8 +479,12 @@ TBLPROPERTIES ('skip.header.line.count'='1');
 > * LINES TERMINATED BY '\n': Each record is on a new line.
 > * STORED AS TEXTFILE: Specifies that the data is stored in a text file format.
 > * TBLPROPERTIES ('skip.header.line.count'='1'): Skips the header line in your data file.
->
-> **Note**: The TBLPROPERTIES ('skip.header.line.count'='1') property is essential here because your dataset includes a header row that you don’t want to import as data.
+
+{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Note**: The TBLPROPERTIES ('skip.header.line.count'='1') property is essential here because your dataset includes a header row that you don’t want to import as data.
+
+{{< /alert >}}
 
 ##### Load Data into Table
 
@@ -465,11 +494,15 @@ Since our data file **employee.txt** is already in HDFS at **/user/datasets/empl
 LOAD DATA INPATH '/user/datasets/employee.txt' INTO TABLE employee;
 ```
 
-> **❗️ Important:**
->
-> **Data Movement** : This command will **move** the **employee.txt** file from its current HDFS location into the Hive table’s directory within the Hive warehouse. After this operation, the original file at **/user/datasets/employee.txt** will no longer exist.
->
-> **Internal Table** : Since we are creating an internal (managed) table, Hive assumes responsibility for the data files. Dropping the table later will delete both the table metadata and the data files.
+{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Important:**
+
+**Data Movement** : This command will **move** the **employee.txt** file from its current HDFS location into the Hive table’s directory within the Hive warehouse. After this operation, the original file at **/user/datasets/employee.txt** will no longer exist.
+
+**Internal Table** : Since we are creating an internal (managed) table, Hive assumes responsibility for the data files. Dropping the table later will delete both the table metadata and the data files.
+
+{{< /alert >}}
 
 ##### **Verify That the Data Is Loaded Correctly**
 
@@ -566,6 +599,24 @@ WHERE skills_score['Python'] > 70;
 ```
 
 ##### Drop Database and its Table
+
+To drop a Hive table, we can simply make sure we are using the correct database with `use <db>` command we ran earlier. Then, perform below command to drop employee table:
+
+```sql
+drop table employee;
+```
+
+Or, we can also mention DB name before the table name, to make sure we drop the correct table:
+
+```sql
+drop table hive_db.employee;
+```
+
+To drop the whole database, simply use drop command for database:
+
+```sql
+drop database hive_db;
+```
 
 #### External Hive Table Creation
 
