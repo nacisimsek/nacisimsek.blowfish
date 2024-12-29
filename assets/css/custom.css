@@ -205,3 +205,15 @@ td {
     width: 24px;             /* Set a consistent width for icons */
     height: 55px;            /* Set a consistent height for icons */
   }
+
+
+  #cusdis_thread {
+    width: 100%;
+    min-height: 600px;  /* Adjust this value based on your needs */
+}
+
+#cusdis_thread iframe {
+    width: 100% !important;
+    min-height: 600px !important;  /* Same as above */
+    border: none !important;
+}
