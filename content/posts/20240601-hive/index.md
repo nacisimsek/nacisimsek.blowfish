@@ -18,7 +18,7 @@ In this article, we will deploy Hive services on the same Hadoop cluster and per
 
 {{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
 
-**Important**: 
+**Important**:
 
 Since the image used in this experiment is built with the needed Hive services included, we can run Hive services in this cluster. However, if you are working on your own cluster built on top of a different image, the operations/commands used in this article may not be compatible with your environment.
 
@@ -223,7 +223,6 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 +----------------+
 1 row selected (0.119 seconds)
 ```
-
 
 {{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
 
@@ -619,6 +618,7 @@ drop database hive_db;
 ```
 
 #### External Hive Table Creation
+
 
 ### File Formats and Compressions
 
