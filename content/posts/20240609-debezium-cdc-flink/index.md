@@ -12,5 +12,5 @@ authors:
 ---
 # Change Data Capture (CDC) Pipeline Implementation
 
-In this article, we will be implementing a pipeline with PostgreSQL, Debezium CDC, Kafka, MinIO and the Spark.
+In this article, we will implement a pipeline with PostgreSQL, Debezium CDC, Kafka, MinIO and the Spark.
 
