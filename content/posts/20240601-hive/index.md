@@ -306,6 +306,8 @@ For internal Hive tables, data itself and its metadata are both managed by Hive.
 
 Before proceding to create database and the respective table, first we download our dataset that we use to insert data into our Hive table. Because, before creating the table, we need to check our dataset, and collect some details about it as explained below, which the Hive table will use all these details to suit the table with that dataset.
 
+There are also other ways to create tables by creating a table over another table by CTAS SQL commands or insert manual data into the created table. Since mostly the hive tables are created based on an existing dataset, we followed this way in this blog.
+
 ##### Download Dataset to Container Local
 
 Login to the container bash:
@@ -599,6 +601,19 @@ WHERE skills_score['Python'] > 70;
 
 ##### Drop Database and its Table
 
+Since the table was created as an internal (managed) table, and as it was mentioned earlier, Hive will be controlling both the table metadata and the data files on HDFS, therefore, the drop table command will cause the table metadata and the data files on HDFS to be deleted.
+
+See the data on HDFS listed before dropping the table:
+
+```powershell
+hdfs dfs -ls /user/hive/warehouse/hive_db.db/employee
+```
+
+```
+Found 1 items
+-rw-r--r--   1 root supergroup        215 2024-12-29 12:15 /user/hive/warehouse/hive_db.db/employee/employee.txt
+```
+
 To drop a Hive table, we can simply make sure we are using the correct database with `use <db>` command we ran earlier. Then, perform below command to drop employee table:
 
 ```sql
@@ -611,6 +626,16 @@ Or, we can also mention DB name before the table name, to make sure we drop the 
 drop table hive_db.employee;
 ```
 
+Lets see same directory in HDFS after performing the drop operation:
+
+```powershell
+hdfs dfs -ls /user/hive/warehouse/hive_db.db/employee
+```
+
+```
+ls: `/user/hive/warehouse/hive_db.db/employee': No such file or directory
+```
+
 To drop the whole database, simply use drop command for database:
 
 ```sql
@@ -619,7 +644,146 @@ drop database hive_db;
 
 #### External Hive Table Creation
 
+As it was explained earlier, for external tables, we define an HDFS location for the data to be kept for our external table. When a data is loaded to the table, the underlying data files are stored into this location. When we use local file, local file got copied to this HDFS location. However, when we use a file from HDFS, the file is moved from its original HDFS location to the table's location.
 
-### File Formats and Compressions
+The critical part is that, when the table is dropped, only the metadata that is being kept in the Hive Metastore got deleted. the data files on the table's HDFS location remain intact.
 
-### Partitioning and Bucketing
+Let's download the dataset to our cluster-master container local which we are going to use to create our external table
+
+```shell
+wget -O customers.csv https://raw.githubusercontent.com/nacisimsek/Data_Engineering/refs/heads/main/Datasets/customers.csv
+```
+
+See the content of our dataset:
+
+```shell
+root@cluster-master:/# head customers.csv
+```
+
+```
+customerId,customerFName,customerLName,customerEmail,customerPassword,customerStreet,customerCity,customerState,customerZipcode
+1,Richard,Hernandez,XXXXXXXXX,XXXXXXXXX,6303 Heather Plaza,Brownsville,TX,78521
+2,Mary,Barrett,XXXXXXXXX,XXXXXXXXX,9526 Noble Embers Ridge,Littleton,CO,80126
+3,Ann,Smith,XXXXXXXXX,XXXXXXXXX,3422 Blue Pioneer Bend,Caguas,PR,00725
+4,Mary,Jones,XXXXXXXXX,XXXXXXXXX,8324 Little Common,San Marcos,CA,92069
+5,Robert,Hudson,XXXXXXXXX,XXXXXXXXX,"10 Crystal River Mall ",Caguas,PR,00725
+6,Mary,Smith,XXXXXXXXX,XXXXXXXXX,3151 Sleepy Quail Promenade,Passaic,NJ,07055
+7,Melissa,Wilcox,XXXXXXXXX,XXXXXXXXX,9453 High Concession,Caguas,PR,00725
+8,Megan,Smith,XXXXXXXXX,XXXXXXXXX,3047 Foggy Forest Plaza,Lawrence,MA,01841
+9,Mary,Perez,XXXXXXXXX,XXXXXXXXX,3616 Quaking Street,Caguas,PR,00725
+```
+
+Put the dataset to HDFS:
+
+```shell
+hdfs dfs -put customers.csv /user/datasets
+```
+
+```shell
+hdfs dfs -ls /user/datasets
+```
+
+```
+Found 1 items
+-rw-r--r--   1 root supergroup     953847 2025-01-12 23:19 /user/datasets/customers.csv
+```
+
+Create the corresponding external Hive table:
+
+```sql
+use hive_db;
+```
+
+```sql
+CREATE EXTERNAL TABLE IF NOT EXISTS customers_ext (
+    customerId        INT,
+    customerFName     STRING,
+    customerLName     STRING,
+    customerEmail     STRING,
+    customerPassword  STRING,
+    customerStreet    STRING,
+    customerCity      STRING,
+    customerState     STRING,
+    customerZipcode   STRING
+)
+COMMENT 'External table for customers dataset'
+ROW FORMAT DELIMITED
+  FIELDS TERMINATED BY ','
+  LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION '/user/external/customer'
+TBLPROPERTIES ("skip.header.line.count"="1");
+```
+
+Load data to our new external table:
+
+```sql
+LOAD DATA INPATH '/user/datasets/customers.csv' INTO TABLE customers_ext;
+```
+
+As soon as we execute this command, our dataset `/user/datasets/customers.csv` on HDFS is moved to the table location `/user/external/customer`:
+
+```
+hdfs dfs -ls /user/external/customer
+Found 1 items
+-rw-r--r--   1 root supergroup     953847 2025-01-12 23:19 /user/external/customer/customers.csv
+
+
+hdfs dfs -ls /user/datasets
+--no file found, it got moved to external folder where the LOCATION of the external table set.
+```
+
+```sql
+select * from customers_ext limit 5;
+```
+
+```
++---------------------------+------------------------------+------------------------------+------------------------------+---------------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------------+
+| customers_ext.customerid  | customers_ext.customerfname  | customers_ext.customerlname  | customers_ext.customeremail  | customers_ext.customerpassword  | customers_ext.customerstreet  | customers_ext.customercity  | customers_ext.customerstate  | customers_ext.customerzipcode  |
++---------------------------+------------------------------+------------------------------+------------------------------+---------------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------------+
+| 1                         | Richard                      | Hernandez                    | XXXXXXXXX                    | XXXXXXXXX                       | 6303 Heather Plaza            | Brownsville                 | TX                           | 78521                          |
+| 2                         | Mary                         | Barrett                      | XXXXXXXXX                    | XXXXXXXXX                       | 9526 Noble Embers Ridge       | Littleton                   | CO                           | 80126                          |
+| 3                         | Ann                          | Smith                        | XXXXXXXXX                    | XXXXXXXXX                       | 3422 Blue Pioneer Bend        | Caguas                      | PR                           | 00725                          |
+| 4                         | Mary                         | Jones                        | XXXXXXXXX                    | XXXXXXXXX                       | 8324 Little Common            | San Marcos                  | CA                           | 92069                          |
+| 5                         | Robert                       | Hudson                       | XXXXXXXXX                    | XXXXXXXXX                       | "10 Crystal River Mall "      | Caguas                      | PR                           | 00725                          |
++---------------------------+------------------------------+------------------------------+------------------------------+---------------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------------+
+5 rows selected (0.221 seconds)
+```
+
+Here the metastore data of our external table on postgres:
+
+```sql
+select * from public."TBLS" t   limit 5;
+```
+
+```
+|TBL_ID|CREATE_TIME  |DB_ID|LAST_ACCESS_TIME|OWNER|OWNER_TYPE|RETENTION|SD_ID|TBL_NAME     |TBL_TYPE      |VIEW_EXPANDED_TEXT|VIEW_ORIGINAL_TEXT|IS_REWRITE_ENABLED|
+|------|-------------|-----|----------------|-----|----------|---------|-----|-------------|--------------|------------------|------------------|------------------|
+|8     |1.736.723.756|11   |0               |root |USER      |0        |8    |customers_ext|EXTERNAL_TABLE|                  |                  |false             |
+
+```
+
+Lets drop our table and observe the metadata and the file on HDFS:
+
+```sql
+drop table customers_ext;
+```
+
+The table data is still there on HDFS:
+
+```
+root@cluster-master:/# hdfs dfs -ls /user/external/customer
+Found 1 items
+-rw-r--r--   1 root supergroup     953847 2025-01-12 23:37 /user/external/customer/customers.csv
+```
+
+However, its metadata is removed on Hive Metastore:
+
+```
+select * from public."TBLS" t   limit 5;
+
+|TBL_ID|CREATE_TIME  |DB_ID|LAST_ACCESS_TIME|OWNER|OWNER_TYPE|RETENTION|SD_ID|TBL_NAME     |TBL_TYPE      |VIEW_EXPANDED_TEXT|VIEW_ORIGINAL_TEXT|IS_REWRITE_ENABLED|
+|------|-------------|-----|----------------|-----|----------|---------|-----|-------------|--------------|------------------|------------------|------------------|
+```
+
+In the next blog post, we will be performing other table operations, and also have a look at different file formatting and compression techniques, by comparing them with their data size, and also perform partitioning and bucketing while creating our tables to improve the query performance. Stay tuned.

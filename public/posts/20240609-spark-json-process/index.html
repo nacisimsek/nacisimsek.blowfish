@@ -28,8 +28,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.1ca8247f7fd83d2daf489d61924ea7a370422f0de2f834e4e84235972a5006b1cb47eb07330bccefe0a91bb3539b17658ed3e40ca06709a44d111c3af9f24d23.css"
-    integrity="sha512-HKgkf3/YPS2vSJ1hkk6no3BCLw3i&#43;DTk6EI1lypQBrHLR&#43;sHMwvM7&#43;CpG7NTmxdljtPkDKBnCaRNERw6&#43;fJNIw==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.a29b083128e572396cf00175a75c00d715b01a8bdbfbe12cc6d3199538f718fd47dfa461572de21a846a9ceaac23f99974cc05b98ea030d4125ea1482d0ac381.css"
+    integrity="sha512-opsIMSjlcjls8AF1p1wA1xWwGovb&#43;&#43;EsxtMZlTj3GP1H36RhVy3iGoRqnOqsI/mZdMwFuY6gMNQSXqFILQrDgQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.1e238aaf34a3633df3329d613c7876a2e9c012d2904057827763b78041347e37678d0433b9bb56865d54d63136da4458e4a8cbfd7bcbe6c1ad3cce49f794c52f.js"
@@ -1240,6 +1240,67 @@
     
   </section>
 
+
+
+        
+        
+        <div class="pt-3">
+          <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+          <div class="pt-3">
+            <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="464a0f20-8b72-4599-a904-9aefcb20a3a9"
+    data-page-id="5d8c5cd1b2c604a62fbf2de26985d873"
+    data-page-url="http://localhost:1313/posts/20240609-spark-json-process/"
+    data-page-title="Processing Complex Nested JSON File with Spark"
+    data-theme="auto">  
+</div>
+
+<script>
+    
+    (function() {
+        const setTheme = () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const frame = document.querySelector('#cusdis_thread iframe');
+            if (frame) {
+                frame.contentWindow.postMessage({ 
+                    type: 'cusdis.setTheme',
+                    data: { 
+                        theme: isDark ? 'dark' : 'light',
+                        darkMode: {
+                            background: '#1a1a1a',
+                            color: '#ffffff'
+                        }
+                    }
+                }, '*');
+            }
+        };
+
+        
+        window.addEventListener('load', setTheme);
+
+        
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    setTheme();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    })();
+</script>
+
+<script defer src="https://cusdis.com/js/widget/lang/en.js"></script>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+          </div>
+        </div>
+        
+        
 
         
 
@@ -2774,23 +2835,7 @@
   
 
 
-    
-    
-    <div class="pt-3">
-      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
-      <div class="pt-3">
-            <div id="cusdis_thread" data-host="https://cusdis.com"
-      data-app-id="464a0f20-8b72-4599-a904-9aefcb20a3a9"
-      data-page-id="5d8c5cd1b2c604a62fbf2de26985d873"
-      data-page-url="http://localhost:1313/posts/20240609-spark-json-process/"
-      data-page-title="Processing Complex Nested JSON File with Spark">
-    </div>
-    <script defer src="https://cusdis.com/js/widget/lang/en.js"></script>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-      </div>
-    </div>
-    
-    
+
   </footer>
 </article>
 
@@ -2842,7 +2887,7 @@
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2024
+      2025
       Naci Simsek
     </p>
     

@@ -117,7 +117,7 @@
     "keywords": ["tutorial","hdfs","hive","mapreduce","postgres","catalog"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "3277"
+    "wordCount": "4022"
   }]
   </script>
 
@@ -736,7 +736,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-01T00:00:00&#43;00:00">2024-06-01</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-06-01T00:00:00&#43;00:00">2024-06-01</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">19 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1010,8 +1010,6 @@
                 <li><a href="#external-hive-table-creation">External Hive Table Creation</a></li>
               </ul>
             </li>
-            <li><a href="#file-formats-and-compressions">File Formats and Compressions</a></li>
-            <li><a href="#partitioning-and-bucketing">Partitioning and Bucketing</a></li>
           </ul>
         </li>
       </ul>
@@ -1072,8 +1070,6 @@
                 <li><a href="#external-hive-table-creation">External Hive Table Creation</a></li>
               </ul>
             </li>
-            <li><a href="#file-formats-and-compressions">File Formats and Compressions</a></li>
-            <li><a href="#partitioning-and-bucketing">Partitioning and Bucketing</a></li>
           </ul>
         </li>
       </ul>
@@ -1796,6 +1792,7 @@ No rows selected (0.03 seconds)
     
 </h4>
 <p>Before proceding to create database and the respective table, first we download our dataset that we use to insert data into our Hive table. Because, before creating the table, we need to check our dataset, and collect some details about it as explained below, which the Hive table will use all these details to suit the table with that dataset.</p>
+<p>There are also other ways to create tables by creating a table over another table by CTAS SQL commands or insert manual data into the created table. Since mostly the hive tables are created based on an existing dataset, we followed this way in this blog.</p>
 <h5 class="relative group">Download Dataset to Container Local 
     <div id="download-dataset-to-container-local" class="anchor"></div>
     
@@ -2090,11 +2087,19 @@ Map keys are terminated by colon &#39;:&#39;
     </span>        
     
 </h5>
-<p>To drop a Hive table, we can simply make sure we are using the correct database with <code>use &lt;db&gt;</code> command we ran earlier. Then, perform below command to drop employee table:</p>
+<p>Since the table was created as an internal (managed) table, and as it was mentioned earlier, Hive will be controlling both the table metadata and the data files on HDFS, therefore, the drop table command will cause the table metadata and the data files on HDFS to be deleted.</p>
+<p>See the data on HDFS listed before dropping the table:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hdfs</span> <span class="n">dfs</span> <span class="n">-ls</span> <span class="p">/</span><span class="n">user</span><span class="p">/</span><span class="n">hive</span><span class="p">/</span><span class="n">warehouse</span><span class="p">/</span><span class="n">hive_db</span><span class="p">.</span><span class="n">db</span><span class="p">/</span><span class="n">employee</span>
+</span></span></code></pre></div><pre tabindex="0"><code>Found 1 items
+-rw-r--r--   1 root supergroup        215 2024-12-29 12:15 /user/hive/warehouse/hive_db.db/employee/employee.txt
+</code></pre><p>To drop a Hive table, we can simply make sure we are using the correct database with <code>use &lt;db&gt;</code> command we ran earlier. Then, perform below command to drop employee table:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">employee</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></div><p>Or, we can also mention DB name before the table name, to make sure we drop the correct table:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">hive_db</span><span class="p">.</span><span class="n">employee</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p>To drop the whole database, simply use drop command for database:</p>
+</span></span></span></code></pre></div><p>Lets see same directory in HDFS after performing the drop operation:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hdfs</span> <span class="n">dfs</span> <span class="n">-ls</span> <span class="p">/</span><span class="n">user</span><span class="p">/</span><span class="n">hive</span><span class="p">/</span><span class="n">warehouse</span><span class="p">/</span><span class="n">hive_db</span><span class="p">.</span><span class="n">db</span><span class="p">/</span><span class="n">employee</span>
+</span></span></code></pre></div><pre tabindex="0"><code>ls: `/user/hive/warehouse/hive_db.db/employee&#39;: No such file or directory
+</code></pre><p>To drop the whole database, simply use drop command for database:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">hive_db</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></div><h4 class="relative group">External Hive Table Creation 
     <div id="external-hive-table-creation" class="anchor"></div>
@@ -2106,26 +2111,85 @@ Map keys are terminated by colon &#39;:&#39;
     </span>        
     
 </h4>
-<h3 class="relative group">File Formats and Compressions 
-    <div id="file-formats-and-compressions" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#file-formats-and-compressions" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<h3 class="relative group">Partitioning and Bucketing 
-    <div id="partitioning-and-bucketing" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#partitioning-and-bucketing" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
+<p>As it was explained earlier, for external tables, we define an HDFS location for the data to be kept for our external table. When a data is loaded to the table, the underlying data files are stored into this location. When we use local file, local file got copied to this HDFS location. However, when we use a file from HDFS, the file is moved from its original HDFS location to the table&rsquo;s location.</p>
+<p>The critical part is that, when the table is dropped, only the metadata that is being kept in the Hive Metastore got deleted. the data files on the table&rsquo;s HDFS location remain intact.</p>
+<p>Let&rsquo;s download the dataset to our cluster-master container local which we are going to use to create our external table</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget -O customers.csv https://raw.githubusercontent.com/nacisimsek/Data_Engineering/refs/heads/main/Datasets/customers.csv
+</span></span></code></pre></div><p>See the content of our dataset:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">root@cluster-master:/# head customers.csv
+</span></span></code></pre></div><pre tabindex="0"><code>customerId,customerFName,customerLName,customerEmail,customerPassword,customerStreet,customerCity,customerState,customerZipcode
+1,Richard,Hernandez,XXXXXXXXX,XXXXXXXXX,6303 Heather Plaza,Brownsville,TX,78521
+2,Mary,Barrett,XXXXXXXXX,XXXXXXXXX,9526 Noble Embers Ridge,Littleton,CO,80126
+3,Ann,Smith,XXXXXXXXX,XXXXXXXXX,3422 Blue Pioneer Bend,Caguas,PR,00725
+4,Mary,Jones,XXXXXXXXX,XXXXXXXXX,8324 Little Common,San Marcos,CA,92069
+5,Robert,Hudson,XXXXXXXXX,XXXXXXXXX,&#34;10 Crystal River Mall &#34;,Caguas,PR,00725
+6,Mary,Smith,XXXXXXXXX,XXXXXXXXX,3151 Sleepy Quail Promenade,Passaic,NJ,07055
+7,Melissa,Wilcox,XXXXXXXXX,XXXXXXXXX,9453 High Concession,Caguas,PR,00725
+8,Megan,Smith,XXXXXXXXX,XXXXXXXXX,3047 Foggy Forest Plaza,Lawrence,MA,01841
+9,Mary,Perez,XXXXXXXXX,XXXXXXXXX,3616 Quaking Street,Caguas,PR,00725
+</code></pre><p>Put the dataset to HDFS:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hdfs dfs -put customers.csv /user/datasets
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hdfs dfs -ls /user/datasets
+</span></span></code></pre></div><pre tabindex="0"><code>Found 1 items
+-rw-r--r--   1 root supergroup     953847 2025-01-12 23:19 /user/datasets/customers.csv
+</code></pre><p>Create the corresponding external Hive table:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">use</span><span class="w"> </span><span class="n">hive_db</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTERNAL</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">customers_ext</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerId</span><span class="w">        </span><span class="nb">INT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerFName</span><span class="w">     </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerLName</span><span class="w">     </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerEmail</span><span class="w">     </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerPassword</span><span class="w">  </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerStreet</span><span class="w">    </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerCity</span><span class="w">      </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerState</span><span class="w">     </span><span class="n">STRING</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">customerZipcode</span><span class="w">   </span><span class="n">STRING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;External table for customers dataset&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ROW</span><span class="w"> </span><span class="n">FORMAT</span><span class="w"> </span><span class="n">DELIMITED</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">STORED</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TEXTFILE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LOCATION</span><span class="w"> </span><span class="s1">&#39;/user/external/customer&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">TBLPROPERTIES</span><span class="w"> </span><span class="p">(</span><span class="s2">&#34;skip.header.line.count&#34;</span><span class="o">=</span><span class="s2">&#34;1&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>Load data to our new external table:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INPATH</span><span class="w"> </span><span class="s1">&#39;/user/datasets/customers.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers_ext</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>As soon as we execute this command, our dataset <code>/user/datasets/customers.csv</code> on HDFS is moved to the table location <code>/user/external/customer</code>:</p>
+<pre tabindex="0"><code>hdfs dfs -ls /user/external/customer
+Found 1 items
+-rw-r--r--   1 root supergroup     953847 2025-01-12 23:19 /user/external/customer/customers.csv
+
+
+hdfs dfs -ls /user/datasets
+--no file found, it got moved to external folder where the LOCATION of the external table set.
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers_ext</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+---------------------------+------------------------------+------------------------------+------------------------------+---------------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------------+
+| customers_ext.customerid  | customers_ext.customerfname  | customers_ext.customerlname  | customers_ext.customeremail  | customers_ext.customerpassword  | customers_ext.customerstreet  | customers_ext.customercity  | customers_ext.customerstate  | customers_ext.customerzipcode  |
++---------------------------+------------------------------+------------------------------+------------------------------+---------------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------------+
+| 1                         | Richard                      | Hernandez                    | XXXXXXXXX                    | XXXXXXXXX                       | 6303 Heather Plaza            | Brownsville                 | TX                           | 78521                          |
+| 2                         | Mary                         | Barrett                      | XXXXXXXXX                    | XXXXXXXXX                       | 9526 Noble Embers Ridge       | Littleton                   | CO                           | 80126                          |
+| 3                         | Ann                          | Smith                        | XXXXXXXXX                    | XXXXXXXXX                       | 3422 Blue Pioneer Bend        | Caguas                      | PR                           | 00725                          |
+| 4                         | Mary                         | Jones                        | XXXXXXXXX                    | XXXXXXXXX                       | 8324 Little Common            | San Marcos                  | CA                           | 92069                          |
+| 5                         | Robert                       | Hudson                       | XXXXXXXXX                    | XXXXXXXXX                       | &#34;10 Crystal River Mall &#34;      | Caguas                      | PR                           | 00725                          |
++---------------------------+------------------------------+------------------------------+------------------------------+---------------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------------+
+5 rows selected (0.221 seconds)
+</code></pre><p>Here the metastore data of our external table on postgres:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="s2">&#34;TBLS&#34;</span><span class="w"> </span><span class="n">t</span><span class="w">   </span><span class="k">limit</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>|TBL_ID|CREATE_TIME  |DB_ID|LAST_ACCESS_TIME|OWNER|OWNER_TYPE|RETENTION|SD_ID|TBL_NAME     |TBL_TYPE      |VIEW_EXPANDED_TEXT|VIEW_ORIGINAL_TEXT|IS_REWRITE_ENABLED|
+|------|-------------|-----|----------------|-----|----------|---------|-----|-------------|--------------|------------------|------------------|------------------|
+|8     |1.736.723.756|11   |0               |root |USER      |0        |8    |customers_ext|EXTERNAL_TABLE|                  |                  |false             |
+</code></pre><p>Lets drop our table and observe the metadata and the file on HDFS:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">customers_ext</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>The table data is still there on HDFS:</p>
+<pre tabindex="0"><code>root@cluster-master:/# hdfs dfs -ls /user/external/customer
+Found 1 items
+-rw-r--r--   1 root supergroup     953847 2025-01-12 23:37 /user/external/customer/customers.csv
+</code></pre><p>However, its metadata is removed on Hive Metastore:</p>
+<pre tabindex="0"><code>select * from public.&#34;TBLS&#34; t   limit 5;
+
+|TBL_ID|CREATE_TIME  |DB_ID|LAST_ACCESS_TIME|OWNER|OWNER_TYPE|RETENTION|SD_ID|TBL_NAME     |TBL_TYPE      |VIEW_EXPANDED_TEXT|VIEW_ORIGINAL_TEXT|IS_REWRITE_ENABLED|
+|------|-------------|-----|----------------|-----|----------|---------|-----|-------------|--------------|------------------|------------------|------------------|
+</code></pre><p>In the next blog post, we will be performing other table operations, and also have a look at different file formatting and compression techniques, by comparing them with their data size, and also perform partitioning and bucketing while creating our tables to improve the query performance. Stay tuned.</p>
 
           
           
@@ -3859,15 +3923,15 @@ Map keys are terminated by colon &#39;:&#39;
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/posts/20240602-kafka-deploy/">
+            <a class="flex text-right group ml-3" href="/posts/20240601-hive-partitioning/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Deploy Kafka Cluster</span
+                  >Hive Partitioning and Bucketing</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-06-02T00:00:00&#43;00:00">2024-06-02</time>
+                    <time datetime="2024-06-01T00:00:00&#43;00:00">2024-06-01</time>
                   
                 </span>
               </span>
@@ -3939,7 +4003,7 @@ Map keys are terminated by colon &#39;:&#39;
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2024
+      2025
       Naci Simsek
     </p>
     
