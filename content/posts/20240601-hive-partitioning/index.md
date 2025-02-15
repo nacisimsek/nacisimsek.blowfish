@@ -91,11 +91,11 @@ Partitioning in Hive involves dividing a table into smaller parts based on the v
 
 Let's look at an example of creating a partitioned table. In this case, we'll partition a sales table by `sales_date`.
 
-```pgsql
+```sql
 create database test1;
 ```
 
-```pgsql
+```sql
 CREATE TABLE IF NOT EXISTS
 test1.sales_partitioned_by_date (
 sales_id int,
@@ -124,7 +124,7 @@ Hive supports two main types of partitioning: static and dynamic.
 * **Static Partitioning**: In static partitioning, you manually create each partition and explicitly specify the partition when loading data. This is suitable when you know the partition values beforehand.
 * **Dynamic Partitioning**: Hive automatically creates partitions based on the data being inserted.  The `CREATE TABLE` syntax is the same as for static partitioning. To enable dynamic partitioning, you need to set the following properties:
 
-```pgsql
+```sql
 set hive.exec.dynamic.partition=true;
 set hive.exec.dynamic.partition.mode=nonstrict;
 ```
@@ -151,7 +151,7 @@ Let's see how to insert data into a dynamically partitioned table. Key points to
 1. Use the `INSERT INTO table PARTITION (partition_column)` syntax.
 2. Ensure partition column values are provided last in the `VALUES` clause.
 
-```pgsql
+```sql
 INSERT INTO test1.sales_partitioned_by_date PARTITION (sales_date)
 VALUES 
 (100001, 'UK', 2134562, 'String Tanbur', 1, 2389.99, '2020-04-20'),
@@ -180,7 +180,7 @@ select count(1) from test1.sales_partitioned_by_date;
 
 You can list the partitions of a Hive table in a few ways. One method is to directly look at the HDFS directory structure:
 
-```bash
+```powershell
 hdfs dfs -ls /user/hive/warehouse/test1.db/sales_partitioned_by_date
 ```
 
@@ -197,7 +197,7 @@ drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1
 
 Alternatively, you can use the Hive CLI command:
 
-```pgsql
+```sql
 SHOW partitions test1.sales_partitioned_by_date;
 ```
 
@@ -213,7 +213,7 @@ sales_date=2020-04-20
 
 To query data from a specific partition, you can include a `WHERE` clause that filters on the partition column:
 
-```pgsql
+```sql
 SELECT * FROM test1.sales_partitioned_by_date WHERE sales_date = '2020-04-11' LIMIT 10;
 ```
 
@@ -228,7 +228,7 @@ Bucketing is beneficial for:
 
 To use bucketing, you must specify the number of buckets when creating the table and enable bucketing enforcement:
 
-```pgsql
+```sql
 set hive.enforce.bucketing = true;
 ```
 
@@ -249,7 +249,7 @@ wget -O ~/datasets/u.item https://raw.githubusercontent.com/erkansirin78/dataset
 
 To understand the structure and delimiters of these datasets, we can use the `head` command:
 
-```bash
+```powershell
 [train@localhost ~]$ head ~/datasets/u.item
 ```
 
@@ -259,7 +259,7 @@ movieid|movietitle|releasedate|videoreleasedate|IMDbURL|unknown|Action|Adventure
 ...
 ```
 
-```bash
+```powershell
 [train@localhost ~]$ head ~/datasets/u.data
 ```
 
@@ -272,7 +272,7 @@ user_id item_id rating timestamp
 
 Now, let's proceed to load these datasets into Hive tables. Start by launching the Beeline client and creating a database named `movielens`:
 
-```pgsql
+```sql
 create database if not exists movielens;
 ```
 
@@ -284,7 +284,7 @@ First, we will load the `u.data` dataset into a Hive table named `ratings`.
 
 To load the ratings data, we first create an external table `movielens.ratings` matching the structure of `u.data`.  Note that the delimiter is tab (`\t`) and we skip the header line.
 
-```pgsql
+```sql
 create table if not exists movielens.ratings (user_id int, item_id int, rating int,  rating_time bigint)
 row format delimited
 fields terminated by '\t'
@@ -295,13 +295,13 @@ tblproperties('skip.header.line.count'='1');
 
 Then, load the data from the local file system into the `movielens.ratings` table:
 
-```pgsql
+```sql
 load data local inpath '/home/train/datasets/u.data' into table movielens.ratings;
 ```
 
 Verify the data load by selecting a few rows and checking the total row count and distinct user count:
 
-```pgsql
+```sql
 select * from movielens.ratings limit 4;
 ```
 
@@ -316,7 +316,7 @@ select * from movielens.ratings limit 4;
 +------------------+------------------+-----------------+----------------------+
 ```
 
-```pgsql
+```sql
 select count(1) from movielens.ratings;
 ```
 
@@ -328,7 +328,7 @@ select count(1) from movielens.ratings;
 +---------+
 ```
 
-```pgsql
+```sql
 select count(distinct user_id) from movielens.ratings;
 ```
 
@@ -346,7 +346,7 @@ Next, load the `u.item` dataset into a Hive table named `movies`.
 
 Create the `movies` table in the `movielens` database, matching the structure of `u.item`. Note that the delimiter is pipe (`|`) and we skip the header line.
 
-```pgsql
+```sql
 create table if not exists  movielens.movies (
     movieid int,
     movietitle string,
@@ -381,13 +381,13 @@ tblproperties('skip.header.line.count'='1');
 
 Load data from the local file system into the `movielens.movies` table:
 
-```pgsql
+```sql
 load data local inpath '/home/train/datasets/u.item' into table movielens.movies;
 ```
 
 Verify the data load by selecting a few rows and checking the total row count:
 
-```pgsql
+```sql
 select movieid, movietitle, releasedate from movielens.movies limit 5;
 ```
 
@@ -403,7 +403,7 @@ select movieid, movietitle, releasedate from movielens.movies limit 5;
 +----------+------------------+--------------+
 ```
 
-```pgsql
+```sql
 select count(1) from movielens.movies;
 ```
 
@@ -421,7 +421,7 @@ Now that we have both `ratings` and `movies` data loaded into Hive, we can creat
 
 To efficiently query popular movies by month, create the `movielens.movie_ratings` table partitioned by `review_year` and `review_month`, and bucketed by `movietitle`:
 
-```pgsql
+```sql
 create table if not exists movielens.movie_ratings (
 user_id int,
 rating int,
@@ -437,7 +437,7 @@ stored as orc;
 
 Enable dynamic partitioning and bucketing for the data loading process:
 
-```pgsql
+```sql
 set hive.exec.dynamic.partition=true;
 set hive.exec.dynamic.partition.mode=nonstrict;
 set hive.enforce.bucketing=true;
@@ -447,7 +447,7 @@ set hive.enforce.bucketing=true;
 
 Load data into the `movielens.movie_ratings` table by joining `movielens.ratings` and `movielens.movies` tables. The data will be dynamically partitioned by `review_year` and `review_month`:
 
-```pgsql
+```sql
 insert overwrite table movielens.movie_ratings PARTITION(review_year, review_month)
 select
     r.user_id,
@@ -466,7 +466,7 @@ from movielens.ratings r join movielens.movies m on r.item_id = m.movieid;
 
 Verify the data loading and partitioning by checking the row count and listing partitions:
 
-```pgsql
+```sql
 select count(1) from movielens.movie_ratings;
 ```
 
@@ -478,7 +478,7 @@ select count(1) from movielens.movie_ratings;
 +---------+
 ```
 
-```pgsql
+```sql
 show partitions movielens.movie_ratings;
 ```
 
@@ -503,7 +503,7 @@ To answer our business needs, let's run queries to find the top rated movies in 
 
 Find the top 20 most rated movies in April 1998:
 
-```pgsql
+```sql
 select  count(*) as total_count,  movietitle
 from movielens.movie_ratings
 where review_year=1998 AND review_month=4
@@ -541,7 +541,7 @@ group by movietitle order by total_count desc limit 20;
 
 Find the top 20 highest average rated movies in April 1998:
 
-```pgsql
+```sql
 select avg(rating) as avg_rating, count(*) as total_count,  movietitle
 from movielens.movie_ratings
 where review_year=1998 AND review_month=4

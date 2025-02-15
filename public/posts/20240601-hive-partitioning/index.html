@@ -1331,20 +1331,20 @@
 </h3>
 <p>Let&rsquo;s look at an example of creating a partitioned table. In this case, we&rsquo;ll partition a sales table by <code>sales_date</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">test1</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">CREATE TABLE IF NOT EXISTS
-test1.sales_partitioned_by_date (
-sales_id int,
-country string,
-product_id int,
-product_name string,
-quantity int,
-unit_price float)
-partitioned by (sales_date date)
-row format delimited
-fields terminated by &#39;,&#39;
-lines terminated by &#39;\n&#39;
-stored as ORC;
-</code></pre>
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">test1</span><span class="p">.</span><span class="n">sales_partitioned_by_date</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sales_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">country</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">product_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">product_name</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">quantity</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">unit_price</span><span class="w"> </span><span class="nb">float</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">partitioned</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">(</span><span class="n">sales_date</span><span class="w"> </span><span class="nb">date</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">row</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="n">delimited</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">fields</span><span class="w"> </span><span class="n">terminated</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">lines</span><span class="w"> </span><span class="n">terminated</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">stored</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ORC</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div>
   
   
   
@@ -1392,9 +1392,9 @@ stored as ORC;
 <li><strong>Static Partitioning</strong>: In static partitioning, you manually create each partition and explicitly specify the partition when loading data. This is suitable when you know the partition values beforehand.</li>
 <li><strong>Dynamic Partitioning</strong>: Hive automatically creates partitions based on the data being inserted.  The <code>CREATE TABLE</code> syntax is the same as for static partitioning. To enable dynamic partitioning, you need to set the following properties:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">set</span> <span class="s">hive.exec.dynamic.partition=true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="s">hive.exec.dynamic.partition.mode=nonstrict</span><span class="p">;</span>
-</span></span></code></pre></div><p>When dynamic partitioning is enabled, Hive will automatically infer and create new partitions as new partition key values are encountered during data loading.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">exec</span><span class="p">.</span><span class="k">dynamic</span><span class="p">.</span><span class="n">partition</span><span class="o">=</span><span class="k">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">exec</span><span class="p">.</span><span class="k">dynamic</span><span class="p">.</span><span class="n">partition</span><span class="p">.</span><span class="k">mode</span><span class="o">=</span><span class="n">nonstrict</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>When dynamic partitioning is enabled, Hive will automatically infer and create new partitions as new partition key values are encountered during data loading.</p>
 
   
   
@@ -1489,7 +1489,7 @@ stored as ORC;
     
 </h3>
 <p>You can list the partitions of a Hive table in a few ways. One method is to directly look at the HDFS directory structure:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hdfs dfs -ls /user/hive/warehouse/test1.db/sales_partitioned_by_date
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hdfs</span> <span class="n">dfs</span> <span class="n">-ls</span> <span class="p">/</span><span class="n">user</span><span class="p">/</span><span class="n">hive</span><span class="p">/</span><span class="n">warehouse</span><span class="p">/</span><span class="n">test1</span><span class="p">.</span><span class="n">db</span><span class="p">/</span><span class="n">sales_partitioned_by_date</span>
 </span></span></code></pre></div><pre tabindex="0"><code>Found 7 items
 drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-02-19
 drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-03-19
@@ -1553,11 +1553,11 @@ sales_date=2020-04-20
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">wget </span><span class="n">-O</span> <span class="p">~/</span><span class="n">datasets</span><span class="p">/</span><span class="n">u</span><span class="p">.</span><span class="py">data</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">raw</span><span class="p">.</span><span class="py">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">erkansirin78</span><span class="p">/</span><span class="n">datasets</span><span class="p">/</span><span class="n">master</span><span class="p">/</span><span class="n">ml</span><span class="p">-</span><span class="n">100k</span><span class="p">/</span><span class="n">u</span><span class="p">.</span><span class="py">data</span>
 </span></span><span class="line"><span class="cl"><span class="nb">wget </span><span class="n">-O</span> <span class="p">~/</span><span class="n">datasets</span><span class="p">/</span><span class="n">u</span><span class="p">.</span><span class="py">item</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">raw</span><span class="p">.</span><span class="py">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">erkansirin78</span><span class="p">/</span><span class="n">datasets</span><span class="p">/</span><span class="n">master</span><span class="p">/</span><span class="n">ml</span><span class="p">-</span><span class="n">100k</span><span class="p">/</span><span class="n">u</span><span class="p">.</span><span class="py">item</span>
 </span></span></code></pre></div><p>To understand the structure and delimiters of these datasets, we can use the <code>head</code> command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>train@localhost ~<span class="o">]</span>$ head ~/datasets/u.item
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">[</span><span class="n">train</span><span class="nv">@localhost</span> <span class="p">~]$</span> <span class="n">head</span> <span class="p">~/</span><span class="n">datasets</span><span class="p">/</span><span class="n">u</span><span class="p">.</span><span class="py">item</span>
 </span></span></code></pre></div><pre tabindex="0"><code>movieid|movietitle|releasedate|videoreleasedate|IMDbURL|unknown|Action|Adventure|Animation|Children&#39;s|Comedy|Crime|Documentary|Drama|Fantasy|Film-Noir|Horror|Musical|Mystery|Romance|Sci-Fi|Thriller|War|Western
 1|ToyStory(1995)|01-Jan-1995||http://us.imdb.com/M/title-exact?Toy%20Story%20(1995)|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
 ...
-</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>train@localhost ~<span class="o">]</span>$ head ~/datasets/u.data
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">[</span><span class="n">train</span><span class="nv">@localhost</span> <span class="p">~]$</span> <span class="n">head</span> <span class="p">~/</span><span class="n">datasets</span><span class="p">/</span><span class="n">u</span><span class="p">.</span><span class="py">data</span>
 </span></span></code></pre></div><pre tabindex="0"><code>user_id item_id rating timestamp
 196     242     3       881250949
 186     302     3       891717742
@@ -1628,41 +1628,41 @@ sales_date=2020-04-20
     
 </h4>
 <p>Create the <code>movies</code> table in the <code>movielens</code> database, matching the structure of <code>u.item</code>. Note that the delimiter is pipe (<code>|</code>) and we skip the header line.</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">create table if not exists  movielens.movies (
-    movieid int,
-    movietitle string,
-    releasedate string,
-    videoreleasedate string,
-    IMDbURL string,
-    unknown tinyint,
-    Action tinyint,
-    Adventure tinyint,
-    Animation tinyint,
-    Childrens tinyint,
-    Comedy tinyint,
-    Crime tinyint,
-    Documentary tinyint,
-    Drama tinyint,
-    Fantasy tinyint,
-    FilmNoir tinyint,
-    Horror tinyint,
-    Musical tinyint,
-    Mystery tinyint,
-    Romance tinyint,
-    SciFi tinyint,
-    Thriller tinyint,
-    War tinyint,
-    Western  tinyint)
-    row format delimited
-fields terminated by &#39;|&#39;
-lines terminated by &#39;\n&#39;
-stored as textfile
-tblproperties(&#39;skip.header.line.count&#39;=&#39;1&#39;);
-</code></pre><p>Load data from the local file system into the <code>movielens.movies</code> table:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">load data local inpath &#39;/home/train/datasets/u.item&#39; into table movielens.movies;
-</code></pre><p>Verify the data load by selecting a few rows and checking the total row count:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">select movieid, movietitle, releasedate from movielens.movies limit 5;
-</code></pre><pre tabindex="0"><code>+----------+------------------+--------------+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w">  </span><span class="n">movielens</span><span class="p">.</span><span class="n">movies</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">movieid</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">movietitle</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">releasedate</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">videoreleasedate</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">IMDbURL</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">unknown</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Action</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Adventure</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Animation</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Childrens</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Comedy</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Crime</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Documentary</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Drama</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Fantasy</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FilmNoir</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Horror</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Musical</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Mystery</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Romance</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SciFi</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Thriller</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">War</span><span class="w"> </span><span class="n">tinyint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Western</span><span class="w">  </span><span class="n">tinyint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">row</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="n">delimited</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">fields</span><span class="w"> </span><span class="n">terminated</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">lines</span><span class="w"> </span><span class="n">terminated</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">stored</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">textfile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">tblproperties</span><span class="p">(</span><span class="s1">&#39;skip.header.line.count&#39;</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>Load data from the local file system into the <code>movielens.movies</code> table:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">local</span><span class="w"> </span><span class="n">inpath</span><span class="w"> </span><span class="s1">&#39;/home/train/datasets/u.item&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movies</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>Verify the data load by selecting a few rows and checking the total row count:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">movieid</span><span class="p">,</span><span class="w"> </span><span class="n">movietitle</span><span class="p">,</span><span class="w"> </span><span class="n">releasedate</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movies</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+----------+------------------+--------------+
 | movieid  |    movietitle    | releasedate  |
 +----------+------------------+--------------+
 | 1        | ToyStory(1995)   | 01-Jan-1995  |
@@ -1671,8 +1671,8 @@ tblproperties(&#39;skip.header.line.count&#39;=&#39;1&#39;);
 | 4        | GetShorty(1995)  | 01-Jan-1995  |
 | 5        | Copycat(1995)    | 01-Jan-1995  |
 +----------+------------------+--------------+
-</code></pre><pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">select count(1) from movielens.movies;
-</code></pre><pre tabindex="0"><code>+-------+
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movies</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+-------+
 |  _c0  |
 +-------+
 | 1682  |
@@ -1689,22 +1689,22 @@ tblproperties(&#39;skip.header.line.count&#39;=&#39;1&#39;);
     
 </h3>
 <p>To efficiently query popular movies by month, create the <code>movielens.movie_ratings</code> table partitioned by <code>review_year</code> and <code>review_month</code>, and bucketed by <code>movietitle</code>:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">create table if not exists movielens.movie_ratings (
-user_id int,
-rating int,
-rating_time bigint,
-movieid int,
-movietitle string,
-videoreleasedate string,
-imdburl string)
-partitioned by (review_year int, review_month int)
-clustered by (movietitle) into 4 buckets
-stored as orc;
-</code></pre><p>Enable dynamic partitioning and bucketing for the data loading process:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">set hive.exec.dynamic.partition=true;
-set hive.exec.dynamic.partition.mode=nonstrict;
-set hive.enforce.bucketing=true;
-</code></pre><h3 class="relative group">Load Data into Partitioned &amp; Bucketed Table by Joining Existing Hive Tables 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movie_ratings</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">user_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">rating</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">rating_time</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">movieid</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">movietitle</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">videoreleasedate</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">imdburl</span><span class="w"> </span><span class="n">string</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">partitioned</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">(</span><span class="n">review_year</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">review_month</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">clustered</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">(</span><span class="n">movietitle</span><span class="p">)</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">buckets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">stored</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">orc</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>Enable dynamic partitioning and bucketing for the data loading process:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">exec</span><span class="p">.</span><span class="k">dynamic</span><span class="p">.</span><span class="n">partition</span><span class="o">=</span><span class="k">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">exec</span><span class="p">.</span><span class="k">dynamic</span><span class="p">.</span><span class="n">partition</span><span class="p">.</span><span class="k">mode</span><span class="o">=</span><span class="n">nonstrict</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="n">enforce</span><span class="p">.</span><span class="n">bucketing</span><span class="o">=</span><span class="k">true</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 class="relative group">Load Data into Partitioned &amp; Bucketed Table by Joining Existing Hive Tables 
     <div id="load-data-into-partitioned--bucketed-table-by-joining-existing-hive-tables" class="anchor"></div>
     
     <span
@@ -1715,19 +1715,19 @@ set hive.enforce.bucketing=true;
     
 </h3>
 <p>Load data into the <code>movielens.movie_ratings</code> table by joining <code>movielens.ratings</code> and <code>movielens.movies</code> tables. The data will be dynamically partitioned by <code>review_year</code> and <code>review_month</code>:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">insert overwrite table movielens.movie_ratings PARTITION(review_year, review_month)
-select
-    r.user_id,
-    r.rating,
-    r.rating_time,
-    m.movieid,
-    m.movietitle,
-    m.videoreleasedate,
-    m.imdburl,
-    YEAR(from_unixtime(r.rating_time, &#39;yyyy-MM-dd&#39;)) as review_year,
-    MONTH(from_unixtime(r.rating_time, &#39;yyyy-MM-dd&#39;)) as review_month
-from movielens.ratings r join movielens.movies m on r.item_id = m.movieid;
-</code></pre><h3 class="relative group">Perform Checks and Queries on Partitioned &amp; Bucketed Final Hive Table 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">insert</span><span class="w"> </span><span class="n">overwrite</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movie_ratings</span><span class="w"> </span><span class="n">PARTITION</span><span class="p">(</span><span class="n">review_year</span><span class="p">,</span><span class="w"> </span><span class="n">review_month</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">user_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">rating</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">rating_time</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">movieid</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">movietitle</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">videoreleasedate</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">imdburl</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">YEAR</span><span class="p">(</span><span class="n">from_unixtime</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">rating_time</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">review_year</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">MONTH</span><span class="p">(</span><span class="n">from_unixtime</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">rating_time</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">review_month</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">ratings</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movies</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">item_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">movieid</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 class="relative group">Perform Checks and Queries on Partitioned &amp; Bucketed Final Hive Table 
     <div id="perform-checks-and-queries-on-partitioned--bucketed-final-hive-table" class="anchor"></div>
     
     <span
@@ -1738,14 +1738,14 @@ from movielens.ratings r join movielens.movies m on r.item_id = m.movieid;
     
 </h3>
 <p>Verify the data loading and partitioning by checking the row count and listing partitions:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">select count(1) from movielens.movie_ratings;
-</code></pre><pre tabindex="0"><code>+---------+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movie_ratings</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+---------+
 |   _c0   |
 +---------+
 | 100000  |
 +---------+
-</code></pre><pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">show partitions movielens.movie_ratings;
-</code></pre><pre tabindex="0"><code>+-----------------------------------+
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movie_ratings</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+-----------------------------------+
 |             partition             |
 +-----------------------------------+
 | review_year=1997/review_month=10  |
@@ -1769,11 +1769,11 @@ from movielens.ratings r join movielens.movies m on r.item_id = m.movieid;
     
 </h4>
 <p>Find the top 20 most rated movies in April 1998:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">select  count(*) as total_count,  movietitle
-from movielens.movie_ratings
-where review_year=1998 AND review_month=4
-group by movietitle order by total_count desc limit 20;
-</code></pre><pre tabindex="0"><code>+--------------+------------------------------+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w">  </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_count</span><span class="p">,</span><span class="w">  </span><span class="n">movietitle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movie_ratings</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">review_year</span><span class="o">=</span><span class="mi">1998</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">review_month</span><span class="o">=</span><span class="mi">4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">movietitle</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">total_count</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+--------------+------------------------------+
 | total_count  |          movietitle          |
 +--------------+------------------------------+
 | 63           | Titanic(1997)                |
@@ -1808,11 +1808,11 @@ group by movietitle order by total_count desc limit 20;
     
 </h4>
 <p>Find the top 20 highest average rated movies in April 1998:</p>
-<pre tabindex="0"><code class="language-sql_more" data-lang="sql_more">select avg(rating) as avg_rating, count(*) as total_count,  movietitle
-from movielens.movie_ratings
-where review_year=1998 AND review_month=4
-group by movietitle order by avg_rating desc limit 20;
-</code></pre><pre tabindex="0"><code>+-------------+--------------+-------------------------------------------+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_rating</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_count</span><span class="p">,</span><span class="w">  </span><span class="n">movietitle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">movielens</span><span class="p">.</span><span class="n">movie_ratings</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">review_year</span><span class="o">=</span><span class="mi">1998</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">review_month</span><span class="o">=</span><span class="mi">4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">movietitle</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">avg_rating</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>+-------------+--------------+-------------------------------------------+
 | avg_rating  | total_count  |                movietitle                 |
 +-------------+--------------+-------------------------------------------+
 | 5.0         | 3            | CelluloidCloset,The(1995)                 |
