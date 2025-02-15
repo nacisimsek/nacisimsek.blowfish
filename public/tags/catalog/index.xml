@@ -119,6 +119,16 @@
     </item>
     
     <item>
+      <title>Hive Partitioning and Bucketing</title>
+      <link>http://localhost:1313/posts/20240601-hive-partitioning/</link>
+      <pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/20240601-hive-partitioning/</guid>
+      <description>This article is about how to perform partitioning and bucketing on Hive Tables</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/20240601-hive-partitioning/featured.png" />
+    </item>
+    
+    <item>
       <title>Hive Setup and Operations</title>
       <link>http://localhost:1313/posts/20240601-hive/</link>
       <pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate>

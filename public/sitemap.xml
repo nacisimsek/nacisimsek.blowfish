@@ -225,6 +225,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/posts/20240601-hive-partitioning/</loc>
+    <lastmod>2024-06-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/posts/20240601-hive/</loc>
     <lastmod>2024-06-01T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -297,42 +303,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/suggestions/no-rules-rules-copy-2/</loc>
-    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/suggestions/no-rules-rules-copy-3/</loc>
-    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/suggestions/no-rules-rules-copy/</loc>
-    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/suggestions/no-rules-rules/</loc>
-    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/suggestions/</loc>
-    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/mentor/</loc>
-    <lastmod>2022-06-19T13:08:25+01:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>http://localhost:1313/resume/</loc>
     <lastmod>2022-06-13T21:28:51+01:00</lastmod>
     <changefreq>daily</changefreq>
@@ -353,6 +323,11 @@
   <url>
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2022-06-13T20:55:37+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/suggestions/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
