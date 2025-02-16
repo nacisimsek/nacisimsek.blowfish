@@ -91,24 +91,35 @@ Partitioning in Hive involves dividing a table into smaller parts based on the v
 
 Let's look at an example of creating a partitioned table. In this case, we'll partition a sales table by `sales_date`.
 
+Note: Prior to this below step, I am assuming you have already done the steps on this blog post till this given step. Therefore you have a ready Hive service running on your Hadoop cluster, to be able to perform the following steps.
+
+
+{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+
+**Note**:
+
+Prior to this below step, I am assuming you have already done all the steps prior to [`this given step`](https://nacisimsek.com/posts/20240601-hive/#create-hive-database-and-the-table "Create Hive Database and the Table") of this blog post. Therefore you have a ready Hive service running on your Hadoop cluster, to be able to perform the following steps.
+
+{{< /alert >}}
+
 ```sql
-create database test1;
+create database db_partition;
 ```
 
 ```sql
-CREATE TABLE IF NOT EXISTS
-test1.sales_partitioned_by_date (
-sales_id int,
-country string,
-product_id int,
-product_name string,
-quantity int,
-unit_price float)
-partitioned by (sales_date date)
-row format delimited
-fields terminated by ','
-lines terminated by '\n'
-stored as ORC;
+CREATE TABLE IF NOT EXISTS db_partition.sales_partitioned_by_date (
+    sales_id      INT,
+    country       STRING,
+    product_id    INT,
+    product_name  STRING,
+    quantity      INT,
+    unit_price    FLOAT
+)
+PARTITIONED BY (sales_date DATE)
+ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n'
+STORED AS ORC;
 ```
 
 {{< alert icon="tip" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
@@ -149,23 +160,24 @@ When using dynamic partitioning, ensure that the partition column(s) are placed 
 Let's see how to insert data into a dynamically partitioned table. Key points to remember:
 
 1. Use the `INSERT INTO table PARTITION (partition_column)` syntax.
-2. Ensure partition column values are provided last in the `VALUES` clause.
+2. Ensure partition column values are provided last in the `VALUES` clause.INSERT INTO db_partition.sales_partitioned_by_date PARTITION (sales_date)
 
 ```sql
-INSERT INTO test1.sales_partitioned_by_date PARTITION (sales_date)
 VALUES 
-(100001, 'UK', 2134562, 'String Tanbur', 1, 2389.99, '2020-04-20'),
-(100002, 'USA', 2134563, 'Lackland Bass Quitar', 1, 1389.99, '2020-02-19'),
-(100002, 'UK', 2134563, 'Lackland Bass Quitar', 1, 1389.99, '2020-02-19'),
-(100004, 'TR', 2134563, 'Markbass Apmlifier', 1, 380.99, '2020-03-19'),
-(100005, 'FR', 2133563, 'Drump Istanbul', 1, 889.99, '2020-04-11'),
-(100006, 'UK', 2134563, 'Tamaha Bass Quitar', 1, 2359.99, '2020-04-14'),
-(100007, 'USA', 2134513, 'Ibanez GRG170DX ', 1, 243.99, '2020-04-09'),
-(100008, 'TR', 2134560, 'Yamaha ERG 121 GPII', 1, 248.99, '2020-04-03'),
-(100009, 'UK', 2134569, 'Istanbul Samatya Cymbal Set', 1, 465.00, '2020-03-19'),
-(100010, 'FR', 2134562, 'Zildjian K Cymbal Set', 1, 895.99, '2020-04-11');
+(100001, 'UK', 2134562, 'Electric Guitar', 2, 2599.99, '2020-04-20'),
+(100002, 'USA', 2134563, 'Acoustic Guitar', 1, 1599.99, '2020-02-19'),
+(100003, 'USA', 2134563, 'Acoustic Guitar', 2, 1599.99, '2020-02-19'),
+(100004, 'TR', 2134563, 'Bass Guitar', 1, 1199.99, '2020-03-19'),
+(100005, 'FR', 2133563, 'Drum Set', 1, 899.99, '2020-04-11'),
+(100006, 'UK', 2134563, 'Keyboard', 1, 1359.99, '2020-04-14'),
+(100007, 'USA', 2134513, 'Electric Bass', 1, 699.99, '2020-04-20'),
+(100008, 'TR', 2134560, 'Synthesizer', 1, 1489.99, '2020-03-19'),
+(100009, 'UK', 2134569, 'Violin', 1, 465.00, '2020-04-11'),
+(100010, 'FR', 2134562, 'Piano', 1, 895.99, '2020-04-14');
+```
 
-select count(1) from test1.sales_partitioned_by_date;
+```sql
+select count(1) from db_partition.sales_partitioned_by_date;
 ```
 
 ```
@@ -181,40 +193,49 @@ select count(1) from test1.sales_partitioned_by_date;
 You can list the partitions of a Hive table in a few ways. One method is to directly look at the HDFS directory structure:
 
 ```powershell
-hdfs dfs -ls /user/hive/warehouse/test1.db/sales_partitioned_by_date
+hdfs dfs -ls /user/hive/warehouse/db_partition.db/sales_partitioned_by_date
 ```
 
 ```
-Found 7 items
-drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-02-19
-drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-03-19
-drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-04-03
-drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-04-09
-drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-04-11
-drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-04-14
-drwxr-xr-x   - train hive          0 2020-11-02 22:53 /user/hive/warehouse/test1.db/sales_partitioned_by_date/sales_date=2020-04-20
+Found 5 items
+drwxr-xr-x   - root supergroup          0 2025-02-16 12:26 /user/hive/warehouse/db_partition.db/sales_partitioned_by_date/sales_date=2020-02-19
+drwxr-xr-x   - root supergroup          0 2025-02-16 12:26 /user/hive/warehouse/db_partition.db/sales_partitioned_by_date/sales_date=2020-03-19
+drwxr-xr-x   - root supergroup          0 2025-02-16 12:26 /user/hive/warehouse/db_partition.db/sales_partitioned_by_date/sales_date=2020-04-11
+drwxr-xr-x   - root supergroup          0 2025-02-16 12:26 /user/hive/warehouse/db_partition.db/sales_partitioned_by_date/sales_date=2020-04-14
+drwxr-xr-x   - root supergroup          0 2025-02-16 12:26 /user/hive/warehouse/db_partition.db/sales_partitioned_by_date/sales_date=2020-04-20
 ```
 
 Alternatively, you can use the Hive CLI command:
 
 ```sql
-SHOW partitions test1.sales_partitioned_by_date;
+SHOW partitions db_partition.sales_partitioned_by_date;
 ```
 
 ```
-sales_date=2020-02-19
-sales_date=2020-03-19
-sales_date=2020-04-03
-sales_date=2020-04-09
-sales_date=2020-04-11
-sales_date=2020-04-14
-sales_date=2020-04-20
++------------------------+
+|       partition        |
++------------------------+
+| sales_date=2020-02-19  |
+| sales_date=2020-03-19  |
+| sales_date=2020-04-11  |
+| sales_date=2020-04-14  |
+| sales_date=2020-04-20  |
++------------------------+
 ```
 
 To query data from a specific partition, you can include a `WHERE` clause that filters on the partition column:
 
 ```sql
-SELECT * FROM test1.sales_partitioned_by_date WHERE sales_date = '2020-04-11' LIMIT 10;
+SELECT * FROM db_partition.sales_partitioned_by_date WHERE sales_date = '2020-04-11' LIMIT 10;
+```
+
+```
++-------------------------------------+------------------------------------+---------------------------------------+-----------------------------------------+-------------------------------------+---------------------------------------+---------------------------------------+
+| sales_partitioned_by_date.sales_id  | sales_partitioned_by_date.country  | sales_partitioned_by_date.product_id  | sales_partitioned_by_date.product_name  | sales_partitioned_by_date.quantity  | sales_partitioned_by_date.unit_price  | sales_partitioned_by_date.sales_date  |
++-------------------------------------+------------------------------------+---------------------------------------+-----------------------------------------+-------------------------------------+---------------------------------------+---------------------------------------+
+| 100005                              | FR                                 | 2133563                               | Drum Set                                | 1                                   | 899.99                                | 2020-04-11                            |
+| 100009                              | UK                                 | 2134569                               | Violin                                  | 1                                   | 465.0                                 | 2020-04-11                            |
++-------------------------------------+------------------------------------+---------------------------------------+-----------------------------------------+-------------------------------------+---------------------------------------+---------------------------------------+
 ```
 
 ## Bucketing
@@ -240,37 +261,59 @@ Let's dive into a practical example that demonstrates the combined power of part
 
 ### Download Datasets
 
-First, we need to download the MovieLens datasets (`u.data` and `u.item`) from the provided URL using `wget` command:
+First, we need to download the MovieLens datasets (`u.data` and `u.item`) from the provided URL using `wget` command into our `cluster-master` container shell where we run the Hive services from:
+
+Make sure you download it to the folder where you map the docker volume (`usr/local/hadoop/namenode/`), if you would like to access the dataset even the container gets restarted.
 
 ```powershell
-wget -O ~/datasets/u.data https://raw.githubusercontent.com/erkansirin78/datasets/master/ml-100k/u.data
-wget -O ~/datasets/u.item https://raw.githubusercontent.com/erkansirin78/datasets/master/ml-100k/u.item
+root@cluster-master:/# cd usr/local/hadoop/namenode/
+```
+
+```powershell
+mkdir hive_datasets
+```
+
+```powershell
+cd hive_datasets/
+```
+
+```powershell
+wget -O u.item https://raw.githubusercontent.com/nacisimsek/Data_Engineering/refs/heads/main/Datasets/u.item
+wget -O u.data https://raw.githubusercontent.com/nacisimsek/Data_Engineering/refs/heads/main/Datasets/u.data
 ```
 
 To understand the structure and delimiters of these datasets, we can use the `head` command:
 
 ```powershell
-[train@localhost ~]$ head ~/datasets/u.item
+root@cluster-master:/usr/local/hadoop/namenode/hive_datasets# head u.item
 ```
 
 ```
 movieid|movietitle|releasedate|videoreleasedate|IMDbURL|unknown|Action|Adventure|Animation|Children's|Comedy|Crime|Documentary|Drama|Fantasy|Film-Noir|Horror|Musical|Mystery|Romance|Sci-Fi|Thriller|War|Western
 1|ToyStory(1995)|01-Jan-1995||http://us.imdb.com/M/title-exact?Toy%20Story%20(1995)|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
+2|GoldenEye(1995)|01-Jan-1995||http://us.imdb.com/M/title-exact?GoldenEye%20(1995)|0|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0
+3|FourRooms(1995)|01-Jan-1995||http://us.imdb.com/M/title-exact?Four%20Rooms%20(1995)|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0
+4|GetShorty(1995)|01-Jan-1995||http://us.imdb.com/M/title-exact?Get%20Shorty%20(1995)|0|1|0|0|0|1|0|0|1|0|0|0|0|0|0|0|0|0|0
+5|Copycat(1995)|01-Jan-1995||http://us.imdb.com/M/title-exact?Copycat%20(1995)|0|0|0|0|0|0|1|0|1|0|0|0|0|0|0|0|1|0|0
 ...
 ```
 
 ```powershell
-[train@localhost ~]$ head ~/datasets/u.data
+root@cluster-master:/usr/local/hadoop/namenode/hive_datasets# head u.data
 ```
 
 ```
-user_id item_id rating timestamp
-196     242     3       881250949
-186     302     3       891717742
+user_id	item_id	rating	timestamp
+196	242	3	881250949
+186	302	3	891717742
+22	377	1	878887116
+244	51	2	880606923
+166	346	1	886397596
+298	474	4	884182806
 ...
 ```
 
-Now, let's proceed to load these datasets into Hive tables. Start by launching the Beeline client and creating a database named `movielens`:
+Now, let's proceed to load these datasets into Hive tables. Start by launching the Beeline client and creating a database named `movies`:
 
 ```sql
 create database if not exists movielens;
@@ -285,18 +328,23 @@ First, we will load the `u.data` dataset into a Hive table named `ratings`.
 To load the ratings data, we first create an external table `movielens.ratings` matching the structure of `u.data`.  Note that the delimiter is tab (`\t`) and we skip the header line.
 
 ```sql
-create table if not exists movielens.ratings (user_id int, item_id int, rating int,  rating_time bigint)
-row format delimited
-fields terminated by '\t'
-lines terminated by '\n'
-stored as textfile
-tblproperties('skip.header.line.count'='1');
+CREATE TABLE IF NOT EXISTS movielens.ratings (
+    user_id     INT,
+    item_id     INT,
+    rating      INT,
+    rating_time BIGINT
+)
+ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY '\t'
+    LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+TBLPROPERTIES ('skip.header.line.count'='1');
 ```
 
 Then, load the data from the local file system into the `movielens.ratings` table:
 
 ```sql
-load data local inpath '/home/train/datasets/u.data' into table movielens.ratings;
+load data local inpath '/usr/local/hadoop/namenode/hive_datasets/u.data' into table movielens.ratings;
 ```
 
 Verify the data load by selecting a few rows and checking the total row count and distinct user count:
@@ -342,8 +390,6 @@ select count(distinct user_id) from movielens.ratings;
 
 Next, load the `u.item` dataset into a Hive table named `movies`.
 
-#### Create Hive DB/Table and Load Data
-
 Create the `movies` table in the `movielens` database, matching the structure of `u.item`. Note that the delimiter is pipe (`|`) and we skip the header line.
 
 ```sql
@@ -382,25 +428,26 @@ tblproperties('skip.header.line.count'='1');
 Load data from the local file system into the `movielens.movies` table:
 
 ```sql
-load data local inpath '/home/train/datasets/u.item' into table movielens.movies;
+load data local inpath '/usr/local/hadoop/namenode/hive_datasets/u.item' into table movielens.movies;
 ```
 
 Verify the data load by selecting a few rows and checking the total row count:
 
 ```sql
-select movieid, movietitle, releasedate from movielens.movies limit 5;
+select movieid, movietitle, releasedate, imdburl from movielens.movies limit 5;
 ```
 
 ```
-+----------+------------------+--------------+
-| movieid  |    movietitle    | releasedate  |
-+----------+------------------+--------------+
-| 1        | ToyStory(1995)   | 01-Jan-1995  |
-| 2        | GoldenEye(1995)  | 01-Jan-1995  |
-| 3        | FourRooms(1995)  | 01-Jan-1995  |
-| 4        | GetShorty(1995)  | 01-Jan-1995  |
-| 5        | Copycat(1995)    | 01-Jan-1995  |
-+----------+------------------+--------------+
++----------+------------------+--------------+----------------------------------------------------+
+| movieid  |    movietitle    | releasedate  |                      imdburl                       |
++----------+------------------+--------------+----------------------------------------------------+
+| 1        | ToyStory(1995)   | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Toy%20Story%20(1995) |
+| 2        | GoldenEye(1995)  | 01-Jan-1995  | http://us.imdb.com/M/title-exact?GoldenEye%20(1995) |
+| 3        | FourRooms(1995)  | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Four%20Rooms%20(1995) |
+| 4        | GetShorty(1995)  | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Get%20Shorty%20(1995) |
+| 5        | Copycat(1995)    | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Copycat%20(1995)  |
++----------+------------------+--------------+----------------------------------------------------+
+5 rows selected (0.189 seconds)
 ```
 
 ```sql
@@ -422,17 +469,21 @@ Now that we have both `ratings` and `movies` data loaded into Hive, we can creat
 To efficiently query popular movies by month, create the `movielens.movie_ratings` table partitioned by `review_year` and `review_month`, and bucketed by `movietitle`:
 
 ```sql
-create table if not exists movielens.movie_ratings (
-user_id int,
-rating int,
-rating_time bigint,
-movieid int,
-movietitle string,
-videoreleasedate string,
-imdburl string)
-partitioned by (review_year int, review_month int)
-clustered by (movietitle) into 4 buckets
-stored as orc;
+CREATE TABLE IF NOT EXISTS movielens.movie_ratings (
+    user_id            INT,
+    rating             INT,
+    rating_time        BIGINT,
+    movieid            INT,
+    movietitle         STRING,
+    videoreleasedate   STRING,
+    imdburl            STRING
+)
+PARTITIONED BY (
+    review_year INT,
+    review_month INT
+)
+CLUSTERED BY (movietitle) INTO 4 BUCKETS
+STORED AS ORC;
 ```
 
 Enable dynamic partitioning and bucketing for the data loading process:
@@ -470,6 +521,7 @@ Verify the data loading and partitioning by checking the row count and listing p
 select count(1) from movielens.movie_ratings;
 ```
 
+
 ```
 +---------+
 |   _c0   |
@@ -477,6 +529,37 @@ select count(1) from movielens.movie_ratings;
 | 100000  |
 +---------+
 ```
+
+We can describe our table to see its fields, their data type, and see if there is partitioning in place, and if yes, on which columns the partitioning is performed:
+
+```sql
+describe movielens.movie_ratings;
+```
+
+
+```
++--------------------------+------------+----------+
+|         col_name         | data_type  | comment  |
++--------------------------+------------+----------+
+| user_id                  | int        |          |
+| rating                   | int        |          |
+| rating_time              | bigint     |          |
+| movieid                  | int        |          |
+| movietitle               | string     |          |
+| videoreleasedate         | string     |          |
+| imdburl                  | string     |          |
+| review_year              | int        |          |
+| review_month             | int        |          |
+|                          | NULL       | NULL     |
+| # Partition Information  | NULL       | NULL     |
+| # col_name               | data_type  | comment  |
+| review_year              | int        |          |
+| review_month             | int        |          |
++--------------------------+------------+----------+
+14 rows selected (0.113 seconds)
+```
+
+We can list the created partitions, which are basically different folder structure Hive generates on HDFS:
 
 ```sql
 show partitions movielens.movie_ratings;
@@ -497,17 +580,56 @@ show partitions movielens.movie_ratings;
 +-----------------------------------+
 ```
 
-To answer our business needs, let's run queries to find the top rated movies in April 1998.
+It is always nice to use third party tools to access quick visualization of your underlying servers. This time, I will view the partitioning folder structure of our table from Big Data Plugin of Intellij where I connected to the underlying **HDFS** to see the partitioning folders created by **Hive**:
+
+![1739716572577](image/index/1739716572577.png)
+
+Same can also be viewed on the Namenode UI's Browse Directory menu where you can browse the HDFS:
+
+![1739716843188](image/index/1739716843188.png)
+
+We can see the partitioning works correctly by performing distinct query on `review_year` and `review_month` fields of our `movielens.movie_ratings` table:
+
+```sql
+select distinct (review_year, review_month) from movielens.movie_ratings;
+```
+
+```
++--------------------------+
+|           _c0            |
++--------------------------+
+| {"col1":1997,"col2":9}   |
+| {"col1":1997,"col2":10}  |
+| {"col1":1997,"col2":11}  |
+| {"col1":1997,"col2":12}  |
+| {"col1":1998,"col2":1}   |
+| {"col1":1998,"col2":2}   |
+| {"col1":1998,"col2":3}   |
+| {"col1":1998,"col2":4}   |
++--------------------------+
+8 rows selected (32.082 seconds)
+```
+
+Now, let's run queries to find the top rated movies in April 1998.
 
 #### Top rated counts movies in April 1998
 
 Find the top 20 most rated movies in April 1998:
 
 ```sql
-select  count(*) as total_count,  movietitle
-from movielens.movie_ratings
-where review_year=1998 AND review_month=4
-group by movietitle order by total_count desc limit 20;
+SELECT
+    COUNT(*) AS total_count,
+    movietitle
+FROM
+    movielens.movie_ratings
+WHERE
+    review_year = 1998
+    AND review_month = 4
+GROUP BY
+    movietitle
+ORDER BY
+    total_count DESC
+LIMIT 20;
 ```
 
 ```
@@ -542,10 +664,20 @@ group by movietitle order by total_count desc limit 20;
 Find the top 20 highest average rated movies in April 1998:
 
 ```sql
-select avg(rating) as avg_rating, count(*) as total_count,  movietitle
-from movielens.movie_ratings
-where review_year=1998 AND review_month=4
-group by movietitle order by avg_rating desc limit 20;
+SELECT
+    AVG(rating) AS avg_rating,
+    COUNT(*) AS total_count,
+    movietitle
+FROM
+    movielens.movie_ratings
+WHERE
+    review_year = 1998
+    AND review_month = 4
+GROUP BY
+    movietitle
+ORDER BY
+    avg_rating DESC
+LIMIT 20;
 ```
 
 ```
@@ -575,4 +707,4 @@ group by movietitle order by avg_rating desc limit 20;
 +-------------+--------------+-------------------------------------------+
 ```
 
-These queries demonstrate how partitioning by year and month and bucketing by movie title can help optimize data retrieval and analysis for time-based and movie-centric queries, aligning with our business requirements for low latency access to popular movie data.
+These queries demonstrate how partitioning by year and month and bucketing by movie title can help optimize data retrieval and analysis for time-based and movie-centric queries for low latency access to popular movie data.

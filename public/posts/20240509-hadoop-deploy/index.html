@@ -1661,10 +1661,10 @@
 </h3>
 <p>Since the resource manager is running on cluster-master container, we first connect to its shell and initiate spark-shell in yarn mode to observe it as an application submitted.</p>
 <p>To do this, first connect to the container shell:</p>
-<pre tabindex="0"><code>docker exec -it cluster-master bash
-</code></pre><p>Then initiate pyspark session on yarn:</p>
-<pre tabindex="0"><code>pyspark --master yarn
-</code></pre><p>The submitted PySparkShell application can now be observed from the YARN web UI:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="nb">cluster-master</span> <span class="n">bash</span>
+</span></span></code></pre></div><p>Then initiate pyspark session on yarn:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">pyspark</span> <span class="p">-</span><span class="n">-master</span> <span class="n">yarn</span>
+</span></span></code></pre></div><p>The submitted PySparkShell application can now be observed from the YARN web UI:</p>
 <p>
 
 
@@ -1689,14 +1689,14 @@
 
 </p>
 <p>This can also be queried from the container shell itself via below command:</p>
-<pre tabindex="0"><code>yarn application -list
-2024-05-26 22:33:24,560 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">yarn</span> <span class="n">application</span> <span class="n">-list</span>
+</span></span></code></pre></div><pre tabindex="0"><code>2024-05-26 22:33:24,560 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
 Total number of applications (application-types: [], states: [SUBMITTED, ACCEPTED, RUNNING] and tags: []):1
                 Application-Id	    Application-Name	    Application-Type	      User	     Queue	             State	       Final-State	       Progress	                       Tracking-URL
 application_1716762500232_0001	        PySparkShell	               SPARK	      root	   default	           RUNNING	         UNDEFINED	            10%	         http://cluster-master:4040
 </code></pre><p>You can query the status of this application</p>
-<pre tabindex="0"><code>yarn application -status application_1716762500232_0001
-2024-05-26 22:34:05,252 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">yarn</span> <span class="n">application</span> <span class="n">-status</span> <span class="n">application_1716762500232_0001</span>
+</span></span></code></pre></div><pre tabindex="0"><code>2024-05-26 22:34:05,252 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
 2024-05-26 22:34:10,228 INFO conf.Configuration: resource-types.xml not found
 2024-05-26 22:34:10,238 INFO resource.ResourceUtils: Unable to find &#39;resource-types.xml&#39;.
 Application Report :
@@ -1719,7 +1719,7 @@ Application Report :
 	Log Aggregation Status : DISABLED
 	Diagnostics :
 	Unmanaged Application : false
-	Application Node Label Expression : &lt;Not set&gt;
+	Application Node Label Expression : `&lt;Not set&gt;`
 	AM container Node Label Expression : &lt;DEFAULT_PARTITION&gt;
 	TimeoutType : LIFETIME	ExpiryTime : UNLIMITED	RemainingTime : -1seconds
 </code></pre><p>That&rsquo;s all for this article. As a summary, we have setup a 3 node Hadoop Cluster on Docker environment and perform sample operations on HDFS and YARN.</p>

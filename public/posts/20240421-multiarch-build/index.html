@@ -1078,18 +1078,18 @@
 </code></pre><p>I am running <a href="https://github.com/abiosoft/colima"   target="_blank">
     Colima</a> as a docker engine on my <strong>Apple Mac</strong> with <strong>silicon</strong> processor which is an <strong>ARM64</strong> based architecture (platform). When the image of the container I try to deploy on my Colima is built for an architecture other than ARM64 (ex: AMD64), it gives an incompatible platform error.</p>
 <p>One way of recover from that error is to start Colima on Mac silicon with QEMU rosetta emulation of x86_64 arch type:</p>
-<pre tabindex="0"><code>colima start --cpu 4 --memory 8 --arch x86_64
-</code></pre><p>This way, we could be able to deploy AMD64 based docker images on our docker environments, however, since it is virtualizing the underlying processing architecture, there is a significant performance decrease occurs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">colima</span> <span class="nb">start </span><span class="p">-</span><span class="n">-cpu</span> <span class="mf">4</span> <span class="p">-</span><span class="n">-memory</span> <span class="mf">8</span> <span class="p">-</span><span class="n">-arch</span> <span class="n">x86_64</span>
+</span></span></code></pre></div><p>This way, we could be able to deploy AMD64 based docker images on our docker environments, however, since it is virtualizing the underlying processing architecture, there is a significant performance decrease occurs.</p>
 <p>Therefore, the best way is to re-build those images to make them multiarchitecture compatible, and run them on the Colima docker engine without virtualization.</p>
 <p>To do this, follow the below steps:</p>
 <ol>
 <li>
 <p>Install Colima using homebrew if you have not already:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">brew install colima
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">brew</span> <span class="n">install</span> <span class="n">colima</span>
 </span></span></code></pre></div></li>
 <li>
 <p>Start colima which is compatible with the underlying silicon architecture. If you do not specify the architecture, Colima will use the underlying architecture of the machine anyway:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">colima start --cpu <span class="m">4</span> --memory <span class="m">8</span> --arch aarch64
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">colima</span> <span class="nb">start </span><span class="p">-</span><span class="n">-cpu</span> <span class="mf">4</span> <span class="p">-</span><span class="n">-memory</span> <span class="mf">8</span> <span class="p">-</span><span class="n">-arch</span> <span class="n">aarch64</span>
 </span></span></code></pre></div><p>You can verify the colima is running by the command <code>colima status</code>.</p>
 </li>
 <li>
@@ -1098,13 +1098,13 @@
 <p><a href="https://github.com/docker/buildx/releases/download/v0.13.1/buildx-v0.13.1.darwin-amd64"   target="_blank">
     https://github.com/docker/buildx/releases/download/v0.13.1/buildx-v0.13.1.darwin-amd64</a></p>
 <p>b. Create plug-ins folder if you do not have any:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p ~/.docker/cli-plugins
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">mkdir</span> <span class="n">-p</span> <span class="p">~/.</span><span class="n">docker</span><span class="p">/</span><span class="nb">cli-plugins</span>
 </span></span></code></pre></div><p>c. Move the downloaded Buildx binary to the <code>~/.docker/cli-plugins</code> directory and rename it to <code>docker-buildx</code> via below command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mv buildx-v0.13.1.darwin-amd64 ~/.docker/cli-plugins/docker-buildx
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">mv buildx-v0</span><span class="p">.</span><span class="py">13</span><span class="p">.</span><span class="py">1</span><span class="p">.</span><span class="nb">darwin-amd64</span> <span class="p">~/.</span><span class="n">docker</span><span class="p">/</span><span class="nb">cli-plugins</span><span class="p">/</span><span class="nb">docker-buildx</span>
 </span></span></code></pre></div><p>d. Make it executable:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x ~/.docker/cli-plugins/docker-buildx
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">chmod</span> <span class="p">+</span><span class="n">x</span> <span class="p">~/.</span><span class="n">docker</span><span class="p">/</span><span class="nb">cli-plugins</span><span class="p">/</span><span class="nb">docker-buildx</span>
 </span></span></code></pre></div><p>e. Finally, verify the installation:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker buildx version
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">buildx</span> <span class="n">version</span>
 </span></span></code></pre></div><p>This should show the following output:</p>
 <blockquote>
 <p>github.com/docker/buildx v0.13.1 788433953af10f2a698f5c07611dddce2e08c7a0</p>
@@ -1138,7 +1138,7 @@ Replace the following &ldquo;<strong>your-username</strong>&rdquo; part with you
 Also modify the <strong>image-name</strong> and <strong>tag</strong> as you wish. The image to be built need to be represented with a dockerfile in the same directory where below command is executed.
 It is also a <strong>must</strong> to push the multi architecture images to a registry since the local repository does not support to store multi-architecture images</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker buildx build --platform linux/amd64,linux/arm64 -t &lt;your-username&gt;/&lt;image-name&gt;:&lt;tag&gt; . --push
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">buildx</span> <span class="n">build</span> <span class="p">-</span><span class="n">-platform</span> <span class="n">linux</span><span class="p">/</span><span class="n">amd64</span><span class="p">,</span><span class="n">linux</span><span class="p">/</span><span class="n">arm64</span> <span class="n">-t</span> <span class="p">&lt;</span><span class="nb">your-username</span><span class="p">&gt;/&lt;</span><span class="nb">image-name</span><span class="p">&gt;</span><span class="err">:</span><span class="p">&lt;</span><span class="n">tag</span><span class="p">&gt;</span> <span class="p">.</span> <span class="p">-</span><span class="n">-push</span>
 </span></span></code></pre></div></li>
 <li>
 <p>Finally, after the build completes, you can verify the multi-platform image on Docker Hub by visiting your image repository: <a href="https://hub.docker.com/r/your-username/multiplatform-image/tags"   target="_blank">

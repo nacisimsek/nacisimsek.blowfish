@@ -22,7 +22,7 @@ I am running [Colima](https://github.com/abiosoft/colima) as a docker engine on 
 
 One way of recover from that error is to start Colima on Mac silicon with QEMU rosetta emulation of x86_64 arch type:
 
-```
+```powershell
 colima start --cpu 4 --memory 8 --arch x86_64
 ```
 
@@ -34,12 +34,12 @@ To do this, follow the below steps:
 
 1. Install Colima using homebrew if you have not already:
 
-   ```shell
+   ```powershell
    brew install colima
    ```
 2. Start colima which is compatible with the underlying silicon architecture. If you do not specify the architecture, Colima will use the underlying architecture of the machine anyway:
 
-   ```shell
+   ```powershell
    colima start --cpu 4 --memory 8 --arch aarch64
    ```
    You can verify the colima is running by the command `colima status`.
@@ -51,22 +51,22 @@ To do this, follow the below steps:
 
    b. Create plug-ins folder if you do not have any:
 
-   ```shell
+   ```powershell
    mkdir -p ~/.docker/cli-plugins
    ```
    c. Move the downloaded Buildx binary to the `~/.docker/cli-plugins` directory and rename it to `docker-buildx` via below command.
 
-   ```shell
+   ```powershell
    mv buildx-v0.13.1.darwin-amd64 ~/.docker/cli-plugins/docker-buildx
    ```
    d. Make it executable:
 
-   ```shell
+   ```powershell
    chmod +x ~/.docker/cli-plugins/docker-buildx
    ```
    e. Finally, verify the installation:
 
-   ```bash
+   ```powershell
    docker buildx version
    ```
    This should show the following output:
@@ -98,7 +98,7 @@ To do this, follow the below steps:
    > It is also a **must** to push the multi architecture images to a registry since the local repository does not support to store multi-architecture images
    >
 
-   ```bash
+   ```powershell
    docker buildx build --platform linux/amd64,linux/arm64 -t <your-username>/<image-name>:<tag> . --push
    ```
 8. Finally, after the build completes, you can verify the multi-platform image on Docker Hub by visiting your image repository: [https://hub.docker.com/r/your-username/multiplatform-image/tags](https://hub.docker.com/r/your-username/multiplatform-image/tags)

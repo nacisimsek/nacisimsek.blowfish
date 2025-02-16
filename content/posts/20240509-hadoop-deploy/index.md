@@ -353,13 +353,13 @@ Since the resource manager is running on cluster-master container, we first conn
 
 To do this, first connect to the container shell:
 
-```
+```powershell
 docker exec -it cluster-master bash
 ```
 
 Then initiate pyspark session on yarn:
 
-```
+```powershell
 pyspark --master yarn
 ```
 
@@ -369,8 +369,11 @@ The submitted PySparkShell application can now be observed from the YARN web UI:
 
 This can also be queried from the container shell itself via below command:
 
-```
+```powershell
 yarn application -list
+```
+
+```
 2024-05-26 22:33:24,560 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
 Total number of applications (application-types: [], states: [SUBMITTED, ACCEPTED, RUNNING] and tags: []):1
                 Application-Id	    Application-Name	    Application-Type	      User	     Queue	             State	       Final-State	       Progress	                       Tracking-URL
@@ -379,8 +382,11 @@ application_1716762500232_0001	        PySparkShell	               SPARK	      r
 
 You can query the status of this application
 
-```
+```powershell
 yarn application -status application_1716762500232_0001
+```
+
+```
 2024-05-26 22:34:05,252 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at cluster-master/172.18.0.3:8032
 2024-05-26 22:34:10,228 INFO conf.Configuration: resource-types.xml not found
 2024-05-26 22:34:10,238 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
@@ -404,7 +410,7 @@ Application Report :
 	Log Aggregation Status : DISABLED
 	Diagnostics :
 	Unmanaged Application : false
-	Application Node Label Expression : <Not set>
+	Application Node Label Expression : `<Not set>`
 	AM container Node Label Expression : <DEFAULT_PARTITION>
 	TimeoutType : LIFETIME	ExpiryTime : UNLIMITED	RemainingTime : -1seconds
 ```

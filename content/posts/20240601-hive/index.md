@@ -753,7 +753,7 @@ select * from customers_ext limit 5;
 Here the metastore data of our external table on postgres:
 
 ```sql
-select * from public."TBLS" t   limit 5;
+select * from public."TBLS" t limit 5;
 ```
 
 ```
@@ -779,9 +779,11 @@ Found 1 items
 
 However, its metadata is removed on Hive Metastore:
 
+```sql
+select * from public."TBLS" t limit 5;
 ```
-select * from public."TBLS" t   limit 5;
 
+```
 |TBL_ID|CREATE_TIME  |DB_ID|LAST_ACCESS_TIME|OWNER|OWNER_TYPE|RETENTION|SD_ID|TBL_NAME     |TBL_TYPE      |VIEW_EXPANDED_TEXT|VIEW_ORIGINAL_TEXT|IS_REWRITE_ENABLED|
 |------|-------------|-----|----------------|-----|----------|---------|-----|-------------|--------------|------------------|------------------|------------------|
 ```
