@@ -18,7 +18,7 @@ In this article, we will be performing partitioning and bucketing options and ob
 
 {{< alert icon="circle-info" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
 
-**Info**: 
+**Info**:
 
 If you directly opened this article without setting up your Docker environment, I suggest you visit that [`article`](https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster "Deployment of the Cluster") to deploy your cluster first.
 
@@ -60,16 +60,16 @@ Sales Orders Warehouse
 │   ├── Bucket: Store B
 │   └── Bucket: Store C
 └── Date: 2023-09-03
-├── Bucket: Store A
-├── Bucket: Store B
-└── Bucket: Store C
+    ├── Bucket: Store A
+    ├── Bucket: Store B
+    └── Bucket: Store C
 ```
 
 In this setup, if you want to analyze orders from September 2, 2023, you directly go to that day's folder. Then, if you're interested in orders from Store B on that day, you only look at the bucket for Store B. This layered organization reduces the amount of data that needs to be scanned and processed, leading to faster query and join performance.
 
 {{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
 
-**Tip**:  
+**Tip**:
 
 Columns chosen for partitioning should generally be those frequently used in `WHERE` clauses for filtering data, and should have low cardinality to avoid creating too many small partitions, which can hurt performance. Avoid partitioning by unique IDs like user IDs or phone numbers.
 
@@ -77,7 +77,7 @@ Columns chosen for partitioning should generally be those frequently used in `WH
 
 {{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
 
-**Tip**: 
+**Tip**:
 
 Bucketing is especially effective when the bucketed column is used in `GROUP BY` or `SORT BY` clauses in your queries, as it can optimize these operations significantly. Aim for a bucket size that is a multiple of the HDFS block size or around 1GB, using the formula: `Table size / Number of buckets >= HDFS block size` or `table size / 1 GB`.
 
@@ -90,9 +90,6 @@ Partitioning in Hive involves dividing a table into smaller parts based on the v
 ### Creating a Partitioned Table
 
 Let's look at an example of creating a partitioned table. In this case, we'll partition a sales table by `sales_date`.
-
-Note: Prior to this below step, I am assuming you have already done the steps on this blog post till this given step. Therefore you have a ready Hive service running on your Hadoop cluster, to be able to perform the following steps.
-
 
 {{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
 
@@ -122,15 +119,15 @@ ROW FORMAT DELIMITED
 STORED AS ORC;
 ```
 
-{{< alert icon="tip" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
 
-**Tip**: Notice that the partition column (`sales_date` in this example) is defined separately in the `PARTITIONED BY` clause and is **not** included in the column definitions within the parentheses before it.
+**Tip**: Notice that the partition column (`sales_date` in this example) is defined separately in the `PARTITIONED BY` clause and is **not** included in the column definitions within the parentheses before it. However, the `sales_date` field will still be part of the table columns to be queried just like all other fields.
 
 {{< /alert >}}
 
 ### Static and Dynamic Partitioning
 
-Hive supports two main types of partitioning: static and dynamic.
+Hive supports two main types of partitioning: `static` and `dynamic`.
 
 * **Static Partitioning**: In static partitioning, you manually create each partition and explicitly specify the partition when loading data. This is suitable when you know the partition values beforehand.
 * **Dynamic Partitioning**: Hive automatically creates partitions based on the data being inserted.  The `CREATE TABLE` syntax is the same as for static partitioning. To enable dynamic partitioning, you need to set the following properties:
@@ -142,9 +139,9 @@ set hive.exec.dynamic.partition.mode=nonstrict;
 
 When dynamic partitioning is enabled, Hive will automatically infer and create new partitions as new partition key values are encountered during data loading.
 
-{{< alert icon="tip" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
 
-**Tip**: 
+**Tip**:
 
 When using dynamic partitioning, ensure that the partition column(s) are placed **last** in the `INSERT` statement's `SELECT` clause or `VALUES` clause.
 
@@ -521,7 +518,6 @@ Verify the data loading and partitioning by checking the row count and listing p
 select count(1) from movielens.movie_ratings;
 ```
 
-
 ```
 +---------+
 |   _c0   |
@@ -535,7 +531,6 @@ We can describe our table to see its fields, their data type, and see if there i
 ```sql
 describe movielens.movie_ratings;
 ```
-
 
 ```
 +--------------------------+------------+----------+
