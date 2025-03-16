@@ -260,3 +260,18 @@ td {
     border-color: rgba(255, 255, 255, 0.8) !important;
     outline-color: rgba(255, 255, 255, 0.8) !important;
 }
+
+/* Ensure spacing between all navigation items */
+nav.hidden.md\:flex.items-center > * {
+    margin-right: 15px; /* Add spacing between all direct children of <nav> */
+}
+
+/* Remove margin for the last item to avoid extra spacing */
+nav.hidden.md\:flex.items-center > *:last-child {
+    margin-right: 0;
+}
+
+/* Ensure spacing between search button and dark mode switcher */
+nav.hidden.md\:flex.items-center > button#search-button {
+    margin-right: 15px; /* Adds spacing between search and dark mode button */
+}
