@@ -16,9 +16,9 @@ In the [previous article](https://nacisimsek.com/posts/20240509-hadoop-deploy/ "
 
 In this article, we will deploy Hive services on the same Hadoop cluster and perform various operations on it to learn its basics, usage, and advantages for our data operations. If you directly opened this article without setting up your Docker environment, I suggest you visit that [article](https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster "Deployment of the Cluster") to deploy your cluster first.
 
-{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="triangle-exclamation" cardColor="#def991" iconColor="#0f172a" textColor="#0f172a">}}
 
-**Important**:
+*Important:*
 
 Since the image used in this experiment is built with the needed Hive services included, we can run Hive services in this cluster. However, if you are working on your own cluster built on top of a different image, the operations/commands used in this article may not be compatible with your environment.
 
