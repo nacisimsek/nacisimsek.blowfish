@@ -285,3 +285,14 @@ nav.hidden.md\:flex.items-center > button#search-button {
 .alert-content b {
     color: inherit;
 }
+
+
+/* Mobil menüde butonlar arasına boşluk ekle */
+nav.flex.md\:hidden.items-center > button {
+    margin-right: 12px; /* Mobilde butonlar arasına boşluk ekler */
+}
+
+/* Son butona (hamburger menü) ekstra boşluk eklememek için */
+nav.flex.md\:hidden.items-center > button:last-child {
+    margin-right: 0;
+}
