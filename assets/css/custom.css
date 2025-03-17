@@ -287,7 +287,26 @@ nav.hidden.md\:flex.items-center > button#search-button {
 }
 
 
-/* Mobilde üst menüdeki butonlar arasına boşluk ekle */
-nav.flex.md\:hidden.items-center {
-    gap: 12px; /* Butonlar arasına boşluk ekler */
+/* Target only mobile navigation buttons */
+@media (max-width: 768px) {
+    /* Ensure buttons are grouped together without excessive spacing */
+    .flex.md\:hidden.items-center {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important; /* Keep them aligned right */
+       /* gap: 6px !important;  Reduce gap to a moderate space */
+    }
+
+    /* Adjust spacing between buttons */
+    #search-button-mobile {
+        margin-right: 8px !important; /* Reduce spacing before dark mode switcher */
+    }
+
+    #appearance-switcher-mobile {
+        margin-right: 8px !important; /* Reduce spacing before menu button */
+    }
+
+    #menu-button {
+        margin-right: 0 !important; /* Ensure no extra space after menu button */
+    }
 }
