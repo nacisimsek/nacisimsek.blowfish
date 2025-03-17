@@ -287,12 +287,7 @@ nav.hidden.md\:flex.items-center > button#search-button {
 }
 
 
-/* Mobil menüde butonlar arasına boşluk ekle */
-nav.flex.md\:hidden.items-center > button {
-    margin-right: 12px; /* Mobilde butonlar arasına boşluk ekler */
-}
-
-/* Son butona (hamburger menü) ekstra boşluk eklememek için */
-nav.flex.md\:hidden.items-center > button:last-child {
-    margin-right: 0;
+/* Mobilde üst menüdeki butonlar arasına boşluk ekle */
+nav.flex.md\:hidden.items-center {
+    gap: 12px; /* Butonlar arasına boşluk ekler */
 }
