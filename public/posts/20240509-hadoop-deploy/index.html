@@ -117,7 +117,7 @@
     "keywords": ["tutorial","hdfs","yarn","mapreduce","datanode","namenode"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "2247"
+    "wordCount": "2243"
   }]
   </script>
 
@@ -1380,12 +1380,48 @@
 <p>We will deploy the cluster by using the following docker file:</p>
 <p><a href="https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml"  title="[docker-compose.yaml](https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml)"  target="_blank">
     https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml</a></p>
-<blockquote>
-<p>📝 <strong>Note:</strong></p>
+
+  
+  
+  
+  
+
+
+<div
+  
+    class="alert-box"
+    style="background-color: #3ae6da"
+  >
+
+  
+  <div
+    
+      class="alert-icon"
+      style="color: #0f172a"
+    >
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+  </span>
+
+
+  </div>
+
+  
+  <div
+    
+      class="alert-content"
+      style="color: #0f172a"
+    >
+    <p><strong>Note:</strong></p>
 <p>The image which is being used in this docker-compose file is my <a href="https://nacisimsek.com/posts/20240421-multiarch-build/"  title="Build Docker Images with Multiarch Support"  target="_blank">
     multiarch built version</a> of the image which was originally prepared by <a href="https://hub.docker.com/r/veribilimiokulu/ubuntu_hadoop_hive_sqoop"  title="ubuntu_hadoop_hive_sqoop"  target="_blank">
     Veribilimiokulu</a>. I had attended their <a href="https://bootcamp.veribilimiokulu.com/bootcamp-programlari/data-engineering-bootcamp/"  title="VBO-DE-Bootcamp"  target="_blank">
-    data engineering bootcamp</a> program and had a chance to learn many new skills around data engineering while also refreshing my existing knowledge. Many of the next blog posts in my website will be related to the hands-on experience I gained during this bootcamp, therefore, special thanks to them for helping us improve ourselves and also encouraging us to share our knowledge to others.</p></blockquote>
+    data engineering bootcamp</a> program and had a chance to learn many new skills around data engineering while also refreshing my existing knowledge. Many of the next blog posts in my website will be related to the hands-on experience I gained during this bootcamp, therefore, special thanks to them for helping us improve ourselves and also encouraging us to share our knowledge to others.</p>
+
+  </div>
+</div>
 <p>Simply copy the docker compose file and execute below command to deploy the containers.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">docker-compose</span> <span class="n">up</span> <span class="n">-d</span>
 </span></span></code></pre></div><p>This will compose the following four containers:</p>
@@ -1472,12 +1508,14 @@
 
 </p>
 <ul>
-<li><strong>Purpose</strong> :
+<li>
+<p><strong>Purpose</strong> :</p>
 <ul>
 <li>The web interface on port 9870 is the Hadoop NameNode Web UI. It is used for monitoring the HDFS (Hadoop Distributed File System).</li>
 </ul>
 </li>
-<li><strong>Functions</strong> :
+<li>
+<p><strong>Functions</strong> :</p>
 <ul>
 <li><strong>View HDFS Health</strong> : Provides an overview of the HDFS, including the health and status of the NameNode.</li>
 <li><strong>Browse File System</strong> : Allows users to browse the HDFS directories and files.</li>
@@ -1486,23 +1524,96 @@
 <li><strong>View Logs</strong> : Access NameNode logs for troubleshooting and monitoring.</li>
 </ul>
 </li>
-<li><strong>Key Features</strong> :
+<li>
+<p><strong>Key Features</strong> :</p>
 <ul>
 <li><strong>HDFS Overview</strong> : Presents a summary of the total and available storage.</li>
 <li><strong>DataNodes Information</strong> : Details on each DataNode’s storage capacity, usage, and health.</li>
 <li><strong>HDFS Metrics</strong> : Metrics on file system operations, such as read and write requests.</li>
 </ul>
-</li>
-</ul>
-<blockquote>
-<p>📝 <strong>Note:</strong></p>
+
+  
+  
+  
+  
+
+
+<div
+  
+    class="alert-box"
+    style="background-color: #3ae6da"
+  >
+
+  
+  <div
+    
+      class="alert-icon"
+      style="color: #0f172a"
+    >
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+  </span>
+
+
+  </div>
+
+  
+  <div
+    
+      class="alert-content"
+      style="color: #0f172a"
+    >
+    <p><strong>Note:</strong></p>
 <p>If you do not see all three nodes listed as Datanode in above list, its most likely the DataNode service is stopped or should be restarted on those nodes. If so, you can connect to the respective container&rsquo;s shell and restart DataNode service as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="p">&lt;</span><span class="n">container_name</span><span class="p">&gt;</span> <span class="p">/</span><span class="n">bin</span><span class="p">/</span><span class="n">bash</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hdfs</span> <span class="p">-</span><span class="n">-daemon</span> <span class="nb">start </span><span class="n">datanode</span>
-</span></span></code></pre></div></blockquote>
-<blockquote>
-<p>❗️ <strong>Important:</strong></p>
-<p>Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we deployed the master node is also one of the DataNode.</p></blockquote>
+</span></span></code></pre></div>
+  </div>
+</div>
+
+  
+  
+  
+  
+
+
+<div
+  
+    class="alert-box"
+    style="background-color: #ffd874"
+  >
+
+  
+  <div
+    
+      class="alert-icon"
+      style="color: #0f172a"
+    >
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+
+  </span>
+
+
+  </div>
+
+  
+  <div
+    
+      class="alert-content"
+      style="color: #0f172a"
+    >
+    <p><strong>Important:</strong></p>
+<p>Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we deployed the master node is also one of the DataNode.</p>
+
+  </div>
+</div>
+</li>
+</ul>
 <h3 class="relative group">Port 8088: YARN ResourceManager Web UI 
     <div id="port-8088-yarn-resourcemanager-web-ui" class="anchor"></div>
     
@@ -1539,12 +1650,14 @@
 
 </p>
 <ul>
-<li><strong>Purpose</strong> :
+<li>
+<p><strong>Purpose</strong> :</p>
 <ul>
 <li>The web interface on port 8088 is the YARN ResourceManager Web UI. It is used for managing and monitoring YARN (Yet Another Resource Negotiator), which handles resource allocation and job scheduling in the Hadoop cluster.</li>
 </ul>
 </li>
-<li><strong>Functions</strong> :
+<li>
+<p><strong>Functions</strong> :</p>
 <ul>
 <li><strong>Monitor Applications</strong> : Displays the status of running and completed applications (jobs) within the cluster.</li>
 <li><strong>View Cluster Metrics</strong> : Provides metrics on resource usage, including memory and CPU utilization across the cluster.</li>
@@ -1552,16 +1665,48 @@
 <li><strong>Manage Nodes</strong> : Lists all the nodes in the cluster with details about their resource usage and health.</li>
 </ul>
 </li>
-<li><strong>Key Features</strong> :
+<li>
+<p><strong>Key Features</strong> :</p>
 <ul>
 <li><strong>Application Overview</strong> : Summarizes the state, resource usage, and history of applications.</li>
 <li><strong>Cluster Utilization</strong> : Shows real-time data on how resources are being utilized across the cluster.</li>
 <li><strong>Node Management</strong> : Information on each NodeManager, including available and used resources.</li>
 </ul>
-</li>
-</ul>
-<blockquote>
-<p>📝 <strong>Note:</strong></p>
+
+  
+  
+  
+  
+
+
+<div
+  
+    class="alert-box"
+    style="background-color: #3ae6da"
+  >
+
+  
+  <div
+    
+      class="alert-icon"
+      style="color: #0f172a"
+    >
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+  </span>
+
+
+  </div>
+
+  
+  <div
+    
+      class="alert-content"
+      style="color: #0f172a"
+    >
+    <p><strong>Note:</strong></p>
 <p>If you do not see all three nodes listed as Active Nodes in above page, its most likely the NodeManager service is stopped or should be restarted on those nodes. If so, you can connect to the respective container&rsquo;s shell and restartNodeManager service as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="nb">cluster-slave</span><span class="p">-</span><span class="mf">2</span> <span class="p">/</span><span class="n">bin</span><span class="p">/</span><span class="n">bash</span>
 </span></span><span class="line"><span class="cl"><span class="n">root</span><span class="nv">@cluster</span><span class="n">-slave</span><span class="p">-</span><span class="mf">2</span><span class="err">:</span><span class="p">/</span><span class="c"># jps</span>
@@ -1571,7 +1716,11 @@
 </span></span><span class="line"><span class="cl"><span class="mf">798</span> <span class="n">SecondaryNameNode</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">/</span><span class="n">usr</span><span class="p">/</span><span class="n">local</span><span class="p">/</span><span class="n">hadoop</span><span class="p">/</span><span class="n">sbin</span><span class="p">/</span><span class="nb">yarn-daemon</span><span class="p">.</span><span class="py">sh</span> <span class="nb">start </span><span class="n">nodemanager</span>
-</span></span></code></pre></div></blockquote>
+</span></span></code></pre></div>
+  </div>
+</div>
+</li>
+</ul>
 <h2 class="relative group">Cluster Operations 
     <div id="cluster-operations" class="anchor"></div>
     

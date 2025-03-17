@@ -1156,14 +1156,14 @@
 <div
   
     class="alert-box"
-    style="background-color: #0096ff"
+    style="background-color: #3ae6da"
   >
 
   
   <div
     
       class="alert-icon"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
     
 
@@ -1179,9 +1179,9 @@
   <div
     
       class="alert-content"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
-    <p><strong>Info</strong>:</p>
+    <p><strong>Info:</strong></p>
 <p>If you directly opened this article without setting up your Docker environment, I suggest you visit that <a href="https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster"  title="Deployment of the Cluster"  target="_blank">
     <code>article</code></a> to deploy your cluster first.</p>
 
@@ -1236,14 +1236,14 @@
 <div
   
     class="alert-box"
-    style="background-color: #71ad47"
+    style="background-color: #ffb3fd"
   >
 
   
   <div
     
       class="alert-icon"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
     
 
@@ -1259,9 +1259,9 @@
   <div
     
       class="alert-content"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
-    <p><strong>Tip</strong>:</p>
+    <p><strong>Tip:</strong></p>
 <p>Columns chosen for partitioning should generally be those frequently used in <code>WHERE</code> clauses for filtering data, and should have low cardinality to avoid creating too many small partitions, which can hurt performance. Avoid partitioning by unique IDs like user IDs or phone numbers.</p>
 
   </div>
@@ -1276,14 +1276,14 @@
 <div
   
     class="alert-box"
-    style="background-color: #71ad47"
+    style="background-color: #ffb3fd"
   >
 
   
   <div
     
       class="alert-icon"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
     
 
@@ -1299,9 +1299,9 @@
   <div
     
       class="alert-content"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
-    <p><strong>Tip</strong>:</p>
+    <p><strong>Tip:</strong></p>
 <p>Bucketing is especially effective when the bucketed column is used in <code>GROUP BY</code> or <code>SORT BY</code> clauses in your queries, as it can optimize these operations significantly. Aim for a bucket size that is a multiple of the HDFS block size or around 1GB, using the formula: <code>Table size / Number of buckets &gt;= HDFS block size</code> or <code>table size / 1 GB</code>.</p>
 
   </div>
@@ -1338,14 +1338,14 @@
 <div
   
     class="alert-box"
-    style="background-color: #0096ff"
+    style="background-color: #3ae6da"
   >
 
   
   <div
     
       class="alert-icon"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
     
 
@@ -1360,9 +1360,9 @@
   <div
     
       class="alert-content"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
-    <p><strong>Note</strong>:</p>
+    <p><strong>Note:</strong></p>
 <p>Prior to this below step, I am assuming you have already done all the steps prior to <a href="https://nacisimsek.com/posts/20240601-hive/#create-hive-database-and-the-table"  title="Create Hive Database and the Table"  target="_blank">
     <code>this given step</code></a> of this blog post. Therefore you have a ready Hive service running on your Hadoop cluster, to be able to perform the following steps.</p>
 
@@ -1392,14 +1392,14 @@
 <div
   
     class="alert-box"
-    style="background-color: #71ad47"
+    style="background-color: #ffb3fd"
   >
 
   
   <div
     
       class="alert-icon"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
     
 
@@ -1415,9 +1415,11 @@
   <div
     
       class="alert-content"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
-    <strong>Tip</strong>: Notice that the partition column (<code>sales_date</code> in this example) is defined separately in the <code>PARTITIONED BY</code> clause and is <strong>not</strong> included in the column definitions within the parentheses before it. However, the <code>sales_date</code> field will still be part of the table columns to be queried just like all other fields.
+    <p><strong>Tip:</strong></p>
+<p>Notice that the partition column (<code>sales_date</code> in this example) is defined separately in the <code>PARTITIONED BY</code> clause and is <strong>not</strong> included in the column definitions within the parentheses before it. However, the <code>sales_date</code> field will still be part of the table columns to be queried just like all other fields.</p>
+
   </div>
 </div>
 <h3 class="relative group">Static and Dynamic Partitioning 
@@ -1448,14 +1450,14 @@
 <div
   
     class="alert-box"
-    style="background-color: #71ad47"
+    style="background-color: #ffb3fd"
   >
 
   
   <div
     
       class="alert-icon"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
     
 
@@ -1471,9 +1473,9 @@
   <div
     
       class="alert-content"
-      style="color: #f1faee"
+      style="color: #0f172a"
     >
-    <p><strong>Tip</strong>:</p>
+    <p><strong>Tip:</strong></p>
 <p>When using dynamic partitioning, ensure that the partition column(s) are placed <strong>last</strong> in the <code>INSERT</code> statement&rsquo;s <code>SELECT</code> clause or <code>VALUES</code> clause.</p>
 
   </div>

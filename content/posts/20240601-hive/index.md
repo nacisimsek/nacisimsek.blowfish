@@ -16,7 +16,7 @@ In the [previous article](https://nacisimsek.com/posts/20240509-hadoop-deploy/ "
 
 In this article, we will deploy Hive services on the same Hadoop cluster and perform various operations on it to learn its basics, usage, and advantages for our data operations. If you directly opened this article without setting up your Docker environment, I suggest you visit that [article](https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster "Deployment of the Cluster") to deploy your cluster first.
 
-{{< alert icon="triangle-exclamation" cardColor="#def991" iconColor="#0f172a" textColor="#0f172a">}}
+{{< alert icon="triangle-exclamation" cardColor="#ffd874" iconColor="#0f172a" textColor="#0f172a">}}
 
 **Important:**
 
@@ -108,7 +108,7 @@ docker exec -it cluster-master bash
 
 Initialize the Hive metastore schema in a PostgreSQL database
 
-{{< alert icon="triangle-exclamation" cardColor="#ff7b7b" iconColor="#0f172a" textColor="#0f172a" >}}
+{{< alert icon="triangle-exclamation" cardColor="#ffd874" iconColor="#0f172a" textColor="#0f172a" >}}
 
 **Important:**
 
@@ -170,7 +170,7 @@ Transaction isolation: TRANSACTION_REPEATABLE_READ
 Beeline version 2.3.9 by Apache Hive
 ```
 
-{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
 
 **Note**:
 
@@ -224,7 +224,7 @@ INFO  : Concurrency mode is disabled, not creating a lock manager
 1 row selected (0.119 seconds)
 ```
 
-{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
 
 **Note**:
 
@@ -481,9 +481,11 @@ TBLPROPERTIES ('skip.header.line.count'='1');
 > * STORED AS TEXTFILE: Specifies that the data is stored in a text file format.
 > * TBLPROPERTIES ('skip.header.line.count'='1'): Skips the header line in your data file.
 
-{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Note**: The TBLPROPERTIES ('skip.header.line.count'='1') property is essential here because your dataset includes a header row that you don’t want to import as data.
+**Note:** 
+
+The TBLPROPERTIES ('skip.header.line.count'='1') property is essential here because your dataset includes a header row that you don’t want to import as data.
 
 {{< /alert >}}
 
@@ -495,7 +497,7 @@ Since our data file **employee.txt** is already in HDFS at **/user/datasets/empl
 LOAD DATA INPATH '/user/datasets/employee.txt' INTO TABLE employee;
 ```
 
-{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="triangle-exclamation" cardColor="#ffd874" iconColor="#0f172a" textColor="#0f172a" >}}
 
 **Important:**
 

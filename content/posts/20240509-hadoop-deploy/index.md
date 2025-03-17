@@ -101,9 +101,15 @@ We will deploy the cluster by using the following docker file:
 
 [https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml](https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml "[docker-compose.yaml](https://raw.githubusercontent.com/nacisimsek/Data_Engineering/main/Hadoop/docker-compose.yaml)")
 
-> 📝 **Note:**
->
-> The image which is being used in this docker-compose file is my [multiarch built version](https://nacisimsek.com/posts/20240421-multiarch-build/ "Build Docker Images with Multiarch Support") of the image which was originally prepared by [Veribilimiokulu](https://hub.docker.com/r/veribilimiokulu/ubuntu_hadoop_hive_sqoop "ubuntu_hadoop_hive_sqoop"). I had attended their [data engineering bootcamp](https://bootcamp.veribilimiokulu.com/bootcamp-programlari/data-engineering-bootcamp/ "VBO-DE-Bootcamp") program and had a chance to learn many new skills around data engineering while also refreshing my existing knowledge. Many of the next blog posts in my website will be related to the hands-on experience I gained during this bootcamp, therefore, special thanks to them for helping us improve ourselves and also encouraging us to share our knowledge to others.
+
+   {{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
+
+   **Note:**
+
+  The image which is being used in this docker-compose file is my [multiarch built version](https://nacisimsek.com/posts/20240421-multiarch-build/ "Build Docker Images with Multiarch Support") of the image which was originally prepared by [Veribilimiokulu](https://hub.docker.com/r/veribilimiokulu/ubuntu_hadoop_hive_sqoop "ubuntu_hadoop_hive_sqoop"). I had attended their [data engineering bootcamp](https://bootcamp.veribilimiokulu.com/bootcamp-programlari/data-engineering-bootcamp/ "VBO-DE-Bootcamp") program and had a chance to learn many new skills around data engineering while also refreshing my existing knowledge. Many of the next blog posts in my website will be related to the hands-on experience I gained during this bootcamp, therefore, special thanks to them for helping us improve ourselves and also encouraging us to share our knowledge to others.
+
+   {{< /alert >}}
+
 
 Simply copy the docker compose file and execute below command to deploy the containers.
 
@@ -212,21 +218,31 @@ You can access the namenode web UI from your browser: [http://localhost:9870/](h
   * **DataNodes Information** : Details on each DataNode’s storage capacity, usage, and health.
   * **HDFS Metrics** : Metrics on file system operations, such as read and write requests.
 
-> 📝 **Note:**
->
-> If you do not see all three nodes listed as Datanode in above list, its most likely the DataNode service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restart DataNode service as follows:
->
-> ```powershell
-> docker exec -it <container_name> /bin/bash
-> ```
->
-> ```powershell
-> hdfs --daemon start datanode
-> ```
 
-> ❗️ **Important:**
->
-> Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we deployed the master node is also one of the DataNode.
+   {{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
+
+   **Note:**
+
+  If you do not see all three nodes listed as Datanode in above list, its most likely the DataNode service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restart DataNode service as follows:
+
+  ```powershell
+  docker exec -it <container_name> /bin/bash
+  ```
+
+  ```powershell
+  hdfs --daemon start datanode
+  ```
+
+   {{< /alert >}}
+
+
+  {{< alert icon="triangle-exclamation" cardColor="#ffd874" iconColor="#0f172a" textColor="#0f172a" >}}
+  **Important:**
+
+  Normally in commercial systems, the master node should not be using as a DataNode, but here in this cluster, for testing purposes, we deployed the master node is also one of the DataNode.
+
+  {{< /alert >}}
+
 
 ### Port 8088: YARN ResourceManager Web UI
 
@@ -246,20 +262,28 @@ You can access the YARN resource manager web UI from your browser: [http://local
   * **Cluster Utilization** : Shows real-time data on how resources are being utilized across the cluster.
   * **Node Management** : Information on each NodeManager, including available and used resources.
 
-> 📝 **Note:**
->
-> If you do not see all three nodes listed as Active Nodes in above page, its most likely the NodeManager service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restartNodeManager service as follows:
->
-> ```powershell
->> docker exec -it cluster-slave-2 /bin/bash
-> root@cluster-slave-2:/# jps
-> 480 DataNode
-> 929 GetConf
-> 1416 Jps
-> 798 SecondaryNameNode
->
-> /usr/local/hadoop/sbin/yarn-daemon.sh start nodemanager
-> ```
+
+
+   {{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
+
+   **Note:**
+
+  If you do not see all three nodes listed as Active Nodes in above page, its most likely the NodeManager service is stopped or should be restarted on those nodes. If so, you can connect to the respective container's shell and restartNodeManager service as follows:
+
+ ```powershell
+ > docker exec -it cluster-slave-2 /bin/bash
+ root@cluster-slave-2:/# jps
+ 480 DataNode
+ 929 GetConf
+ 1416 Jps
+ 798 SecondaryNameNode
+
+ /usr/local/hadoop/sbin/yarn-daemon.sh start nodemanager
+ ```
+
+   {{< /alert >}}
+
+
 
 ## Cluster Operations
 

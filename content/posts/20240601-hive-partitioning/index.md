@@ -16,9 +16,9 @@ In the [previous article](https://nacisimsek.com/posts/20240601-hive/ "Hive Setu
 
 In this article, we will be performing partitioning and bucketing options and observe how applying these techniques can help us on query performance.
 
-{{< alert icon="circle-info" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="circle-info" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Info**:
+**Info:**
 
 If you directly opened this article without setting up your Docker environment, I suggest you visit that [`article`](https://nacisimsek.com/posts/20240509-hadoop-deploy/#deployment-of-the-cluster "Deployment of the Cluster") to deploy your cluster first.
 
@@ -67,17 +67,17 @@ Sales Orders Warehouse
 
 In this setup, if you want to analyze orders from September 2, 2023, you directly go to that day's folder. Then, if you're interested in orders from Store B on that day, you only look at the bucket for Store B. This layered organization reduces the amount of data that needs to be scanned and processed, leading to faster query and join performance.
 
-{{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="lightbulb" cardColor="#ffb3fd" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Tip**:
+**Tip:**
 
 Columns chosen for partitioning should generally be those frequently used in `WHERE` clauses for filtering data, and should have low cardinality to avoid creating too many small partitions, which can hurt performance. Avoid partitioning by unique IDs like user IDs or phone numbers.
 
 {{< /alert >}}
 
-{{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="lightbulb" cardColor="#ffb3fd" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Tip**:
+**Tip:**
 
 Bucketing is especially effective when the bucketed column is used in `GROUP BY` or `SORT BY` clauses in your queries, as it can optimize these operations significantly. Aim for a bucket size that is a multiple of the HDFS block size or around 1GB, using the formula: `Table size / Number of buckets >= HDFS block size` or `table size / 1 GB`.
 
@@ -91,9 +91,9 @@ Partitioning in Hive involves dividing a table into smaller parts based on the v
 
 Let's look at an example of creating a partitioned table. In this case, we'll partition a sales table by `sales_date`.
 
-{{< alert icon="edit" cardColor="#0096ff" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Note**:
+**Note:**
 
 Prior to this below step, I am assuming you have already done all the steps prior to [`this given step`](https://nacisimsek.com/posts/20240601-hive/#create-hive-database-and-the-table "Create Hive Database and the Table") of this blog post. Therefore you have a ready Hive service running on your Hadoop cluster, to be able to perform the following steps.
 
@@ -119,9 +119,11 @@ ROW FORMAT DELIMITED
 STORED AS ORC;
 ```
 
-{{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="lightbulb" cardColor="#ffb3fd" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Tip**: Notice that the partition column (`sales_date` in this example) is defined separately in the `PARTITIONED BY` clause and is **not** included in the column definitions within the parentheses before it. However, the `sales_date` field will still be part of the table columns to be queried just like all other fields.
+**Tip:**
+
+Notice that the partition column (`sales_date` in this example) is defined separately in the `PARTITIONED BY` clause and is **not** included in the column definitions within the parentheses before it. However, the `sales_date` field will still be part of the table columns to be queried just like all other fields.
 
 {{< /alert >}}
 
@@ -139,9 +141,9 @@ set hive.exec.dynamic.partition.mode=nonstrict;
 
 When dynamic partitioning is enabled, Hive will automatically infer and create new partitions as new partition key values are encountered during data loading.
 
-{{< alert icon="lightbulb" cardColor="#71ad47" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="lightbulb" cardColor="#ffb3fd" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Tip**:
+**Tip:**
 
 When using dynamic partitioning, ensure that the partition column(s) are placed **last** in the `INSERT` statement's `SELECT` clause or `VALUES` clause.
 

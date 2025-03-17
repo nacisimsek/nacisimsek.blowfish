@@ -42,6 +42,7 @@ To do this, follow the below steps:
    ```powershell
    colima start --cpu 4 --memory 8 --arch aarch64
    ```
+
    You can verify the colima is running by the command `colima status`.
 3. Install Docker Buildx
 
@@ -54,25 +55,31 @@ To do this, follow the below steps:
    ```powershell
    mkdir -p ~/.docker/cli-plugins
    ```
+
    c. Move the downloaded Buildx binary to the `~/.docker/cli-plugins` directory and rename it to `docker-buildx` via below command.
 
    ```powershell
    mv buildx-v0.13.1.darwin-amd64 ~/.docker/cli-plugins/docker-buildx
    ```
+
    d. Make it executable:
 
    ```powershell
    chmod +x ~/.docker/cli-plugins/docker-buildx
    ```
+
    e. Finally, verify the installation:
 
    ```powershell
    docker buildx version
    ```
+
    This should show the following output:
 
-   > github.com/docker/buildx v0.13.1 788433953af10f2a698f5c07611dddce2e08c7a0
-   >
+   ```
+   github.com/docker/buildx v0.13.1 788433953af10f2a698f5c07611dddce2e08c7a0
+   ```
+
 4. Create a new Buildx builder instance with the name "multiplatform-builder": `docker buildx create --name multiplatform-builder`
 5. Use the new builder instance by running: `docker buildx use multiplatform-builder`
 6. Verify that the builder instance is configured for multi-platform builds: `docker buildx inspect --bootstrap`
@@ -92,11 +99,15 @@ To do this, follow the below steps:
    ```
 7. Now, let's build a simple example Docker image for multiple platforms (e.g., linux/amd64 and linux/arm64):
 
-   > 📝 **Note:**
-   > Replace the following "**your-username**" part with your Docker Hub username. The --push flag is used to push the image to Docker Hub once the build is complete.
-   > Also modify the **image-name** and **tag** as you wish. The image to be built need to be represented with a dockerfile in the same directory where below command is executed.
-   > It is also a **must** to push the multi architecture images to a registry since the local repository does not support to store multi-architecture images
-   >
+   {{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
+
+   **Note:**
+
+   Replace the following "**your-username**" part with your Docker Hub username. The --push flag is used to push the image to Docker Hub once the build is complete.
+   Also modify the **image-name** and **tag** as you wish. The image to be built need to be represented with a dockerfile in the same directory where below command is executed.
+   It is also a **must** to push the multi architecture images to a registry since the local repository does not support to store multi-architecture images
+
+   {{< /alert >}}
 
    ```powershell
    docker buildx build --platform linux/amd64,linux/arm64 -t <your-username>/<image-name>:<tag> . --push
