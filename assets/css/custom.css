@@ -275,3 +275,13 @@ nav.hidden.md\:flex.items-center > *:last-child {
 nav.hidden.md\:flex.items-center > button#search-button {
     margin-right: 15px; /* Adds spacing between search and dark mode button */
 }
+
+.alert-content {
+    color: #0f172a;
+    mix-blend-mode: normal;
+}
+
+.alert-content strong,
+.alert-content b {
+    color: inherit;
+}

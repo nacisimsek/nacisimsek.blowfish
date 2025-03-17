@@ -18,7 +18,7 @@ In this article, we will deploy Hive services on the same Hadoop cluster and per
 
 {{< alert icon="triangle-exclamation" cardColor="#def991" iconColor="#0f172a" textColor="#0f172a">}}
 
-*Important:*
+**Important:**
 
 Since the image used in this experiment is built with the needed Hive services included, we can run Hive services in this cluster. However, if you are working on your own cluster built on top of a different image, the operations/commands used in this article may not be compatible with your environment.
 
@@ -39,9 +39,9 @@ Hive is like a friendly translator that helps you talk to your big data. Imagine
 - It uses engines like MapReduce, Tez, or Spark.
 - It supports many different file formats: Parquet, Sequence, ORC, Text, etc.
 
-{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="triangle-exclamation" cardColor="#ffd874" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Important**:
+**Important:**
 
 * Hive is not a database.
 * It is unsuitable for operational database needs (OLTP) since it focuses on heavy analytics queries.
@@ -108,9 +108,9 @@ docker exec -it cluster-master bash
 
 Initialize the Hive metastore schema in a PostgreSQL database
 
-{{< alert icon="triangle-exclamation" cardColor="#e63946" iconColor="#f1faee" textColor="#f1faee" >}}
+{{< alert icon="triangle-exclamation" cardColor="#ff7b7b" iconColor="#0f172a" textColor="#0f172a" >}}
 
-**Important**:
+**Important:**
 
 Schema initialization only needs to be performed for the first run of the Hive services. Once all the metadata tables are ready on Postgres, you need not initialize them again.
 
