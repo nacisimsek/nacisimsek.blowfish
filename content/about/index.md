@@ -23,7 +23,7 @@ layoutBackgroundHeaderSpace: false
 
 ---
 
-For over 15 years, I've been a part of the IT and Telecom world. My journey began as a Customer Support Engineer in Nortel Networks and has evolved through roles like Software Engineer, Engineering Team Lead, Project Manager, and Solutions Architect at Huawei. During this time, I've had the chance to work on impactful projects with companies such as Turkcell, Telefonica o2 and Deutsche Telekom.
+For over 17 years, I've been a part of the IT and Telecom world. My journey began as a Customer Support Engineer in Nortel Networks and has evolved through roles like Software Engineer, Engineering Team Lead, Project Manager, and Solutions Architect at Huawei. During this time, I've had the chance to work on impactful projects with companies such as Turkcell, Telefonica o2 and Deutsche Telekom.
 
 At Huawei, I not only contributed to sales but also played a pivotal role in designing robust systems and ensuring efficient network solutions. I've been deeply involved with Huawei's SmartCare® Solution, a leading Customer Experience Management product. This experience gave me hands-on expertise in onsite solution delivery, data integrations and management, from solutions like Hadoop and Spark to visualization platforms such as Tableau.
 
