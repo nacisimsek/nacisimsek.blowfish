@@ -17,7 +17,7 @@ title = "Naci Simsek"
   name = "Naci Simsek"
   image = "img/avatar.jpg"
   headline = "{{< typeit breakLines=false\nloop=true\nlifeLike=true >}}Technical Account Manager @ Ververica\nPioneering Real-Time Data Solutions\nOptimizing Streaming Architectures\nEmpowering Businesses with Data{{< /typeit >}}"
-  bio = "Technical Account Manager @ Ververica"
+  bio = "Customer Success Manager @ Ververica"
   links = [
     { email = "mailto:nacisimsek@gmail.com" },
     { linkedin = "https://linkedin.com/in/nacisimsek" },
