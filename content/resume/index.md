@@ -37,7 +37,7 @@ layoutBackgroundHeaderSpace: false
             <tr>
                 <td><img class="customEntitityLogo" src="ververica.jpg"/></td>
                 <td><a href="https://www.ververica.com/" target="_blank">Ververica</a></td>
-                <td>Technical Account Manager</td>
+                <td>Customer Success Manager</td>
                 <td> Present</br> Oct 2023</td>
                 <td> Düsseldorf, DE</td>
             </tr>
