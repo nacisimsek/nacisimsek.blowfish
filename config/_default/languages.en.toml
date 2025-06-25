@@ -16,7 +16,7 @@ title = "Naci Simsek"
 [params.author]
   name = "Naci Simsek"
   image = "img/avatar.jpg"
-  headline = "{{< typeit breakLines=false\nloop=true\nlifeLike=true >}}Customer Success Manager @ Ververica\nPioneering Real-Time Data Solutions\nOptimizing Streaming Architectures\nEmpowering Businesses with Data{{< /typeit >}}"
+  headline = "{{< typeit breakLines=false\nloop=true\nlifeLike=true >}}Senior Customer Success Technical Manager @ Ververica\nPioneering Real-Time Data Solutions\nOptimizing Streaming Architectures\nEmpowering Businesses with Data{{< /typeit >}}"
   bio = "Customer Success Manager @ Ververica"
   links = [
     { email = "mailto:nacisimsek@gmail.com" },
