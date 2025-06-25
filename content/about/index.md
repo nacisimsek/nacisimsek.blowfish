@@ -27,7 +27,7 @@ For over 17 years, I've been a part of the IT and Telecom world. My journey bega
 
 At Huawei, I not only contributed to sales but also played a pivotal role in designing robust systems and ensuring efficient network solutions. I've been deeply involved with Huawei's SmartCare® Solution, a leading Customer Experience Management product. This experience gave me hands-on expertise in onsite solution delivery, data integrations and management, from solutions like Hadoop and Spark to visualization platforms such as Tableau.
 
-Currently I am working as Customer Success Manager at Ververica, specialized in open source realtime data streaming technologies around Apache Flink, both on-prem and cloud deployed mainly on Kubernetes.
+Currently I am working as Senior Customer Success Technical Manager at Ververica, specialized in open source realtime data streaming technologies around Apache Flink, both on-prem and cloud deployed mainly on Kubernetes.
 
 I have an academic degree of Computer Engineering from Ege University and MBA from Bahcesehir University. Beyond these, I hold PMP® and German B1 certifications.
 
