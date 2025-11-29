@@ -439,6 +439,21 @@ article .px-6.py-4 > *:last-child {
         margin-right: 14px !important;
     }
 
+    /* Make hamburger button bigger and bolder on mobile */
+    .flex.md\:hidden.items-center button[id*="menu"] {
+        min-width: 48px !important;
+        min-height: 48px !important;
+        padding: 12px !important;
+    }
+
+    /* Make hamburger icon lines thicker/bolder */
+    .flex.md\:hidden.items-center button[id*="menu"] svg {
+        width: 24px !important;
+        height: 24px !important;
+        stroke-width: 2.5 !important;
+        font-weight: bold !important;
+    }
+
     /* Make SVG icons in mobile buttons slightly larger */
     .flex.md\:hidden.items-center button svg {
         width: 20px !important;
