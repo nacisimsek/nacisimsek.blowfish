@@ -416,7 +416,38 @@ article .px-6.py-4 > *:last-child {
     background: rgba(156, 163, 175, 0.8);
 }
 
-/* Mobile button styling removed to fix search functionality */
+/* Conservative mobile button improvements - preserve search functionality */
+@media (max-width: 768px) {
+    /* Add spacing between mobile header buttons */
+    .flex.md\:hidden.items-center {
+        gap: 8px !important;
+    }
+
+    /* Make individual buttons bigger and easier to tap - very specific selectors */
+    .flex.md\:hidden.items-center button[id*="search"],
+    .flex.md\:hidden.items-center button[id*="appearance"],
+    .flex.md\:hidden.items-center button[id*="menu"] {
+        min-width: 40px !important;
+        min-height: 40px !important;
+        padding: 8px !important;
+    }
+
+    /* Make SVG icons in mobile buttons slightly larger */
+    .flex.md\:hidden.items-center button svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    /* Add subtle hover effect for better touch feedback */
+    .flex.md\:hidden.items-center button:hover {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        border-radius: 6px !important;
+    }
+
+    .dark .flex.md\:hidden.items-center button:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+}
 
 /* Fix header visibility and z-index issues */
 .fixed.inset-x-0.z-100 {
