@@ -1,1 +1,18 @@
 .DS_Store
+
+# Hugo build output
+public/
+
+# Hugo cache and resources
+resources/_gen/
+resources/
+
+# Hugo lock file
+.hugo_build.lock
+
+# Node modules if using npm/yarn
+node_modules/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
