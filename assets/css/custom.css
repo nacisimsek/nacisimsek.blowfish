@@ -287,6 +287,111 @@ nav.hidden.md\:flex.items-center > button#search-button {
 }
 
 
+
+
+/* Fix tag/badge spacing in article cards - target the actual structure */
+.flex.flex-row.flex-wrap.items-center a.relative {
+    margin-right: 8px !important;
+    margin-bottom: 4px !important;
+}
+
+/* Ensure badges have proper spacing */
+.flex.flex-row.flex-wrap.items-center .badge {
+    margin-right: 8px !important;
+    margin-bottom: 4px !important;
+}
+
+/* Fix spacing for the me-2 class that's not working properly */
+.me-2 {
+    margin-right: 8px !important;
+}
+
+/* Add gap to flex containers for consistent spacing */
+.flex.flex-row.flex-wrap.items-center {
+    gap: 6px !important;
+}
+
+/* Add vertical spacing between different lines in article cards */
+article .px-6.py-4 > * {
+    margin-bottom: 8px !important;
+}
+
+/* Specific spacing for article card elements */
+article .px-6.py-4 header {
+    margin-bottom: 12px !important;
+}
+
+article .px-6.py-4 .text-sm {
+    margin-bottom: 10px !important;
+}
+
+article .px-6.py-4 .prose {
+    margin-bottom: 8px !important;
+}
+
+/* Author name spacing - target the author flex container */
+article .px-6.py-4 .flex.flex-row.flex-wrap.items-center {
+    margin-top: 8px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Ensure proper spacing between meta info and author, and author and tags */
+article .px-6.py-4 .text-sm + .flex.flex-row.flex-wrap.items-center {
+    margin-top: 12px !important;
+}
+
+article .px-6.py-4 .flex.flex-row.flex-wrap.items-center + .flex.flex-row.flex-wrap.items-center {
+    margin-top: 8px !important;
+}
+
+/* Remove bottom margin from last element to avoid extra space */
+article .px-6.py-4 > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Enhanced TOC Scrolling - Compatible with Blowfish smartTOC */
+.toc-right {
+    position: sticky !important;
+    top: 160px !important;
+    max-height: calc(100vh - 200px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* Chrome-specific scrollbar styling for TOC */
+.toc-right::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc-right::-webkit-scrollbar-track {
+    background: rgba(229, 231, 235, 0.5);
+    border-radius: 3px;
+}
+
+.toc-right::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.7);
+    border-radius: 3px;
+}
+
+.toc-right::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.9);
+}
+
+/* Dark mode TOC scrollbar */
+.dark .toc-right::-webkit-scrollbar-track {
+    background: rgba(64, 64, 64, 0.5);
+}
+
+.dark .toc-right::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.6);
+}
+
+.dark .toc-right::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.8);
+}
+
 /* Target only mobile navigation buttons */
 @media (max-width: 768px) {
     /* Ensure buttons are grouped together without excessive spacing */
@@ -309,4 +414,40 @@ nav.hidden.md\:flex.items-center > button#search-button {
     #menu-button {
         margin-right: 0 !important; /* Ensure no extra space after menu button */
     }
+}
+
+/* Fix header visibility and z-index issues */
+.fixed.inset-x-0.z-100 {
+    z-index: 9999 !important;
+}
+
+/* Ensure proper spacing for fixed header */
+.min-h-\[148px\] {
+    min-height: 148px !important;
+}
+
+/* Fix main content positioning */
+#main-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure TOC scrolling works properly */
+.toc-container {
+    position: sticky;
+    top: 160px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+/* Fix TOC positioning in smartTOC */
+#TableOfContents {
+    position: sticky;
+    top: 160px;
+}
+
+/* Ensure header blur effect works */
+#menu-blur {
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
 }
