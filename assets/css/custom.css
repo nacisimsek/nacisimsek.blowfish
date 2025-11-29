@@ -439,19 +439,26 @@ article .px-6.py-4 > *:last-child {
         margin-right: 14px !important;
     }
 
-    /* Make hamburger button bigger and bolder on mobile */
+    /* Make hamburger button same size as other buttons and prevent zoom scaling */
     .flex.md\:hidden.items-center button[id*="menu"] {
-        min-width: 48px !important;
-        min-height: 48px !important;
-        padding: 12px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        max-width: 44px !important;
+        max-height: 44px !important;
+        padding: 10px !important;
+        font-size: 16px !important; /* Fix font size to prevent zoom scaling */
+        line-height: 1 !important;
     }
 
-    /* Make hamburger icon lines thicker/bolder */
-    .flex.md\:hidden.items-center button[id*="menu"] svg {
-        width: 24px !important;
-        height: 24px !important;
-        stroke-width: 2.5 !important;
-        font-weight: bold !important;
+    /* Force hamburger icon to fixed size regardless of zoom */
+    .flex.md\:hidden.items-center button[id*="menu"] svg,
+    .flex.md\:hidden.items-center button[id*="menu"] * {
+        width: 20px !important;
+        height: 20px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
+        font-size: 16px !important;
+        transform: scale(1) !important; /* Prevent any scaling */
     }
 
     /* Make SVG icons in mobile buttons slightly larger */
