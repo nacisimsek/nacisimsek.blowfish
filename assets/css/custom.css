@@ -416,117 +416,74 @@ article .px-6.py-4 > *:last-child {
     background: rgba(156, 163, 175, 0.8);
 }
 
-/* Conservative mobile button improvements - preserve search functionality */
+/* Visually unite the mobile header buttons using Flexbox and precise margins */
 @media (max-width: 768px) {
-    /* Reduce spacing between mobile header buttons */
-    .flex.md\:hidden.items-center {
-        gap: 4px !important;
+    /* Target the main container of all mobile header elements */
+    .main-menu .flex.flex-1.items-center.justify-between {
+        display: flex !important;
+        justify-content: flex-end !important; /* Align buttons to the right */
     }
 
-    /* Make all mobile buttons bigger and easier to tap - broader selectors */
-    .flex.md\:hidden.items-center button,
-    .flex.md\:hidden.items-center a {
-        min-width: 44px !important;
-        min-height: 44px !important;
+    /* Target the container of the first two buttons and the hamburger button's container */
+    .main-menu .flex.md\:hidden.items-center,
+    .main-menu .md\:hidden {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* --- Unified Button Styles --- */
+    /* Target all three buttons to ensure identical dimensions and properties */
+    #search-button-mobile,
+    #appearance-switcher-mobile,
+    #menu-button > div {
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        max-width: 48px !important;
+        max-height: 48px !important;
         padding: 10px !important;
+        margin: 0 !important; /* Remove any residual margins */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-    }
-
-    /* Add extra right margin to the theme button to balance spacing with hamburger button */
-    .flex.md\:hidden.items-center button[id*="appearance"] {
-        margin-right: 14px !important;
-    }
-
-    /* Force hamburger button size - prevent JS override after page load */
-    body .flex.md\:hidden.items-center button[id*="menu"],
-    html body .flex.md\:hidden.items-center button[id*="menu"] {
-        min-width: 48px !important;
-        min-height: 48px !important;
-        max-width: 48px !important;
-        max-height: 48px !important;
-        width: 48px !important;
-        height: 48px !important;
-        padding: 12px !important;
-        font-size: 0 !important;
-        text-size-adjust: none !important;
-        -webkit-text-size-adjust: none !important;
-        -moz-text-size-adjust: none !important;
-        -ms-text-size-adjust: none !important;
-        zoom: 1 !important;
-        -webkit-zoom: 1 !important;
-        transform: scale(1) !important;
-        -webkit-transform: scale(1) !important;
-        overflow: hidden !important;
-        box-sizing: border-box !important;
-        position: relative !important;
-        transition: none !important; /* Prevent smooth size changes */
-    }
-
-    /* Even more specific - target after JS loads */
-    .js body .flex.md\:hidden.items-center button[id*="menu"] {
-        min-width: 48px !important;
-        min-height: 48px !important;
-        max-width: 48px !important;
-        max-height: 48px !important;
-        width: 48px !important;
-        height: 48px !important;
-        padding: 12px !important;
-    }
-
-    /* CSS Animation to continuously enforce size - overrides JS */
-    @keyframes enforceHamburgerSize {
-        0%, 100% {
-            min-width: 48px !important;
-            min-height: 48px !important;
-            max-width: 48px !important;
-            max-height: 48px !important;
-            width: 48px !important;
-            height: 48px !important;
-            padding: 12px !important;
-        }
-    }
-
-    /* Apply animation to hamburger button */
-    .flex.md\:hidden.items-center button[id*="menu"] {
-        animation: enforceHamburgerSize 0.1s infinite !important;
-        animation-fill-mode: forwards !important;
-    }
-
-    /* Force all content inside hamburger button to fixed size */
-    .flex.md\:hidden.items-center button[id*="menu"] svg,
-    .flex.md\:hidden.items-center button[id*="menu"] *,
-    .flex.md\:hidden.items-center button[id*="menu"]::before,
-    .flex.md\:hidden.items-center button[id*="menu"]::after {
-        width: 20px !important;
-        height: 20px !important;
-        max-width: 20px !important;
-        max-height: 20px !important;
-        min-width: 20px !important;
-        min-height: 20px !important;
-        font-size: 0 !important;
-        text-size-adjust: none !important;
-        -webkit-text-size-adjust: none !important;
-        transform: none !important;
-        zoom: 1 !important;
-        display: block !important;
-        position: relative !important;
-    }
-
-    /* Make SVG icons in mobile buttons slightly larger */
-    .flex.md\:hidden.items-center button svg {
-        width: 20px !important;
-        height: 20px !important;
-    }
-
-    /* Add subtle hover effect for better touch feedback */
-    .flex.md\:hidden.items-center button:hover {
-        background-color: rgba(0, 0, 0, 0.05) !important;
+        font-size: 0 !important; /* Prevents zoom-based resizing */
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
         border-radius: 6px !important;
+        transition: background-color 0.2s ease-in-out;
     }
 
-    .dark .flex.md\:hidden.items-center button:hover {
+    /* --- Precise Margin Control for Spacing --- */
+    #appearance-switcher-mobile {
+        margin-left: 8px !important;
+    }
+
+    #menu-button > div {
+        margin-left: 8px !important;
+    }
+
+    /* --- Unified SVG Icon Styles --- */
+    /* Target all SVGs within the buttons for consistent size and boldness */
+    #search-button-mobile svg,
+    #appearance-switcher-mobile svg,
+    #menu-button > div svg {
+        width: 24px !important;
+        height: 24px !important;
+        stroke-width: 1.5 !important; /* Adjust for desired boldness */
+    }
+
+    /* --- Unified Hover Effect --- */
+    /* Apply a consistent hover effect to all three buttons */
+    #search-button-mobile:hover,
+    #appearance-switcher-mobile:hover,
+    #menu-button > div:hover {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .dark #search-button-mobile:hover,
+    .dark #appearance-switcher-mobile:hover,
+    .dark #menu-button > div:hover {
         background-color: rgba(255, 255, 255, 0.05) !important;
     }
 }
