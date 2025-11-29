@@ -416,73 +416,20 @@ article .px-6.py-4 > *:last-child {
     background: rgba(156, 163, 175, 0.8);
 }
 
-/* Enhanced mobile navigation buttons - bigger and better spaced */
-@media (max-width: 768px) {
-    /* Container for mobile buttons */
-    .flex.md\:hidden.items-center {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        gap: 12px !important; /* Better spacing between buttons */
-        padding-right: 16px !important; /* Add padding from screen edge */
-    }
-
-    /* Make all mobile header buttons bigger and more touchable */
-    .flex.md\:hidden.items-center button,
-    .flex.md\:hidden.items-center a {
-        min-width: 44px !important; /* Minimum touch target size */
-        min-height: 44px !important;
-        padding: 12px !important; /* Larger touch area */
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        border-radius: 8px !important; /* Rounded corners for better look */
-    }
-
-    /* Specific styling for search button */
-    #search-button-mobile {
-        margin-right: 0 !important; /* Remove old margin, using gap instead */
-    }
-
-    /* Specific styling for appearance switcher */
-    #appearance-switcher-mobile {
-        margin-right: 0 !important; /* Remove old margin, using gap instead */
-    }
-
-    /* Specific styling for menu button */
-    #menu-button {
-        margin-right: 0 !important; /* Remove old margin, using gap instead */
-    }
-
-    /* Make SVG icons inside buttons bigger */
-    .flex.md\:hidden.items-center button svg,
-    .flex.md\:hidden.items-center a svg {
-        width: 24px !important;
-        height: 24px !important;
-    }
-
-    /* Add hover/active effects for better user feedback */
-    .flex.md\:hidden.items-center button:hover,
-    .flex.md\:hidden.items-center a:hover {
-        background-color: rgba(0, 0, 0, 0.1) !important;
-    }
-
-    .dark .flex.md\:hidden.items-center button:hover,
-    .dark .flex.md\:hidden.items-center a:hover {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    /* Active/pressed state for better touch feedback */
-    .flex.md\:hidden.items-center button:active,
-    .flex.md\:hidden.items-center a:active {
-        transform: scale(0.95) !important;
-        transition: transform 0.1s ease !important;
-    }
-}
+/* Mobile button styling removed to fix search functionality */
 
 /* Fix header visibility and z-index issues */
 .fixed.inset-x-0.z-100 {
     z-index: 9999 !important;
+}
+
+/* Ensure search modal appears above header when activated */
+#search-wrapper {
+    z-index: 10000 !important;
+}
+
+#search-modal {
+    z-index: 10001 !important;
 }
 
 /* Ensure proper spacing for fixed header */
