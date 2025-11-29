@@ -418,18 +418,25 @@ article .px-6.py-4 > *:last-child {
 
 /* Conservative mobile button improvements - preserve search functionality */
 @media (max-width: 768px) {
-    /* Add spacing between mobile header buttons */
+    /* Reduce spacing between mobile header buttons */
     .flex.md\:hidden.items-center {
-        gap: 8px !important;
+        gap: 4px !important;
     }
 
-    /* Make individual buttons bigger and easier to tap - very specific selectors */
-    .flex.md\:hidden.items-center button[id*="search"],
-    .flex.md\:hidden.items-center button[id*="appearance"],
-    .flex.md\:hidden.items-center button[id*="menu"] {
-        min-width: 40px !important;
-        min-height: 40px !important;
-        padding: 8px !important;
+    /* Make all mobile buttons bigger and easier to tap - broader selectors */
+    .flex.md\:hidden.items-center button,
+    .flex.md\:hidden.items-center a {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        padding: 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Add extra right margin to the theme button to balance spacing with hamburger button */
+    .flex.md\:hidden.items-center button[id*="appearance"] {
+        margin-right: 14px !important;
     }
 
     /* Make SVG icons in mobile buttons slightly larger */
