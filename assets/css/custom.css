@@ -475,6 +475,25 @@ article .px-6.py-4 > *:last-child {
         padding: 12px !important;
     }
 
+    /* CSS Animation to continuously enforce size - overrides JS */
+    @keyframes enforceHamburgerSize {
+        0%, 100% {
+            min-width: 48px !important;
+            min-height: 48px !important;
+            max-width: 48px !important;
+            max-height: 48px !important;
+            width: 48px !important;
+            height: 48px !important;
+            padding: 12px !important;
+        }
+    }
+
+    /* Apply animation to hamburger button */
+    .flex.md\:hidden.items-center button[id*="menu"] {
+        animation: enforceHamburgerSize 0.1s infinite !important;
+        animation-fill-mode: forwards !important;
+    }
+
     /* Force all content inside hamburger button to fixed size */
     .flex.md\:hidden.items-center button[id*="menu"] svg,
     .flex.md\:hidden.items-center button[id*="menu"] *,
