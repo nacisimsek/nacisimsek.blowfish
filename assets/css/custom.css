@@ -439,26 +439,47 @@ article .px-6.py-4 > *:last-child {
         margin-right: 14px !important;
     }
 
-    /* Make hamburger button same size as other buttons and prevent zoom scaling */
+    /* Force hamburger button to behave like fixed UI element - Chrome iOS specific */
     .flex.md\:hidden.items-center button[id*="menu"] {
         min-width: 44px !important;
         min-height: 44px !important;
         max-width: 44px !important;
         max-height: 44px !important;
+        width: 44px !important;
+        height: 44px !important;
         padding: 10px !important;
-        font-size: 16px !important; /* Fix font size to prevent zoom scaling */
-        line-height: 1 !important;
+        font-size: 0 !important; /* Hide any text content */
+        text-size-adjust: none !important; /* Prevent iOS text scaling */
+        -webkit-text-size-adjust: none !important; /* Webkit specific */
+        -moz-text-size-adjust: none !important; /* Firefox */
+        -ms-text-size-adjust: none !important; /* IE/Edge */
+        zoom: 1 !important; /* Force zoom level */
+        -webkit-zoom: 1 !important; /* Webkit zoom */
+        transform: scale(1) !important; /* CSS transform scale lock */
+        -webkit-transform: scale(1) !important; /* Webkit transform */
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        position: relative !important;
     }
 
-    /* Force hamburger icon to fixed size regardless of zoom */
+    /* Force all content inside hamburger button to fixed size */
     .flex.md\:hidden.items-center button[id*="menu"] svg,
-    .flex.md\:hidden.items-center button[id*="menu"] * {
+    .flex.md\:hidden.items-center button[id*="menu"] *,
+    .flex.md\:hidden.items-center button[id*="menu"]::before,
+    .flex.md\:hidden.items-center button[id*="menu"]::after {
         width: 20px !important;
         height: 20px !important;
         max-width: 20px !important;
         max-height: 20px !important;
-        font-size: 16px !important;
-        transform: scale(1) !important; /* Prevent any scaling */
+        min-width: 20px !important;
+        min-height: 20px !important;
+        font-size: 0 !important;
+        text-size-adjust: none !important;
+        -webkit-text-size-adjust: none !important;
+        transform: none !important;
+        zoom: 1 !important;
+        display: block !important;
+        position: relative !important;
     }
 
     /* Make SVG icons in mobile buttons slightly larger */
