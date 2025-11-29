@@ -416,26 +416,18 @@ article .px-6.py-4 > *:last-child {
     background: rgba(156, 163, 175, 0.8);
 }
 
-/* Visually unite the mobile header buttons using Flexbox and precise margins */
+/* Final attempt to unify mobile header buttons, preserving functionality */
 @media (max-width: 768px) {
-    /* Target the main container of all mobile header elements */
-    .main-menu .flex.flex-1.items-center.justify-between {
+    /* Use a very specific selector for the container to ensure the gap is applied */
+    .main-menu.flex.items-center.justify-between > .flex.flex-1.items-center.justify-between {
         display: flex !important;
-        justify-content: flex-end !important; /* Align buttons to the right */
-    }
-
-    /* Target the container of the first two buttons and the hamburger button's container */
-    .main-menu .flex.md\:hidden.items-center,
-    .main-menu .md\:hidden {
-        display: flex !important;
-        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 8px !important;
     }
 
     /* --- Unified Button Styles --- */
-    /* Target all three buttons to ensure identical dimensions and properties */
     #search-button-mobile,
-    #appearance-switcher-mobile,
-    #menu-button > div {
+    #appearance-switcher-mobile {
         width: 48px !important;
         height: 48px !important;
         min-width: 48px !important;
@@ -443,47 +435,46 @@ article .px-6.py-4 > *:last-child {
         max-width: 48px !important;
         max-height: 48px !important;
         padding: 10px !important;
-        margin: 0 !important; /* Remove any residual margins */
+        margin: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        font-size: 0 !important; /* Prevents zoom-based resizing */
+        font-size: 0 !important;
         -webkit-text-size-adjust: none;
         text-size-adjust: none;
         border-radius: 6px !important;
         transition: background-color 0.2s ease-in-out;
     }
 
-    /* --- Precise Margin Control for Spacing --- */
-    #appearance-switcher-mobile {
-        margin-left: 8px !important;
+    #menu-button {
+        width: 48px !important;
+        height: 48px !important;
+        padding: 10px !important;
+        margin: 0 !important;
+        border-radius: 6px !important;
+        transition: background-color 0.2s ease-in-out;
     }
 
-    #menu-button > div {
-        margin-left: 8px !important;
-    }
 
     /* --- Unified SVG Icon Styles --- */
-    /* Target all SVGs within the buttons for consistent size and boldness */
     #search-button-mobile svg,
     #appearance-switcher-mobile svg,
-    #menu-button > div svg {
+    #menu-button svg {
         width: 24px !important;
         height: 24px !important;
-        stroke-width: 1.5 !important; /* Adjust for desired boldness */
+        stroke-width: 1.5 !important;
     }
 
     /* --- Unified Hover Effect --- */
-    /* Apply a consistent hover effect to all three buttons */
     #search-button-mobile:hover,
     #appearance-switcher-mobile:hover,
-    #menu-button > div:hover {
+    #menu-button:hover {
         background-color: rgba(0, 0, 0, 0.05) !important;
     }
 
     .dark #search-button-mobile:hover,
     .dark #appearance-switcher-mobile:hover,
-    .dark #menu-button > div:hover {
+    .dark #menu-button:hover {
         background-color: rgba(255, 255, 255, 0.05) !important;
     }
 }
@@ -532,3 +523,5 @@ article .px-6.py-4 > *:last-child {
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
 }
+
+/* Mobile menu CSS removed - was interfering with theme functionality */
