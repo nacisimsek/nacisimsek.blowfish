@@ -10,7 +10,6 @@ showauthor: false
 authors:
   - nacisimsek
 ---
-
 # Deploy Multi-Node Kafka Cluster on Kubernetes with KRaft Mode
 
 In this comprehensive guide, we'll deploy a **production-ready 3-node Apache Kafka cluster** on Kubernetes using the new **KRaft mode** (Kafka Raft), eliminating the need for Zookeeper. This setup is perfect for testing and development environments with persistent storage and external connectivity.
@@ -26,6 +25,7 @@ In this comprehensive guide, we'll deploy a **production-ready 3-node Apache Kaf
 ## 🏗️ Architecture Overview
 
 Our Kafka deployment consists of:
+
 - **3 Kafka brokers** acting as both brokers and controllers
 - **Persistent Volume Claims** with XFS filesystem for better performance
 - **Headless service** for internal cluster communication
@@ -86,6 +86,7 @@ allowVolumeExpansion: true
 ```
 
 Apply the storage class:
+
 ```shell
 kubectl apply -f kafka-storageclass-xfs.yaml
 ```
@@ -145,6 +146,7 @@ spec:
 ```
 
 Apply the PVCs:
+
 ```shell
 kubectl apply -f kafka-pvcs-3node-xfs.yaml -n kafka-demo
 ```
@@ -186,6 +188,7 @@ spec:
 ```
 
 Apply the service:
+
 ```shell
 kubectl apply -f kraft-service-dual-3node.yaml -n kafka-demo
 ```
@@ -423,6 +426,7 @@ spec:
 ```
 
 Deploy the brokers:
+
 ```shell
 kubectl apply -f kafka-3-brokers-optimized.yaml -n kafka-demo
 ```
@@ -438,6 +442,7 @@ deployment.apps/kafka-2 created
 ### Check Deployment Status
 
 Monitor the deployment progress:
+
 ```shell
 # Check all resources
 kubectl get all -n kafka-demo
@@ -537,30 +542,56 @@ jobs
 
 ## 🛠️ Testing with IntelliJ IDEA Big Data Tools
 
+IntelliJ IDEA Ultimate provides excellent Big Data Tools support, including a powerful Kafka plugin that offers a unified UI for managing Kafka clusters. This plugin is particularly valuable for development and testing as it provides intuitive graphical interfaces for topic management, message production/consumption, and cluster monitoring without requiring command-line tools.
+
+{{< alert icon="lightbulb" cardColor="#e0f7fa" iconColor="#0f172a" textColor="#0f172a" >}}
+
+**Pro Tip:**
+
+IntelliJ IDEA's Kafka tool (available in Ultimate edition) provides an excellent GUI for managing your Kafka cluster during development. You can create topics, produce test messages, and consume data without writing any code - perfect for testing your deployment!
+
+{{< /alert >}}
+
 ### Setting Up Kafka Connection
 
-1. **Open Kafka Tool Window**: `View → Tool Windows → Kafka`
+Follow these steps to connect IntelliJ IDEA to your Kafka cluster:
 
-2. **Create New Connection**: Click the "New Connection" button
+1. **Open Kafka Tool Window**: Navigate to `View → Tool Windows → Kafka`
+2. **Create New Connection**: Click the "New Connection" button (+ icon)
+3. **Configure Connection Parameters**:
 
-3. **Configure Connection**:
    - **Name**: `Local Kafka K8s Cluster`
-   - **Configuration source**: `Custom`
+   - **Configuration source**: Select `Custom`
    - **Bootstrap servers**: `127.0.0.1:19092,127.0.0.1:19093,127.0.0.1:19094`
-   - **Authentication**: `None` (for testing purposes)
+   - **Authentication**: Select `None` (since we're using plaintext for testing)
 
-4. **Test Connection**: Click "Test connection" to verify
+{{< alert icon="edit" cardColor="#3ae6da" iconColor="#0f172a" textColor="#0f172a" >}}
 
-5. **Save**: Click "OK" to save the connection
+**Note:**
+
+This setup requires **IntelliJ IDEA Ultimate** edition. The Big Data Tools plugin is not available in the Community edition.
+
+{{< /alert >}}
+
+![1764514971733](image/index/1764514971733.png)
+
+<!-- TODO: Add screenshot of IntelliJ Kafka connection dialog here -->
+
+4. **Test Connection**: Click "Test connection" to verify connectivity
+5. **Save Configuration**: Click "OK" to save the connection
 
 ### Connection Details Explained
 
 - **127.0.0.1:19092**: Maps to kafka-0 external port (9094)
-- **127.0.0.1:19093**: Maps to kafka-1 external port (9094)  
+- **127.0.0.1:19093**: Maps to kafka-1 external port (9094)
 - **127.0.0.1:19094**: Maps to kafka-2 external port (9094)
 
-{{< alert >}}
-**Important**: Use ports 19092, 19093, 19094 for external connections, NOT 9092, 9093, 9094. The latter are internal cluster ports.
+{{< alert icon="triangle-exclamation" cardColor="#ffd874" iconColor="#0f172a" textColor="#0f172a" >}}
+
+**Important:**
+
+Use ports **19092, 19093, 19094** for external connections, NOT 9092, 9093, 9094. The latter are internal cluster ports.
+
 {{< /alert >}}
 
 ### Quick Connectivity Test
@@ -581,33 +612,34 @@ Connection to localhost port 19094 [tcp/*] succeeded!
 ### Testing the Setup
 
 Once connected, you can:
+
 - **View topics**: Browse existing topics in the cluster
-- **Create topics**: Right-click to create new topics
-- **Produce messages**: Send test messages to topics
-- **Consume messages**: Read messages from topics
-- **Monitor partitions**: View partition distribution across brokers
+- **Create topics**: Right-click to create new topics with custom configurations
+- **Produce messages**: Send test messages to topics with custom headers and keys
+- **Consume messages**: Read messages from topics with filtering and search capabilities
+- **Monitor partitions**: View partition distribution across brokers and consumer lag
+- **Schema management**: Handle Avro/JSON schemas if using Schema Registry
 
-{{< alert icon="lightbulb" cardColor="#e0f7fa" iconColor="#0f172a" textColor="#0f172a" >}}
+![1764515068514](image/index/1764515068514.png)
 
-**Pro Tip:**
-
-IntelliJ IDEA's Kafka tool provides an excellent GUI for managing your Kafka cluster during development. You can create topics, produce test messages, and consume data without writing any code - perfect for testing your deployment!
-
-{{< /alert >}}
+<!-- TODO: Add screenshot of IntelliJ Kafka tool window showing connected cluster -->
 
 ## 🏗️ Key Configuration Highlights
 
 ### KRaft Mode Benefits
+
 - **No Zookeeper dependency**: Simplified architecture and reduced operational overhead
 - **Better performance**: Faster metadata operations and improved scalability
 - **Unified log**: Single log format for both data and metadata
 
 ### Storage Optimization
+
 - **XFS filesystem**: Better performance for Kafka workloads compared to ext4
 - **No lost+found directory**: Cleaner storage management
 - **Volume expansion**: Ability to expand storage when needed
 
 ### Resource Optimization
+
 - **Memory settings**: Optimized JVM heap settings for container environments
 - **G1 garbage collector**: Better performance for low-latency applications
 - **Resource limits**: Proper resource constraints for Kubernetes scheduling
@@ -663,17 +695,12 @@ We successfully deployed a **3-node Kafka cluster** on Kubernetes with:
 - ✅ **Production-ready configuration** with resource optimization
 
 This setup provides an excellent foundation for **testing and development environments**. For production deployments, consider adding:
+
 - Authentication and encryption (SASL/SSL)
 - Network policies for security
 - Monitoring with Prometheus/Grafana
 - Automated backup strategies
 - Helm charts for easier deployment management
-
-## 📚 Related Articles
-
-- [Kafka Topics Management](../20240603-kafka-topics/)
-- [Kafka Python Operations](../20240604-kafka-python-operations/)
-- [Elasticsearch and Kibana Deployment](../20240609-elasticsearch-kibana/)
 
 ---
 
